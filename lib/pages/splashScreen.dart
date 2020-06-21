@@ -1,4 +1,5 @@
 import 'package:Mafia/pages/home.dart';
+import 'package:Mafia/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -11,10 +12,19 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3), () {
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => Home()));
-    });
+    initSetting().then(
+      (value) => Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => Home(),
+        ),
+      ),
+    );
+  }
+
+  Future initSetting() async {
+    await Future.delayed(Duration(seconds: 3));
+    await Provider.of<Settings>(context, listen: false).readSetting();
+    await Provider.of<RolesNPlayers>(context, listen: false).initRNPSetting();
   }
 
   @override
@@ -33,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           Center(
             child: Shimmer.fromColors(
-                child: Text("Mafia's Night",
+                child: Text("Mafia Night",
                     style: TextStyle(fontSize: 55, fontFamily: "Piedra")),
                 baseColor: Colors.grey[900],
                 highlightColor: Colors.red[100]),

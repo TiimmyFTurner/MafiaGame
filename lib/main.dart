@@ -22,8 +22,7 @@ class MafiaApp extends StatefulWidget {
 class _MafiaAppState extends State<MafiaApp> {
   @override
   void initState() {
-    Provider.of<Settings>(context, listen: false).readSetting();
-    Provider.of<RolesNPlayers>(context, listen: false).initRNPSetting();
+
     super.initState();
   }
 
