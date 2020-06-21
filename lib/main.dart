@@ -1,4 +1,4 @@
-import 'package:Mafia/pages/home.dart';
+import 'package:Mafia/pages/splashScreen.dart';
 import 'package:Mafia/providers/providers.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +34,7 @@ class _MafiaAppState extends State<MafiaApp> {
       title: 'Mafia',
       theme: Provider.of<Settings>(context).themeData,
       darkTheme: Provider.of<Settings>(context).darkTheme,
-      home: Home(),
+      home: SplashScreen(),
     );
   }
 }
