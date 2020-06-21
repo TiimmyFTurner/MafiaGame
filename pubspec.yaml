@@ -65,6 +65,9 @@ flutter:
     - family: Koodak
       fonts:
         - asset: fonts/Koodak.ttf
+    - family: Piedra
+      fonts:
+        - asset: fonts/Piedra-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
