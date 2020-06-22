@@ -1,3 +1,4 @@
+import 'package:Mafia/pages/howToPlay.dart';
 import 'package:Mafia/pages/setPlayers.dart';
 import 'package:Mafia/pages/setting.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,11 @@ class Home extends StatelessWidget {
                       fontWeight: FontWeight.w300,
                       letterSpacing: 3),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => HowToPlay()),
+                  );
+                },
               ),
             ),
             SizedBox(height: 16),
