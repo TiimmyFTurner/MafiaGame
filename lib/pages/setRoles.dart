@@ -40,6 +40,7 @@ class SetRoles extends StatelessWidget {
                   onTap: () {
                     _rNPProviderSetter.addRole = _mafia[index];
                   },
+                  onLongPress: () => showRoleJob(context, _mafia[index]),
                 );
               }),
             ),
@@ -56,6 +57,7 @@ class SetRoles extends StatelessWidget {
                   onTap: () {
                     _rNPProviderSetter.addRole = _citizen[index];
                   },
+                  onLongPress: () => showRoleJob(context, _citizen[index]),
                 );
               }),
             ),
@@ -73,6 +75,8 @@ class SetRoles extends StatelessWidget {
                   onTap: () {
                     _rNPProviderSetter.removeRole = _selectedRoles[index];
                   },
+                  onLongPress: () =>
+                      showRoleJob(context, _selectedRoles[index]),
                 );
               }),
             ),
@@ -88,5 +92,52 @@ class SetRoles extends StatelessWidget {
             Provider.of<RolesNPlayers>(context).players.length.toString() +
             ")"),
         centerTitle: true,
+        actions: <Widget>[
+          Builder(
+            builder: (context) => IconButton(
+                icon: Icon(Icons.help_outline),
+                onPressed: () {
+                  final snackBar = SnackBar(
+                    content: Text("برای مشاهده وظیفه هر نقش آن را نگه دارید",
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyText1),
+                    backgroundColor: Theme.of(context).accentColor,
+                  );
+                  Scaffold.of(context).showSnackBar(snackBar);
+                }),
+          )
+        ],
       );
+
+  showRoleJob(_, role) {
+    return showDialog(
+      context: _,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(28),
+          ),
+          backgroundColor: Theme.of(context).accentColor,
+          title: Text(
+            role.name,
+            textAlign: TextAlign.center,
+          ),
+          content: SingleChildScrollView(
+            child: Text(
+              role.job,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text("فهمیدم"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
