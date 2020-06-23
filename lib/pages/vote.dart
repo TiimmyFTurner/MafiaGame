@@ -14,6 +14,7 @@ class Vote extends StatelessWidget {
         appBar: _buildAppBar(context),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
+            Provider.of<RolesNPlayers>(context,listen: false).startNight();
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (_) => Night()),
             );

@@ -126,7 +126,7 @@ class RolesNPlayers extends ChangeNotifier {
   playGame() {
     _day = 1;
     _night = 1;
-    _playersWithRole.sort((p1, p2) => p1.role.order.compareTo(p2.role.order));
+    _sortPlayer();
     notifyListeners();
   }
 
@@ -152,12 +152,17 @@ class RolesNPlayers extends ChangeNotifier {
   }
 
   startVoting() {
+    if (_day > 1) _playersWithRole.shuffle();
     _alives = 0;
     _playersWithRole.forEach((element) {
       if (element.status != 'dead') _alives++;
     });
     _day++;
     notifyListeners();
+  }
+
+  startNight(){
+    _sortPlayer();
   }
 
   get alive => _alives;
@@ -169,4 +174,7 @@ class RolesNPlayers extends ChangeNotifier {
         _playersWithRole[index].status == 'silent' ? 'alive' : 'silent';
     notifyListeners();
   }
+
+
+  _sortPlayer() =>  _playersWithRole.sort((p1, p2) => p1.role.order.compareTo(p2.role.order));
 }
