@@ -1,7 +1,7 @@
+import 'package:Mafia/pages/home.dart';
 import 'package:Mafia/pages/setRoles.dart';
 import 'package:Mafia/providers/providers.dart';
 import 'package:Mafia/widgets/listItemPlayer.dart';
-import 'package:Mafia/widgets/popupMenu.dart';
 import 'package:flutter/material.dart';
 
 class SetPlayers extends StatelessWidget {
@@ -99,6 +99,17 @@ class SetPlayers extends StatelessWidget {
             Provider.of<RolesNPlayers>(context).players.length.toString() +
             ")"),
         centerTitle: true,
-        actions: <Widget>[PopupMenu()],
+        leading: IconButton(
+            icon: Icon(Icons.home),
+            onPressed: () => Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => Home()),
+                (route) => false)),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.replay),
+              onPressed: () =>
+                  Provider.of<RolesNPlayers>(context, listen: false)
+                      .recoverLastPlayers())
+        ],
       );
 }
