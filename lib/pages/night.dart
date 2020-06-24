@@ -1,5 +1,6 @@
 import 'package:Mafia/pages/day.dart';
 import 'package:Mafia/providers/providers.dart';
+import 'package:Mafia/widgets/inGameAppBar.dart';
 import 'package:Mafia/widgets/listItemNight.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,9 @@ class Night extends StatelessWidget {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
-        appBar: _buildAppBar(context),
+        appBar: InGameAppBar(
+            title:
+                "شب " + Provider.of<RolesNPlayers>(context).night.toString()),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.of(context).pushReplacement(
@@ -37,25 +40,4 @@ class Night extends StatelessWidget {
       ),
     );
   }
-
-  AppBar _buildAppBar(context) => AppBar(
-        title:
-            Text("شب " + Provider.of<RolesNPlayers>(context).night.toString()),
-        centerTitle: true,
-        leading: Container(),
-        actions: <Widget>[_simplePopup(context)],
-      );
-
-  Widget _simplePopup(context) => PopupMenuButton<int>(
-        itemBuilder: (context) => [
-          PopupMenuItem(
-            value: 1,
-            child: Text("بازی جدید"),
-          ),
-        ],
-        onSelected: (value) {
-          Provider.of<RolesNPlayers>(context, listen: false).newGame();
-          Navigator.of(context).pop();
-        },
-      );
 }

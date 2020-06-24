@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:Mafia/pages/night.dart';
 import 'package:Mafia/pages/vote.dart';
 import 'package:Mafia/providers/providers.dart';
+import 'package:Mafia/widgets/inGameAppBar.dart';
 import 'package:Mafia/widgets/listItemDay.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,8 @@ class _DayState extends State<Day> {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
-        appBar: _buildAppBar(context),
+        appBar: InGameAppBar(
+            title: "روز" + Provider.of<RolesNPlayers>(context).day.toString()),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             if (dayN == 1)
@@ -71,27 +73,6 @@ class _DayState extends State<Day> {
       ),
     );
   }
-
-  AppBar _buildAppBar(context) => AppBar(
-        title:
-            Text("روز " + Provider.of<RolesNPlayers>(context).day.toString()),
-        centerTitle: true,
-        leading: Container(),
-        actions: <Widget>[_simplePopup(context)],
-      );
-
-  Widget _simplePopup(context) => PopupMenuButton<int>(
-        itemBuilder: (context) => [
-          PopupMenuItem(
-            value: 1,
-            child: Text("بازی جدید"),
-          ),
-        ],
-        onSelected: (value) {
-          Provider.of<RolesNPlayers>(context, listen: false).newGame();
-          Navigator.of(context).pop();
-        },
-      );
 
   void startTimer() {
     _current = 30;

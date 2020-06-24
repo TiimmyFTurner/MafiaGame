@@ -1,5 +1,6 @@
 import 'package:Mafia/pages/night.dart';
 import 'package:Mafia/providers/providers.dart';
+import 'package:Mafia/widgets/inGameAppBar.dart';
 import 'package:Mafia/widgets/listItemVote.dart';
 import 'package:flutter/material.dart';
 
@@ -11,10 +12,10 @@ class Vote extends StatelessWidget {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
-        appBar: _buildAppBar(context),
+        appBar: InGameAppBar(title: "رای دهی"),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Provider.of<RolesNPlayers>(context,listen: false).startNight();
+            Provider.of<RolesNPlayers>(context, listen: false).startNight();
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (_) => Night()),
             );
@@ -80,24 +81,4 @@ class Vote extends StatelessWidget {
       ),
     );
   }
-
-  AppBar _buildAppBar(context) => AppBar(
-        title: Text("رای دهی"),
-        centerTitle: true,
-        leading: Container(),
-        actions: <Widget>[_simplePopup(context)],
-      );
-
-  Widget _simplePopup(context) => PopupMenuButton<int>(
-        itemBuilder: (context) => [
-          PopupMenuItem(
-            value: 1,
-            child: Text("بازی جدید"),
-          ),
-        ],
-        onSelected: (value) {
-          Provider.of<RolesNPlayers>(context, listen: false).newGame();
-          Navigator.of(context).pop();
-        },
-      );
 }
