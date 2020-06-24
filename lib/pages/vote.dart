@@ -14,13 +14,14 @@ class Vote extends StatelessWidget {
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: InGameAppBar(title: "رای دهی"),
         floatingActionButton: FloatingActionButton(
+          heroTag: "next",
+          child: Icon(Icons.navigate_next),
           onPressed: () {
             Provider.of<RolesNPlayers>(context, listen: false).startNight();
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (_) => Night()),
             );
           },
-          child: Icon(Icons.play_arrow),
         ),
         body: Column(
           children: <Widget>[

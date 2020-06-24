@@ -16,13 +16,14 @@ class Night extends StatelessWidget {
             title:
                 "شب " + Provider.of<RolesNPlayers>(context).night.toString()),
         floatingActionButton: FloatingActionButton(
+          heroTag: "next",
+          child: Icon(Icons.navigate_next),
           onPressed: () {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (_) => Day()),
             );
             Provider.of<RolesNPlayers>(context, listen: false).startDay();
           },
-          child: Icon(Icons.play_arrow),
         ),
         body: Column(
           children: <Widget>[

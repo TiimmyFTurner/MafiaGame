@@ -28,6 +28,8 @@ class _DayState extends State<Day> {
         appBar: InGameAppBar(
             title: "روز" + Provider.of<RolesNPlayers>(context).day.toString()),
         floatingActionButton: FloatingActionButton(
+          heroTag: "next",
+          child: Icon(Icons.navigate_next),
           onPressed: () {
             if (dayN == 1)
               Navigator.of(context).pushReplacement(
@@ -39,7 +41,6 @@ class _DayState extends State<Day> {
               );
             Provider.of<RolesNPlayers>(context, listen: false).startVoting();
           },
-          child: Icon(Icons.play_arrow),
         ),
         body: Column(
           children: <Widget>[
