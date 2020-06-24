@@ -1,5 +1,6 @@
 import 'package:Mafia/pages/day.dart';
 import 'package:Mafia/providers/providers.dart';
+import 'package:Mafia/widgets/inGameAppBar.dart';
 import 'package:Mafia/widgets/listItemShowRole.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class _ShowRolesState extends State<ShowRoles> {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
-        appBar: _buildAppBar(),
+        appBar: InGameAppBar(title: "نمایش نقش ها"),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             if (_players.length == 0) {
@@ -83,26 +84,4 @@ class _ShowRolesState extends State<ShowRoles> {
       ),
     );
   }
-
-  AppBar _buildAppBar() => AppBar(
-        title: Text("نمایش نقش ها"),
-        centerTitle: true,
-        leading: Container(),
-        actions: <Widget>[_simplePopup(context)],
-      );
-
-  Widget _simplePopup(context) => PopupMenuButton<int>(
-        itemBuilder: (context) => [
-          PopupMenuItem(
-            value: 1,
-            child: Text(
-              "بازی جدید",
-            ),
-          ),
-        ],
-        onSelected: (value) {
-          Provider.of<RolesNPlayers>(context, listen: false).newGame();
-          Navigator.of(context).pop();
-        },
-      );
 }
