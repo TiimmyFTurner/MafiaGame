@@ -66,24 +66,36 @@ class SetPlayers extends StatelessWidget {
             height: 45,
             child: Hero(
               tag: "play",
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+              child: Builder(
+                builder: (context) => RaisedButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  color: Theme.of(context).primaryColor,
+                  child: Text(
+                    "انتخاب نقش",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        letterSpacing: 3),
+                  ),
+                  onPressed: () {
+                    if (players.length > 2) {
+                      _rNPProviderSetter.savePlayers();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => SetRoles()),
+                      );
+                    } else {
+                      final snackBar = SnackBar(
+                        content: Text("حداقل تعداد بازیکنان باید سه نفر باشد",
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.bodyText1),
+                        backgroundColor: Theme.of(context).accentColor,
+                      );
+                      Scaffold.of(context).showSnackBar(snackBar);
+                    }
+                  },
                 ),
-                color: Theme.of(context).primaryColor,
-                child: Text(
-                  "انتخاب نقش",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w300,
-                      letterSpacing: 3),
-                ),
-                onPressed: () {
-                  _rNPProviderSetter.savePlayers();
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => SetRoles()),
-                  );
-                },
               ),
             ),
           ),
