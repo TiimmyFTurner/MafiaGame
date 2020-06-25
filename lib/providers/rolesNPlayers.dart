@@ -33,9 +33,10 @@ class RolesNPlayers extends ChangeNotifier {
     newGame();
   }
 
-  recoverLastPlayers() {
+  bool recoverLastPlayers() {
     _players = _prefs.getStringList('lastPlayers') ?? [];
     notifyListeners();
+    return _players.length == 0 ? false : true;
   }
 
   set addPlayer(String name) {
@@ -161,7 +162,7 @@ class RolesNPlayers extends ChangeNotifier {
     notifyListeners();
   }
 
-  startNight(){
+  startNight() {
     _sortPlayer();
   }
 
@@ -175,6 +176,6 @@ class RolesNPlayers extends ChangeNotifier {
     notifyListeners();
   }
 
-
-  _sortPlayer() =>  _playersWithRole.sort((p1, p2) => p1.role.order.compareTo(p2.role.order));
+  _sortPlayer() =>
+      _playersWithRole.sort((p1, p2) => p1.role.order.compareTo(p2.role.order));
 }

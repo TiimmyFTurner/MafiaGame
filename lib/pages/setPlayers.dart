@@ -17,7 +17,7 @@ class SetPlayers extends StatelessWidget {
     List players = _rNPProviderListener.players;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: _buildAppBar(context),
+      appBar: _buildAppBar(context, players),
       body: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,11 +93,9 @@ class SetPlayers extends StatelessWidget {
     );
   }
 
-  AppBar _buildAppBar(context) => AppBar(
-        title: Text("انتخاب بازیکن ها" +
-            " (" +
-            Provider.of<RolesNPlayers>(context).players.length.toString() +
-            ")"),
+  AppBar _buildAppBar(context, players) => AppBar(
+        title:
+            Text("انتخاب بازیکن ها" + " (" + players.length.toString() + ")"),
         centerTitle: true,
         leading: IconButton(
             icon: Icon(Icons.home),
@@ -105,11 +103,23 @@ class SetPlayers extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => Home()),
                 (route) => false)),
         actions: <Widget>[
-          IconButton(
+          Builder(
+            builder: (context) => IconButton(
               icon: Icon(Icons.replay),
-              onPressed: () =>
-                  Provider.of<RolesNPlayers>(context, listen: false)
-                      .recoverLastPlayers())
+              onPressed: () {
+                if (!Provider.of<RolesNPlayers>(context, listen: false)
+                    .recoverLastPlayers()) {
+                  final snackBar = SnackBar(
+                    content: Text("بازیکنی برای بازگردانی وجود ندارد",
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyText1),
+                    backgroundColor: Theme.of(context).accentColor,
+                  );
+                  Scaffold.of(context).showSnackBar(snackBar);
+                }
+              },
+            ),
+          )
         ],
       );
 }
