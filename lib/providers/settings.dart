@@ -35,20 +35,20 @@ class Settings extends ChangeNotifier {
     'dark': ThemeData(
       fontFamily: 'Koodak',
       brightness: Brightness.dark,
-      backgroundColor: Color(0xff000245),
-      primaryColor: Color(0xFFff6464),
-      accentColor: Color(0xFF8b4367),
+      backgroundColor: Color(0xff141e24),
+      primaryColor: Color(0xFFE96C4C),
+      accentColor: Color(0xFF377a89),
       textTheme: TextTheme(button: TextStyle(color: Colors.white)),
       iconTheme: IconThemeData(color: Colors.white),
       appBarTheme: AppBarTheme(
         elevation: 0,
-        color: Color(0xff000245),
+        color: Color(0xff141e24),
         textTheme: TextTheme(
             headline6: TextStyle(
                 color: Colors.white, fontSize: 18, fontFamily: 'Koodak')),
         iconTheme: IconThemeData(color: Colors.white),
       ),
-      cardColor: Color(0xff543864),
+      cardColor: Color(0xff193945),
       inputDecorationTheme: InputDecorationTheme(
         labelStyle: TextStyle(color: Colors.white),
         border: OutlineInputBorder(
