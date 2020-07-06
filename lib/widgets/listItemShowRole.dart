@@ -27,11 +27,11 @@ class _ListItemShowRoleState extends State<ListItemShowRole> {
     final _player = widget.player;
 
     return AnimatedOpacity(
-      duration: Duration(milliseconds: 650),
+      duration: Duration(milliseconds: 400),
       opacity: _lock ? 1 : 0,
       curve: Curves.easeInOutQuart,
       child: AnimatedPadding(
-        duration: Duration(milliseconds: 350),
+        duration: Duration(milliseconds: 200),
         curve: Curves.ease,
         padding: _lock
             ? EdgeInsets.zero
