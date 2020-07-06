@@ -41,6 +41,7 @@ class _ListItemNightState extends State<ListItemNight> {
             ? EdgeInsets.zero
             : EdgeInsets.only(top: MediaQuery.of(context).size.height),
         child: InkWell(
+          borderRadius: BorderRadius.circular(20),
           child: Card(
             color: _player.status == 'alive'
                 ? Colors.green[800]

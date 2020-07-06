@@ -53,6 +53,7 @@ class _ShowRolesState extends State<ShowRoles> {
                 childAspectRatio: (2 / 1),
                 children: List.generate(_players.length, (index) {
                   return InkWell(
+                    borderRadius: BorderRadius.circular(20),
                     child: ListItemShowRole(_players[index]),
                     onTap: () {
                       String role =

@@ -36,6 +36,8 @@ class SetRoles extends StatelessWidget {
               childAspectRatio: (2 / 1),
               children: List.generate(_mafia.length, (index) {
                 return InkWell(
+                  borderRadius: BorderRadius.circular(20),
+                  radius: 200,
                   child: ListItemRole(_mafia[index]),
                   onTap: () {
                     _rNPProviderSetter.addRole = _mafia[index];
@@ -53,6 +55,8 @@ class SetRoles extends StatelessWidget {
               childAspectRatio: (2 / 1),
               children: List.generate(_citizen.length, (index) {
                 return InkWell(
+                  borderRadius: BorderRadius.circular(20),
+                  radius: 200,
                   child: ListItemRole(_citizen[index]),
                   onTap: () {
                     _rNPProviderSetter.addRole = _citizen[index];
@@ -71,6 +75,8 @@ class SetRoles extends StatelessWidget {
               childAspectRatio: (2 / 1),
               children: List.generate(_selectedRoles.length, (index) {
                 return InkWell(
+                  borderRadius: BorderRadius.circular(20),
+                  radius: 200,
                   child: ListItemRole(_selectedRoles[index]),
                   onTap: () {
                     _rNPProviderSetter.removeRole = _selectedRoles[index];
