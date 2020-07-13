@@ -44,7 +44,9 @@ class _ListItemRoleState extends State<ListItemRole> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               Icon(Icons.person,
-                  color: _role.type == 'C' ? Colors.green : Colors.red),
+                  color: _role.type == 'C'
+                      ? Colors.green
+                      : _role.type == 'M' ? Colors.red : Colors.yellow),
               Text(
                 _role.name,
               ),

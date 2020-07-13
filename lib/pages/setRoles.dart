@@ -11,6 +11,7 @@ class SetRoles extends StatelessWidget {
         Provider.of<RolesNPlayers>(context, listen: false);
     List _mafia = _rNPProviderListener.mafia;
     List _citizen = _rNPProviderListener.citizen;
+    List _independent = _rNPProviderListener.independent;
     List _selectedRoles = _rNPProviderListener.selectedRoles;
 
     return Scaffold(
@@ -30,7 +31,7 @@ class SetRoles extends StatelessWidget {
         children: <Widget>[
           Text('مافیا', style: TextStyle(color: Colors.red, fontSize: 18)),
           Expanded(
-            flex: 1,
+            flex: 2,
             child: GridView.count(
               crossAxisCount: 4,
               childAspectRatio: (2 / 1),
@@ -66,10 +67,29 @@ class SetRoles extends StatelessWidget {
               }),
             ),
           ),
+          Text('مستقل', style: TextStyle(color: Colors.yellow, fontSize: 18)),
+          Expanded(
+            flex: 1,
+            child: GridView.count(
+              crossAxisCount: 4,
+              childAspectRatio: (2 / 1),
+              children: List.generate(_independent.length, (index) {
+                return InkWell(
+                  borderRadius: BorderRadius.circular(20),
+                  radius: 200,
+                  child: ListItemRole(_independent[index]),
+                  onTap: () {
+                    _rNPProviderSetter.addRole = _independent[index];
+                  },
+                  onLongPress: () => showRoleJob(context, _independent[index]),
+                );
+              }),
+            ),
+          ),
           Text('انتخاب شده',
               style: TextStyle(color: Colors.blue, fontSize: 18)),
           Expanded(
-            flex: 3,
+            flex: 2,
             child: GridView.count(
               crossAxisCount: 4,
               childAspectRatio: (2 / 1),

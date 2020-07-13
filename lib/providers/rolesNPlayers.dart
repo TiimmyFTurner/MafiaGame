@@ -9,6 +9,7 @@ class RolesNPlayers extends ChangeNotifier {
   List<Role> _selectedRoles;
   List<Role> _mafia;
   List<Role> _citizen;
+  List<Role> _independent;
   int _selectedMafia;
   int _selectedCitizen;
   List<Player> _playersWithRole;
@@ -26,6 +27,7 @@ class RolesNPlayers extends ChangeNotifier {
     _selectedMafia = 0;
     _mafia = roles.mafia;
     _citizen = roles.citizen;
+    _independent = roles.independent;
   }
 
   initRNPSetting() async {
@@ -64,6 +66,10 @@ class RolesNPlayers extends ChangeNotifier {
         _selectedRoles.add(role);
         _selectedCitizen++;
         _citizen.remove(role);
+      } else if (role.type == "I") {
+        _selectedRoles.add(role);
+        _selectedCitizen++;
+        _independent.remove(role);
       }
       notifyListeners();
     }
@@ -74,15 +80,19 @@ class RolesNPlayers extends ChangeNotifier {
     if (role.type == 'M') {
       _mafia.add(role);
       _selectedMafia--;
-    } else {
+    } else if (role.type == 'C') {
       _selectedCitizen--;
       _citizen.add(role);
+    } else {
+      _selectedCitizen--;
+      _independent.add(role);
     }
     notifyListeners();
   }
 
   get mafia => _mafia;
   get citizen => _citizen;
+  get independent => _independent;
   get selectedRoles => _selectedRoles;
 
   setPlayers() {
