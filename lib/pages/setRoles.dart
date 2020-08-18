@@ -67,7 +67,7 @@ class SetRoles extends StatelessWidget {
               }),
             ),
           ),
-          Text('مستقل', style: TextStyle(color: Colors.yellow, fontSize: 18)),
+          Text('مستقل', style: TextStyle(color: Colors.orange, fontSize: 18)),
           Expanded(
             flex: 1,
             child: GridView.count(

@@ -46,7 +46,7 @@ class _ListItemRoleState extends State<ListItemRole> {
               Icon(Icons.person,
                   color: _role.type == 'C'
                       ? Colors.green
-                      : _role.type == 'M' ? Colors.red : Colors.yellow),
+                      : _role.type == 'M' ? Colors.red : Colors.orange),
               Flexible(
                 child: Container(
                   child: Text(

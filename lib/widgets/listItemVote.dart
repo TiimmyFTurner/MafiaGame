@@ -80,8 +80,11 @@ class _ListItemVoteState extends State<ListItemVote> {
               Padding(
                 padding: const EdgeInsets.only(right: 12),
                 child: Icon(Icons.person,
-                    color:
-                        _player.role.type == 'C' ? Colors.blue : Colors.black),
+                    color: _player.role.type == 'C'
+                        ? Colors.blue
+                        : _player.role.type == 'M'
+                            ? Colors.black
+                            : Colors.deepOrangeAccent),
               ),
             ],
           ),

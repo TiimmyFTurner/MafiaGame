@@ -84,7 +84,9 @@ class _ListItemNightState extends State<ListItemNight> {
                   child: Icon(Icons.person,
                       color: _player.role.type == 'C'
                           ? Colors.blue
-                          : Colors.black),
+                          : _player.role.type == 'M'
+                              ? Colors.black
+                              : Colors.orange),
                 ),
               ],
             ),
