@@ -47,8 +47,13 @@ class _ListItemRoleState extends State<ListItemRole> {
                   color: _role.type == 'C'
                       ? Colors.green
                       : _role.type == 'M' ? Colors.red : Colors.yellow),
-              Text(
-                _role.name,
+              Flexible(
+                child: Container(
+                  child: Text(
+                    _role.name,
+                    overflow: TextOverflow.visible,
+                  ),
+                ),
               ),
             ],
           ),
