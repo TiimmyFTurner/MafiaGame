@@ -66,7 +66,8 @@ class RolesNPlayers extends ChangeNotifier {
         _selectedRoles.add(role);
         _selectedCitizen++;
         _citizen.remove(role);
-      } else if (role.type == "I") {
+      } else if (role.type == "I" &&
+          _selectedCitizen < _players.length - (_players.length ~/ 3)) {
         _selectedRoles.add(role);
         _selectedCitizen++;
         _independent.remove(role);
@@ -102,7 +103,7 @@ class RolesNPlayers extends ChangeNotifier {
           Role(
               name: 'مافیا',
               type: 'M',
-              order: 9,
+              order: 19,
               job: "یک مافیای ساده که عملکرد خاصی ندارد"),
         );
         _selectedMafia++;
@@ -112,7 +113,7 @@ class RolesNPlayers extends ChangeNotifier {
           Role(
               name: 'شهروند',
               type: 'C',
-              order: 20,
+              order: 49,
               job: "شهروند عادی ک در شب نقشی ندارد"),
         );
         _selectedCitizen++;
