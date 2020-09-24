@@ -8,11 +8,12 @@ class Consts {
 }
 
 class RoleDialog extends StatelessWidget {
-  final String title, btn;
+  final String title, desc, btn;
   final ImageProvider image;
   final backgroundColor;
   RoleDialog({
     @required this.title,
+    @required this.desc,
     @required this.btn,
     this.backgroundColor,
     this.image,
@@ -58,9 +59,13 @@ class RoleDialog extends StatelessWidget {
             children: <Widget>[
               Text(
                 title,
-                style: TextStyle(
-                  fontSize: 24.0,
-                ),
+                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 12),
+              Text(
+                desc,
+                style: TextStyle(fontSize: 24.0),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 24.0),

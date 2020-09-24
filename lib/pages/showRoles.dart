@@ -65,7 +65,8 @@ class _ShowRolesState extends State<ShowRoles> {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) => RoleDialog(
-                          title: "نقش: " +
+                          title: _players[index].name,
+                          desc: "نقش: " +
                               _players[index].role.name +
                               "\nگروه: " +
                               role,
