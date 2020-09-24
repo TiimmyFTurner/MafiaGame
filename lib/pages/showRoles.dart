@@ -1,5 +1,6 @@
 import 'package:Mafia/pages/day.dart';
 import 'package:Mafia/providers/providers.dart';
+import 'package:Mafia/widgets/RoleDialog.dart';
 import 'package:Mafia/widgets/inGameAppBar.dart';
 import 'package:Mafia/widgets/listItemShowRole.dart';
 import 'package:flutter/material.dart';
@@ -63,38 +64,17 @@ class _ShowRolesState extends State<ShowRoles> {
                               : "مستقل";
                       showDialog(
                         context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(28),
-                            ),
-                            backgroundColor: Theme.of(context).accentColor,
-                            title: Text(
-                              _players[index].name,
-                              textAlign: TextAlign.center,
-                            ),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Text(
-                                  "نقش: " +
-                                      _players[index].role.name +
-                                      "\nگروه: " +
-                                      role,
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                            actions: <Widget>[
-                              FlatButton(
-                                child: Text("فهمیدم"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          );
-                        },
+                        builder: (BuildContext context) => RoleDialog(
+                          title: "نقش: " +
+                              _players[index].role.name +
+                              "\nگروه: " +
+                              role,
+                          btn: "فهمیدم",
+                          backgroundColor: Theme.of(context).accentColor,
+                          image: AssetImage("asset/images/" +
+                              _players[index].role.type +
+                              ".jpg"),
+                        ),
                       ).then(
                         (value) => setState(() {
                           _players.remove(_players[index]);
