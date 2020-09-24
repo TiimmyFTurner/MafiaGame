@@ -56,8 +56,11 @@ class _ShowRolesState extends State<ShowRoles> {
                     borderRadius: BorderRadius.circular(20),
                     child: ListItemShowRole(_players[index]),
                     onTap: () {
-                      String role =
-                          _players[index].role.type == 'C' ? "شهروند" : "مافیا";
+                      String role = _players[index].role.type == 'C'
+                          ? "شهروند"
+                          : _players[index].role.type == 'M'
+                              ? "مافیا"
+                              : "مستقل";
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
