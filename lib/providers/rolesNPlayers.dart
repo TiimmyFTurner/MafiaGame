@@ -17,6 +17,7 @@ class RolesNPlayers extends ChangeNotifier {
   int _day, _night;
   int _alives;
   SharedPreferences _prefs;
+  String _note;
 
   newGame() {
     Roles roles = Roles();
@@ -28,6 +29,7 @@ class RolesNPlayers extends ChangeNotifier {
     _mafia = roles.mafia;
     _citizen = roles.citizen;
     _independent = roles.independent;
+    _note = '';
   }
 
   initRNPSetting() async {
@@ -189,4 +191,7 @@ class RolesNPlayers extends ChangeNotifier {
 
   _sortPlayer() =>
       _playersWithRole.sort((p1, p2) => p1.role.order.compareTo(p2.role.order));
+
+  get note => _note;
+  set note(note) => _note = note;
 }
