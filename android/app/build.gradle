@@ -46,9 +46,9 @@ android {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.Timothy.Mafia"
         minSdkVersion 18
-        targetSdkVersion 19
-        versionCode 1
-        versionName "2.1.0"
+        targetSdkVersion 29
+        versionCode 2
+        versionName "2.2.0"
     }
    signingConfigs {
        release {
