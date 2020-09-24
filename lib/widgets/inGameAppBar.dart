@@ -15,12 +15,77 @@ class InGameAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _InGameAppBarState extends State<InGameAppBar> {
+  TextEditingController noteController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(widget.title),
       centerTitle: true,
-      leading: Container(),
+      leading: IconButton(
+          icon: Icon(Icons.event_note),
+          onPressed: () {
+            noteController.text =
+                Provider.of<RolesNPlayers>(context, listen: false).note;
+            showModalBottomSheet(
+                context: context,
+                enableDrag: true,
+                isScrollControlled: true,
+                builder: (builder) {
+                  return Container(
+                    height: MediaQuery.of(context).viewInsets.bottom == 0
+                        ? MediaQuery.of(context).size.height / 1.2
+                        : MediaQuery.of(context).size.height / 2,
+                    margin: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).accentColor,
+                      borderRadius: BorderRadius.all(Radius.circular(28.0)),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              InkWell(
+                                onTap: () => Navigator.pop(context),
+                                child: Icon(Icons.close),
+                              ),
+                              Text(
+                                "یادداشت",
+                                style: TextStyle(fontSize: 16),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              right: 16, left: 16, bottom: 16),
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: SingleChildScrollView(
+                              child: TextField(
+                                controller: noteController,
+                                maxLines: 12,
+                                autofocus: true,
+                                decoration: InputDecoration(
+                                    enabledBorder: InputBorder.none,
+                                    border: InputBorder.none,
+                                    hintText: 'متن یاداشت را وارد کنید'),
+                                onChanged: (value) {
+                                  Provider.of<RolesNPlayers>(context,
+                                          listen: false)
+                                      .note = value;
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                });
+          }),
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.fiber_new),
