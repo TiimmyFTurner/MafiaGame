@@ -24,17 +24,6 @@ class SetPlayers extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              SizedBox(width: 16),
-              Expanded(
-                flex: 5,
-                child: TextFormField(
-                  controller: _controller,
-                  onChanged: (String value) => _name = value,
-                  decoration: InputDecoration(
-                    labelText: 'نام بازیکن',
-                  ),
-                ),
-              ),
               Expanded(
                 flex: 1,
                 child: IconButton(
@@ -50,6 +39,20 @@ class SetPlayers extends StatelessWidget {
                   },
                 ),
               ),
+              Expanded(
+                flex: 5,
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: TextFormField(
+                    controller: _controller,
+                    onChanged: (String value) => _name = value,
+                    decoration: InputDecoration(
+                      labelText: 'نام بازیکن',
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 16),
             ],
           ),
           Expanded(
