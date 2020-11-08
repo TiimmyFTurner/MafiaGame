@@ -1,3 +1,4 @@
+import 'package:Mafia/pages/lock.dart';
 import 'package:Mafia/providers/providers.dart';
 import 'package:flutter/material.dart';
 
@@ -87,6 +88,10 @@ class _InGameAppBarState extends State<InGameAppBar> {
                 });
           }),
       actions: <Widget>[
+        IconButton(
+            icon: Icon(Icons.lock_outline),
+            onPressed: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => Lock()))),
         IconButton(
           icon: Icon(Icons.fiber_new),
           onPressed: () {
