@@ -1,5 +1,6 @@
 import 'package:Mafia/providers/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Setting extends StatelessWidget {
   @override
@@ -41,9 +42,51 @@ class Setting extends StatelessWidget {
             ],
           ),
           themeNote(),
-          Divider(height: 1)
+          Divider(height: 1),
+          Center(
+            child: Column(
+              children: [
+                Text(
+                  "\nMafia Game 2.3.0\nCopyright \u00a9 2020 Timothy F. Turner (Arman Askari Sh.)",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.grey),
+                ),
+                InkWell(
+                  child: Text("TiimmyFTurner@gmail.com",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.grey)),
+                  onTap: _sendMail,
+                ),
+                InkWell(
+                  child: Text("T.me/TiimmyFTurner",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.grey)),
+                  onTap: _openTelegram,
+                )
+              ],
+            ),
+          ),
         ],
       ),
     );
+  }
+
+//TODO: FIX URLLUNCHER (UPDATE FLUTTER AND PACKAGE!)
+  _sendMail() async {
+    const url = 'mailto:TiimmyFTurner@gmail.com?subject=MafiaApp';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  _openTelegram() async {
+    const url = 'https://T.me/TiimmyFTurner';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
