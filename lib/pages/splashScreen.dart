@@ -2,6 +2,7 @@ import 'package:Mafia/pages/home.dart';
 import 'package:Mafia/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:wakelock/wakelock.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -25,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(Duration(seconds: 3));
     await Provider.of<Settings>(context, listen: false).readSetting();
     await Provider.of<RolesNPlayers>(context, listen: false).initRNPSetting();
+    await Wakelock.enable();
   }
 
   @override
