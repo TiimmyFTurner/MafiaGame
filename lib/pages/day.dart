@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:Mafia/helpers/lockScreenTimer.dart';
 import 'package:Mafia/pages/night.dart';
 import 'package:Mafia/pages/vote.dart';
 import 'package:Mafia/providers/providers.dart';
@@ -16,6 +16,12 @@ Timer _timer;
 int _current = 30;
 
 class _DayState extends State<Day> {
+  @override
+  void initState() {
+    lockTimer(context);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     int dayN = Provider.of<RolesNPlayers>(context).day;

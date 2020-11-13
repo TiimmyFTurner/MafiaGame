@@ -1,10 +1,22 @@
+import 'package:Mafia/helpers/lockScreenTimer.dart';
 import 'package:Mafia/pages/night.dart';
 import 'package:Mafia/providers/providers.dart';
 import 'package:Mafia/widgets/inGameAppBar.dart';
 import 'package:Mafia/widgets/listItemVote.dart';
 import 'package:flutter/material.dart';
 
-class Vote extends StatelessWidget {
+class Vote extends StatefulWidget {
+  @override
+  _VoteState createState() => _VoteState();
+}
+
+class _VoteState extends State<Vote> {
+  @override
+  void initState() {
+    lockTimer(context);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     List _players = Provider.of<RolesNPlayers>(context).playersWithRoles;
