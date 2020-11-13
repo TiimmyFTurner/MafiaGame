@@ -1,6 +1,18 @@
 import 'package:Mafia/models/role.dart';
 
 class Roles {
+  find(String name) {
+    return mafia.firstWhere(
+      (element) => element.name == name,
+      orElse: () => citizen.firstWhere(
+        (element) => element.name == name,
+        orElse: () => independent.firstWhere(
+          (element) => element.name == name,
+        ),
+      ),
+    );
+  }
+
   List<Role> mafia = [
     Role(
       name: 'رئیس مافیا',

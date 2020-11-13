@@ -55,6 +55,22 @@ class RolesNPlayers extends ChangeNotifier {
 
   get players => _players;
 
+  recoverLastRoles() {
+    Roles roles = Roles();
+    var _lastRoles = _prefs.getStringList('lastRoles');
+    if (_lastRoles.length != 0) {
+      for (Role _selectedRole in List.from(_selectedRoles))
+        removeRole = _selectedRole;
+      for (String role in _lastRoles) addRole = roles.find(role);
+    }
+    notifyListeners();
+  }
+
+  saveRoles() async {
+    await _prefs.setStringList(
+        'lastRoles', _selectedRoles.map((e) => e.name).toList());
+  }
+
   savePlayers() async => await _prefs.setStringList('lastPlayers', _players);
 
   set addRole(Role role) {
@@ -62,17 +78,17 @@ class RolesNPlayers extends ChangeNotifier {
       if (role.type == 'M' && _selectedMafia < _players.length ~/ 3) {
         _selectedRoles.add(role);
         _selectedMafia++;
-        _mafia.remove(role);
+        _mafia.removeWhere((element) => element.name == role.name);
       } else if (role.type == 'C' &&
           _selectedCitizen < _players.length - (_players.length ~/ 3)) {
         _selectedRoles.add(role);
         _selectedCitizen++;
-        _citizen.remove(role);
+        _citizen.removeWhere((element) => element.name == role.name);
       } else if (role.type == "I" &&
           _selectedCitizen < _players.length - (_players.length ~/ 3)) {
         _selectedRoles.add(role);
         _selectedCitizen++;
-        _independent.remove(role);
+        _independent.removeWhere((element) => element.name == role.name);
       }
       notifyListeners();
     }

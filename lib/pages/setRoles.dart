@@ -21,6 +21,7 @@ class SetRoles extends StatelessWidget {
         heroTag: 'play',
         child: Icon(Icons.play_arrow),
         onPressed: () {
+          _rNPProviderSetter.saveRoles();
           _rNPProviderSetter.setPlayers();
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (_) => ShowRoles()),
@@ -119,6 +120,11 @@ class SetRoles extends StatelessWidget {
             ")"),
         centerTitle: true,
         actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.replay),
+            onPressed: () => Provider.of<RolesNPlayers>(context, listen: false)
+                .recoverLastRoles(),
+          ),
           Builder(
             builder: (context) => IconButton(
                 icon: Icon(Icons.help_outline),
