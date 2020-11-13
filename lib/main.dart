@@ -21,12 +21,6 @@ class MafiaApp extends StatefulWidget {
 
 class _MafiaAppState extends State<MafiaApp> {
   @override
-  void initState() {
-
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
