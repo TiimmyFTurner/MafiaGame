@@ -13,97 +13,105 @@ class SetPlayers extends StatelessWidget {
     final _rNPProviderSetter =
         Provider.of<RolesNPlayers>(context, listen: false);
     String _name = '';
-
     List players = _rNPProviderListener.players;
+
+    void _addPlayer([_]) {
+      if (_name != '') {
+        _rNPProviderSetter.addPlayer = _name;
+        _name = '';
+        _controller.clear();
+      }
+    }
+
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: _buildAppBar(context, players),
       body: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Row(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: IconButton(
-                  icon: Icon(Icons.add),
-                  onPressed: () {
-                    if (_name != '') {
-                      _rNPProviderSetter.addPlayer = _name;
-                      _name = '';
-                      _controller.clear();
-                      FocusScopeNode currentFocus = FocusScope.of(context);
-                      currentFocus.unfocus();
-                    }
-                  },
-                ),
-              ),
-              Expanded(
-                flex: 5,
-                child: Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: TextFormField(
-                    controller: _controller,
-                    onChanged: (String value) => _name = value,
-                    decoration: InputDecoration(
-                      labelText: 'نام بازیکن',
-                    ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: TextField(
+                controller: _controller,
+                onChanged: (String value) => _name = value,
+                onSubmitted: _addPlayer,
+                decoration: InputDecoration(
+                  labelText: 'نام بازیکن',
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.add),
+                    onPressed: _addPlayer,
                   ),
-                ),
-              ),
-              SizedBox(width: 16),
-            ],
-          ),
-          Expanded(
-            child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: players.length,
-                itemBuilder: (BuildContext context, int index) =>
-                    ListItemPlayer(players[index])),
-          ),
-          SizedBox(height: 16),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 1.3,
-            height: 45,
-            child: Hero(
-              tag: "play",
-              child: Builder(
-                builder: (context) => RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  color: Theme.of(context).primaryColor,
-                  child: Text(
-                    "انتخاب نقش",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w300,
-                        letterSpacing: 3),
-                  ),
-                  onPressed: () {
-                    if (players.length > 2) {
-                      _rNPProviderSetter.savePlayers();
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => SetRoles()),
-                      );
-                    } else {
-                      final snackBar = SnackBar(
-                        content: Text("حداقل تعداد بازیکنان باید سه نفر باشد",
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.bodyText1),
-                        backgroundColor: Theme.of(context).accentColor,
-                      );
-                      Scaffold.of(context).showSnackBar(snackBar);
-                    }
-                  },
                 ),
               ),
             ),
           ),
-          SizedBox(height: 16)
+          Expanded(
+            child: ListView.builder(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                shrinkWrap: true,
+                itemCount: players.length + 1,
+                itemBuilder: (BuildContext context, int index) {
+                  return index < players.length
+                      ? ListItemPlayer(players[index])
+                      : SizedBox(height: 65);
+                }),
+          ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 65,
+        width: MediaQuery.of(context).size.width,
+        child: Hero(
+          tag: "play",
+          child: Builder(
+            builder: (context) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                color: Theme.of(context).primaryColor,
+                child: Text(
+                  "انتخاب نقش",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w300,
+                      letterSpacing: 3),
+                ),
+                onPressed: () {
+                  if (players.length > 2) {
+                    _rNPProviderSetter.savePlayers();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => SetRoles()),
+                    );
+                  } else {
+                    final snackBar = SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      content: Container(
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).accentColor,
+                            borderRadius: BorderRadius.circular(30)),
+                        margin: EdgeInsets.only(bottom: 50),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: Text("حداقل تعداد بازیکنان باید سه نفر باشد",
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.bodyText1),
+                        ),
+                      ),
+                      backgroundColor: Theme.of(context).backgroundColor,
+                      elevation: 0,
+                    );
+                    Scaffold.of(context).showSnackBar(snackBar);
+                  }
+                },
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
