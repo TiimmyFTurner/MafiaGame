@@ -71,7 +71,6 @@ class Setting extends StatelessWidget {
     );
   }
 
-//TODO: FIX URLLUNCHER (UPDATE FLUTTER AND PACKAGE!)
   _sendMail() async {
     const url = 'mailto:TiimmyFTurner@gmail.com?subject=MafiaApp';
     if (await canLaunch(url)) {
