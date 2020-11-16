@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Settings extends ChangeNotifier {
   static final Map<String, ThemeData> _themes = {
     'light': ThemeData(
+      scaffoldBackgroundColor: Color(0xffdaebee),
       canvasColor: Colors.transparent,
       fontFamily: 'Koodak',
       brightness: Brightness.light,
@@ -34,6 +35,7 @@ class Settings extends ChangeNotifier {
       ),
     ),
     'dark': ThemeData(
+      scaffoldBackgroundColor: Color(0xff141e24),
       canvasColor: Colors.transparent,
       fontFamily: 'Koodak',
       brightness: Brightness.dark,

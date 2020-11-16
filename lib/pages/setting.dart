@@ -15,7 +15,6 @@ class Setting extends StatelessWidget {
         : Container();
     return Scaffold(
       appBar: AppBar(title: Text("تنظیمات"), centerTitle: true),
-      backgroundColor: Theme.of(context).backgroundColor,
       body: Column(
         children: <Widget>[
           Divider(height: 1),

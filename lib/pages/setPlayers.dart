@@ -24,7 +24,6 @@ class SetPlayers extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
       appBar: _buildAppBar(context, players),
       body: Column(
         children: <Widget>[

@@ -7,7 +7,6 @@ class Lock extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(24.0),

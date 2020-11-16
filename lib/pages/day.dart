@@ -30,7 +30,6 @@ class _DayState extends State<Day> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
         appBar: InGameAppBar(
             title: "روز" + Provider.of<RolesNPlayers>(context).day.toString()),
         floatingActionButton: FloatingActionButton(

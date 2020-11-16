@@ -17,7 +17,6 @@ class _ShowRolesState extends State<ShowRoles> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
         appBar: InGameAppBar(title: "نمایش نقش ها"),
         body: _players.length == 0
             ? Center(

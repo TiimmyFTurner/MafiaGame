@@ -15,7 +15,6 @@ class SetRoles extends StatelessWidget {
     List _selectedRoles = _rNPProviderListener.selectedRoles;
 
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
       appBar: _buildAppBar(context),
       floatingActionButton: FloatingActionButton(
         heroTag: 'play',

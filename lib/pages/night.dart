@@ -23,7 +23,6 @@ class _NightState extends State<Night> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
         appBar: InGameAppBar(
             title:
                 "شب " + Provider.of<RolesNPlayers>(context).night.toString()),

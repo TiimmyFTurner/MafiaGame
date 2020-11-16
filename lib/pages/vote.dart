@@ -23,7 +23,6 @@ class _VoteState extends State<Vote> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
         appBar: InGameAppBar(title: "رای دهی"),
         floatingActionButton: FloatingActionButton(
           heroTag: "next",
