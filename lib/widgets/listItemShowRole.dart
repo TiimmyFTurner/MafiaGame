@@ -40,18 +40,25 @@ class _ListItemShowRoleState extends State<ListItemShowRole> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           elevation: 6,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              SizedBox(),
-              Text(
-                _player.name,
-              ),
-              Padding(
-                padding: EdgeInsets.only(right: 12),
-                child: Icon(Icons.person, color: Colors.blue),
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      _player.name,
+                      maxLines: 3,
+                      style: TextStyle(height: 1.3),
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+                Icon(Icons.person, color: Colors.blue),
+              ],
+            ),
           ),
         ),
       ),
