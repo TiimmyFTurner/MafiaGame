@@ -47,34 +47,37 @@ class _DayState extends State<Day> {
             Provider.of<RolesNPlayers>(context, listen: false).startVoting();
           },
         ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: _players.length,
-                itemBuilder: (BuildContext context, int index) =>
-                    ListItemDay(_players[index], index),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: _players.length,
+                  itemBuilder: (BuildContext context, int index) =>
+                      ListItemDay(_players[index], index),
+                ),
               ),
-            ),
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(16),
-                  child: FloatingActionButton(
-                    heroTag: 'timer',
-                    child: Icon(Icons.timer),
-                    onPressed: startTimer,
+              Row(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(16),
+                    child: FloatingActionButton(
+                      heroTag: 'timer',
+                      child: Icon(Icons.timer),
+                      onPressed: startTimer,
+                    ),
                   ),
-                ),
-                Text(
-                  _current.toString(),
-                  style: TextStyle(fontSize: 35),
-                ),
-              ],
-            )
-          ],
+                  Text(
+                    _current.toString(),
+                    style: TextStyle(fontSize: 35),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

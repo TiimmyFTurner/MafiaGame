@@ -34,61 +34,69 @@ class _VoteState extends State<Vote> {
             );
           },
         ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: _players.length,
-                itemBuilder: (BuildContext context, int index) =>
-                    ListItemVote(_players[index], index),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: _players.length,
+                  itemBuilder: (BuildContext context, int index) =>
+                      ListItemVote(_players[index], index),
+                ),
               ),
-            ),
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 16, bottom: 16, left: 8),
-                  child: Chip(
-                    backgroundColor: Colors.blue,
-                    label: Text(
-                      'زنده: ' +
-                          Provider.of<RolesNPlayers>(context).alive.toString(),
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+              Row(
+                children: <Widget>[
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 16, bottom: 16, left: 8),
+                    child: Chip(
+                      backgroundColor: Colors.blue,
+                      label: Text(
+                        'زنده: ' +
+                            Provider.of<RolesNPlayers>(context)
+                                .alive
+                                .toString(),
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 16, bottom: 16, left: 8),
-                  child: Chip(
-                    backgroundColor: Colors.yellow[800],
-                    label: Text(
-                      'دادگاهی: ' +
-                          Provider.of<RolesNPlayers>(context)
-                              .voteToJudge
-                              .toString() +
-                          '  ',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 16, bottom: 16, left: 8),
+                    child: Chip(
+                      backgroundColor: Colors.yellow[800],
+                      label: Text(
+                        'دادگاهی: ' +
+                            Provider.of<RolesNPlayers>(context)
+                                .voteToJudge
+                                .toString() +
+                            '  ',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 16, bottom: 16, left: 8),
-                  child: Chip(
-                    backgroundColor: Colors.red[800],
-                    label: Text(
-                      'مرگ: ' +
-                          Provider.of<RolesNPlayers>(context)
-                              .voteToDead
-                              .toString() +
-                          '  ',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 16, bottom: 16, left: 8),
+                    child: Chip(
+                      backgroundColor: Colors.red[800],
+                      label: Text(
+                        'مرگ: ' +
+                            Provider.of<RolesNPlayers>(context)
+                                .voteToDead
+                                .toString() +
+                            '  ',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            )
-          ],
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

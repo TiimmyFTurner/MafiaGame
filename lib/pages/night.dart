@@ -36,18 +36,22 @@ class _NightState extends State<Night> {
             Provider.of<RolesNPlayers>(context, listen: false).startDay();
           },
         ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: _players.length,
-                itemBuilder: (BuildContext context, int index) =>
-                    ListItemNight(_players[index], index),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: _players.length,
+                  itemBuilder: (BuildContext context, int index) =>
+                      ListItemNight(_players[index], index),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
