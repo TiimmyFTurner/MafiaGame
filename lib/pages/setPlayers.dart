@@ -49,6 +49,7 @@ class SetPlayers extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
+                physics: BouncingScrollPhysics(),
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 shrinkWrap: true,
                 itemCount: players.length + 1,
