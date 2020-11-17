@@ -40,22 +40,28 @@ class _ListItemRoleState extends State<ListItemRole> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           elevation: 6,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Icon(Icons.person,
-                  color: _role.type == 'C'
-                      ? Colors.green
-                      : _role.type == 'M' ? Colors.red : Colors.orange),
-              Flexible(
-                child: Container(
-                  child: Text(
-                    _role.name,
-                    overflow: TextOverflow.visible,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Flexible(
+                  child: Center(
+                    child: Text(
+                      _role.name,
+                      maxLines: 2,
+                      style: TextStyle(height: 1.2),
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 ),
-              ),
-            ],
+                Icon(Icons.person,
+                    color: _role.type == 'C'
+                        ? Colors.green
+                        : _role.type == 'M' ? Colors.red : Colors.orange),
+              ],
+            ),
           ),
         ),
       ),

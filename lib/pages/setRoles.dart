@@ -13,6 +13,29 @@ class SetRoles extends StatelessWidget {
     List _citizen = _rNPProviderListener.citizen;
     List _independent = _rNPProviderListener.independent;
     List _selectedRoles = _rNPProviderListener.selectedRoles;
+    Widget _roleGeidView({int flex, List roles, String setter}) {
+      return Expanded(
+        flex: flex,
+        child: GridView.count(
+          physics: BouncingScrollPhysics(),
+          crossAxisCount: 4,
+          childAspectRatio: (2 / 1),
+          children: List.generate(roles.length, (index) {
+            return InkWell(
+              borderRadius: BorderRadius.circular(20),
+              radius: 200,
+              child: ListItemRole(roles[index]),
+              onTap: () {
+                setter == "add"
+                    ? _rNPProviderSetter.addRole = roles[index]
+                    : _rNPProviderSetter.removeRole = roles[index];
+              },
+              onLongPress: () => showRoleJob(roles, roles[index]),
+            );
+          }),
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: _buildAppBar(context),
@@ -27,87 +50,21 @@ class SetRoles extends StatelessWidget {
           );
         },
       ),
-      body: Column(
-        children: <Widget>[
-          Text('مافیا', style: TextStyle(color: Colors.red, fontSize: 18)),
-          Expanded(
-            flex: 2,
-            child: GridView.count(
-              crossAxisCount: 4,
-              childAspectRatio: (2 / 1),
-              children: List.generate(_mafia.length, (index) {
-                return InkWell(
-                  borderRadius: BorderRadius.circular(20),
-                  radius: 200,
-                  child: ListItemRole(_mafia[index]),
-                  onTap: () {
-                    _rNPProviderSetter.addRole = _mafia[index];
-                  },
-                  onLongPress: () => showRoleJob(context, _mafia[index]),
-                );
-              }),
-            ),
-          ),
-          Text('شهروند', style: TextStyle(color: Colors.green, fontSize: 18)),
-          Expanded(
-            flex: 2,
-            child: GridView.count(
-              crossAxisCount: 4,
-              childAspectRatio: (2 / 1),
-              children: List.generate(_citizen.length, (index) {
-                return InkWell(
-                  borderRadius: BorderRadius.circular(20),
-                  radius: 200,
-                  child: ListItemRole(_citizen[index]),
-                  onTap: () {
-                    _rNPProviderSetter.addRole = _citizen[index];
-                  },
-                  onLongPress: () => showRoleJob(context, _citizen[index]),
-                );
-              }),
-            ),
-          ),
-          Text('مستقل', style: TextStyle(color: Colors.orange, fontSize: 18)),
-          Expanded(
-            flex: 1,
-            child: GridView.count(
-              crossAxisCount: 4,
-              childAspectRatio: (2 / 1),
-              children: List.generate(_independent.length, (index) {
-                return InkWell(
-                  borderRadius: BorderRadius.circular(20),
-                  radius: 200,
-                  child: ListItemRole(_independent[index]),
-                  onTap: () {
-                    _rNPProviderSetter.addRole = _independent[index];
-                  },
-                  onLongPress: () => showRoleJob(context, _independent[index]),
-                );
-              }),
-            ),
-          ),
-          Text('انتخاب شده',
-              style: TextStyle(color: Colors.blue, fontSize: 18)),
-          Expanded(
-            flex: 2,
-            child: GridView.count(
-              crossAxisCount: 4,
-              childAspectRatio: (2 / 1),
-              children: List.generate(_selectedRoles.length, (index) {
-                return InkWell(
-                  borderRadius: BorderRadius.circular(20),
-                  radius: 200,
-                  child: ListItemRole(_selectedRoles[index]),
-                  onTap: () {
-                    _rNPProviderSetter.removeRole = _selectedRoles[index];
-                  },
-                  onLongPress: () =>
-                      showRoleJob(context, _selectedRoles[index]),
-                );
-              }),
-            ),
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          children: <Widget>[
+            Text('مافیا', style: TextStyle(color: Colors.red, fontSize: 18)),
+            _roleGeidView(flex: 2, roles: _mafia, setter: "add"),
+            Text('شهروند', style: TextStyle(color: Colors.green, fontSize: 18)),
+            _roleGeidView(flex: 2, roles: _citizen, setter: "add"),
+            Text('مستقل', style: TextStyle(color: Colors.orange, fontSize: 18)),
+            _roleGeidView(flex: 1, roles: _independent, setter: "add"),
+            Text('انتخاب شده',
+                style: TextStyle(color: Colors.blue, fontSize: 18)),
+            _roleGeidView(flex: 2, roles: _selectedRoles, setter: "remove"),
+          ],
+        ),
       ),
     );
   }
