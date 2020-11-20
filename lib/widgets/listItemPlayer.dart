@@ -27,8 +27,13 @@ class _ListItemPlayerState extends State<ListItemPlayer> {
                 Provider.of<RolesNPlayers>(context, listen: false)
                     .removePlayer = _player;
               }),
-          Text(
-            _player,
+          Expanded(
+            child: Center(
+              child: Text(
+                _player,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(right: 12),
