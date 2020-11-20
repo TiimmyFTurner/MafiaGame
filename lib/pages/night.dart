@@ -25,17 +25,7 @@ class _NightState extends State<Night> {
       child: Scaffold(
         appBar: InGameAppBar(
             title:
-                "شب " + Provider.of<RolesNPlayers>(context).night.toString()),
-        floatingActionButton: FloatingActionButton(
-          heroTag: "next",
-          child: Icon(Icons.navigate_next),
-          onPressed: () {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => Day()),
-            );
-            Provider.of<RolesNPlayers>(context, listen: false).startDay();
-          },
-        ),
+                "شب ${Provider.of<RolesNPlayers>(context).night.toString()}"),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: Column(
@@ -45,12 +35,53 @@ class _NightState extends State<Night> {
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
-                  itemCount: _players.length,
+                  itemCount: _players.length + 1,
                   itemBuilder: (BuildContext context, int index) =>
-                      ListItemNight(_players[index], index),
+                      index < _players.length
+                          ? ListItemNight(_players[index], index)
+                          : SizedBox(height: 75),
                 ),
               ),
             ],
+          ),
+        ),
+        bottomSheet: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+              colors: [Theme.of(context).backgroundColor, Colors.transparent],
+            ),
+          ),
+          height: 80,
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                SizedBox(
+                  height: 45,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    color: Theme.of(context).accentColor,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [Text("ادامه"), Icon(Icons.navigate_next)],
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (_) => Day()),
+                      );
+                      Provider.of<RolesNPlayers>(context, listen: false)
+                          .startDay();
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
