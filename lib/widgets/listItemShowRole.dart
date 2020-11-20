@@ -50,7 +50,7 @@ class _ListItemShowRoleState extends State<ListItemShowRole> {
                     child: Text(
                       _player.name,
                       maxLines: 3,
-                      style: TextStyle(height: 1.3),
+                      style: TextStyle(height: 1.2),
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                     ),
