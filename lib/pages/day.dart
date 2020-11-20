@@ -32,21 +32,6 @@ class _DayState extends State<Day> {
       child: Scaffold(
         appBar: InGameAppBar(
             title: "روز" + Provider.of<RolesNPlayers>(context).day.toString()),
-        floatingActionButton: FloatingActionButton(
-          heroTag: "next",
-          child: Icon(Icons.navigate_next),
-          onPressed: () {
-            if (dayN == 1)
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (_) => Night()),
-              );
-            else
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (_) => Vote()),
-              );
-            Provider.of<RolesNPlayers>(context, listen: false).startVoting();
-          },
-        ),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: Column(
@@ -55,28 +40,76 @@ class _DayState extends State<Day> {
                 child: ListView.builder(
                   physics: BouncingScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: _players.length,
+                  itemCount: _players.length + 1,
                   itemBuilder: (BuildContext context, int index) =>
-                      ListItemDay(_players[index], index),
+                      index < _players.length
+                          ? ListItemDay(_players[index], index)
+                          : SizedBox(height: 75),
                 ),
               ),
-              Row(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.all(16),
-                    child: FloatingActionButton(
-                      heroTag: 'timer',
-                      child: Icon(Icons.timer),
-                      onPressed: startTimer,
-                    ),
-                  ),
-                  Text(
-                    _current.toString(),
-                    style: TextStyle(fontSize: 35),
-                  ),
-                ],
-              )
             ],
+          ),
+        ),
+        bottomSheet: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+              colors: [Theme.of(context).backgroundColor, Colors.transparent],
+            ),
+          ),
+          height: 80,
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: <Widget>[
+                SizedBox(
+                  height: 45,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    color: Theme.of(context).accentColor,
+                    child: Row(
+                      children: [
+                        Icon(Icons.timer),
+                        Text(
+                          " ${_current.toString()}",
+                          style: TextStyle(fontSize: 29),
+                        ),
+                      ],
+                    ),
+                    onPressed: startTimer,
+                  ),
+                ),
+                Expanded(child: Container()),
+                SizedBox(
+                  height: 45,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    color: Theme.of(context).accentColor,
+                    child: Row(
+                      children: [Text("ادامه"), Icon(Icons.navigate_next)],
+                    ),
+                    onPressed: () {
+                      if (dayN == 1)
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (_) => Night()),
+                        );
+                      else
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (_) => Vote()),
+                        );
+                      Provider.of<RolesNPlayers>(context, listen: false)
+                          .startVoting();
+                    },
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
