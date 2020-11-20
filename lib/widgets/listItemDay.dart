@@ -23,7 +23,6 @@ class _ListItemDayState extends State<ListItemDay> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       elevation: 6,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           IconButton(
               icon: Icon(
@@ -34,13 +33,26 @@ class _ListItemDayState extends State<ListItemDay> {
                 Provider.of<RolesNPlayers>(context, listen: false).killPlayer =
                     index;
               }),
-          Text(_player.role.name, style: TextStyle(color: Colors.white)),
-          Text(
-            _player.name,
-            style: TextStyle(color: Colors.white),
+          Expanded(
+            flex: 1,
+            child: Text(
+              _player.role.name,
+              style: TextStyle(color: Colors.white),
+              textAlign: TextAlign.end,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Text(
+              _player.name,
+              style: TextStyle(color: Colors.white),
+              textAlign: TextAlign.end,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Icon(Icons.person,
                 color: _player.role.type == 'C'
                     ? Colors.blue

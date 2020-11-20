@@ -27,37 +27,45 @@ class _ListItemNightState extends State<ListItemNight> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         elevation: 6,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                IconButton(
-                    icon: Icon(
-                      Icons.power_settings_new,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      Provider.of<RolesNPlayers>(context, listen: false)
-                          .killPlayer = index;
-                    }),
-                IconButton(
-                    icon: Icon(
-                      Icons.volume_off,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      Provider.of<RolesNPlayers>(context, listen: false)
-                          .silentPlayer = index;
-                    }),
-              ],
+            IconButton(
+                icon: Icon(
+                  Icons.power_settings_new,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Provider.of<RolesNPlayers>(context, listen: false)
+                      .killPlayer = index;
+                }),
+            IconButton(
+                icon: Icon(
+                  Icons.volume_off,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Provider.of<RolesNPlayers>(context, listen: false)
+                      .silentPlayer = index;
+                }),
+            Expanded(
+              flex: 1,
+              child: Text(
+                _player.role.name,
+                style: TextStyle(color: Colors.white),
+                textAlign: TextAlign.end,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-            Text(_player.role.name, style: TextStyle(color: Colors.white)),
-            Text(
-              _player.name,
-              style: TextStyle(color: Colors.white),
+            Expanded(
+              flex: 2,
+              child: Text(
+                _player.name,
+                style: TextStyle(color: Colors.white),
+                textAlign: TextAlign.end,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Icon(Icons.person,
                   color: _player.role.type == 'C'
                       ? Colors.blue
