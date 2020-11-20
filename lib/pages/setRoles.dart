@@ -30,7 +30,7 @@ class SetRoles extends StatelessWidget {
                     ? _rNPProviderSetter.addRole = roles[index]
                     : _rNPProviderSetter.removeRole = roles[index];
               },
-              onLongPress: () => showRoleJob(roles, roles[index]),
+              onLongPress: () => showRoleJob(context, roles[index]),
             );
           }),
         ),
