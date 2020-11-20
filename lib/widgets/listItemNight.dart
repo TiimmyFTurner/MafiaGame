@@ -47,7 +47,6 @@ class _ListItemNightState extends State<ListItemNight> {
                       .silentPlayer = index;
                 }),
             Expanded(
-              flex: 1,
               child: Text(
                 _player.role.name,
                 style: TextStyle(color: Colors.white),
@@ -56,7 +55,6 @@ class _ListItemNightState extends State<ListItemNight> {
               ),
             ),
             Expanded(
-              flex: 2,
               child: Text(
                 _player.name,
                 style: TextStyle(color: Colors.white),

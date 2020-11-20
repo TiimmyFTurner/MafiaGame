@@ -45,7 +45,6 @@ class _ListItemVoteState extends State<ListItemVote> {
                     index;
               }),
           Expanded(
-            flex: 1,
             child: Text(
               _player.role.name,
               style: TextStyle(color: Colors.white),
@@ -54,7 +53,6 @@ class _ListItemVoteState extends State<ListItemVote> {
             ),
           ),
           Expanded(
-            flex: 2,
             child: Text(
               _player.name,
               style: TextStyle(color: Colors.white),

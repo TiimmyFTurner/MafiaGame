@@ -34,7 +34,6 @@ class _ListItemDayState extends State<ListItemDay> {
                     index;
               }),
           Expanded(
-            flex: 1,
             child: Text(
               _player.role.name,
               style: TextStyle(color: Colors.white),
@@ -43,7 +42,6 @@ class _ListItemDayState extends State<ListItemDay> {
             ),
           ),
           Expanded(
-            flex: 2,
             child: Text(
               _player.name,
               style: TextStyle(color: Colors.white),
