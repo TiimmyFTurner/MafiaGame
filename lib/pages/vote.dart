@@ -4,6 +4,7 @@ import 'package:Mafia/providers/providers.dart';
 import 'package:Mafia/widgets/inGameAppBar.dart';
 import 'package:Mafia/widgets/listItemVote.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Vote extends StatefulWidget {
   @override
@@ -24,16 +25,6 @@ class _VoteState extends State<Vote> {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: InGameAppBar(title: "رای دهی"),
-        floatingActionButton: FloatingActionButton(
-          heroTag: "next",
-          child: Icon(Icons.navigate_next),
-          onPressed: () {
-            Provider.of<RolesNPlayers>(context, listen: false).startNight();
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => Night()),
-            );
-          },
-        ),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: Column(
@@ -42,60 +33,141 @@ class _VoteState extends State<Vote> {
                 child: ListView.builder(
                   physics: BouncingScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: _players.length,
+                  itemCount: _players.length + 1,
                   itemBuilder: (BuildContext context, int index) =>
-                      ListItemVote(_players[index], index),
+                      index < _players.length
+                          ? ListItemVote(_players[index], index)
+                          : SizedBox(height: 75),
                 ),
               ),
-              Row(
-                children: <Widget>[
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 16, bottom: 16, left: 8),
-                    child: Chip(
-                      backgroundColor: Colors.blue,
-                      label: Text(
-                        'زنده: ' +
-                            Provider.of<RolesNPlayers>(context)
-                                .alive
-                                .toString(),
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 16, bottom: 16, left: 8),
-                    child: Chip(
-                      backgroundColor: Colors.yellow[800],
-                      label: Text(
-                        'دادگاهی: ' +
-                            Provider.of<RolesNPlayers>(context)
-                                .voteToJudge
-                                .toString() +
-                            '  ',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 16, bottom: 16, left: 8),
-                    child: Chip(
-                      backgroundColor: Colors.red[800],
-                      label: Text(
-                        'مرگ: ' +
-                            Provider.of<RolesNPlayers>(context)
-                                .voteToDead
-                                .toString() +
-                            '  ',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-                    ),
-                  ),
-                ],
-              )
             ],
+          ),
+        ),
+        bottomSheet: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            colors: [Theme.of(context).backgroundColor, Colors.transparent],
+          )),
+          height: 80,
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  height: 35,
+                  child: Row(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(24),
+                          color: Colors.blue,
+                        ),
+                        child: Center(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 12),
+                            child: Row(
+                              children: [
+                                FaIcon(
+                                  FontAwesomeIcons.heartbeat,
+                                  color: Colors.white,
+                                  size: 16,
+                                ),
+                                Text(
+                                  " ${Provider.of<RolesNPlayers>(context).alive.toString()}",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(24),
+                          color: Colors.yellow[800],
+                        ),
+                        child: Center(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 12),
+                            child: Row(
+                              children: [
+                                FaIcon(
+                                  FontAwesomeIcons.gavel,
+                                  color: Colors.white,
+                                  size: 16,
+                                ),
+                                Text(
+                                  " ${Provider.of<RolesNPlayers>(context).voteToJudge.toString()}",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(24),
+                          color: Colors.red[700],
+                        ),
+                        child: Center(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 12),
+                            child: Row(
+                              children: [
+                                FaIcon(
+                                  FontAwesomeIcons.skullCrossbones,
+                                  color: Colors.white,
+                                  size: 16,
+                                ),
+                                Text(
+                                  " ${Provider.of<RolesNPlayers>(context).voteToDead.toString()}",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(child: Container()),
+                SizedBox(
+                  height: 45,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    color: Theme.of(context).accentColor,
+                    child: Row(
+                      children: [Text("ادامه"), Icon(Icons.navigate_next)],
+                    ),
+                    onPressed: () {
+                      Provider.of<RolesNPlayers>(context, listen: false)
+                          .startNight();
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (_) => Night()),
+                      );
+                    },
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
