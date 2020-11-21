@@ -1,4 +1,5 @@
 import 'package:Mafia/models/player.dart';
+import 'package:Mafia/pages/bigRoleName.dart';
 import 'package:Mafia/providers/providers.dart';
 import 'package:flutter/material.dart';
 
@@ -88,11 +89,23 @@ class _ListItemNightState extends State<ListItemNight> {
                 child: Text(_player.role.job, textAlign: TextAlign.center),
               ),
               actions: <Widget>[
-                FlatButton(
-                  child: Text("فهمیدم"),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
+                ButtonBar(
+                  children: [
+                    FlatButton(
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => BigRoleName(_player.role.name),
+                        ),
+                      ),
+                      child: Text("نمایش تمام صفحه نقش"),
+                    ),
+                    FlatButton(
+                      child: Text("فهمیدم"),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
                 ),
               ],
             );
