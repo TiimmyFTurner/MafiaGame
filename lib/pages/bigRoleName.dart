@@ -10,12 +10,9 @@ class BigRoleName extends StatelessWidget {
         padding: const EdgeInsets.all(15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          // mainAxisSize: MainAxisSize.min,
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
-              // color: Theme.of(context).accentColor,
               child: Text(
                 _roleName,
                 style: TextStyle(fontSize: 60),
