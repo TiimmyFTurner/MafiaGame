@@ -60,10 +60,13 @@ class _ShowRolesState extends State<ShowRoles> {
                                 "\nگروه: " +
                                 role,
                             btn: "فهمیدم",
+                            more: _players[index].role.job,
                             backgroundColor: Theme.of(context).accentColor,
-                            image: AssetImage("asset/images/" +
-                                _players[index].role.type +
-                                ".jpg"),
+                            image: AssetImage(
+                              "asset/images/" +
+                                  _players[index].role.type +
+                                  ".jpg",
+                            ),
                           ),
                         ).then(
                           (value) => setState(() {
