@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future initSetting() async {
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(Duration(milliseconds: 1500));
     await Provider.of<Settings>(context, listen: false).readSetting();
     await Provider.of<RolesNPlayers>(context, listen: false).initRNPSetting();
     await Wakelock.enable();
