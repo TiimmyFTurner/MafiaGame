@@ -46,7 +46,7 @@ class Setting extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "\nMafia Game 2.3.0\nCopyright \u00a9 2020 Timothy F. Turner (Arman Askari Sh.)",
+                  "\nMafia Game 3.0.0\nCopyright \u00a9 2020 Timothy F. Turner (Arman Askari Sh.)",
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.grey),
                 ),
