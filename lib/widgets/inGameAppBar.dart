@@ -26,7 +26,7 @@ class _InGameAppBarState extends State<InGameAppBar> {
           icon: Icon(Icons.event_note),
           onPressed: () {
             noteController.text =
-                Provider.of<RolesNPlayers>(context, listen: false).note;
+                Provider.of<Note>(context, listen: false).note;
             showModalBottomSheet(
                 context: context,
                 enableDrag: true,
@@ -74,8 +74,7 @@ class _InGameAppBarState extends State<InGameAppBar> {
                                     border: InputBorder.none,
                                     hintText: 'متن یاداشت را وارد کنید'),
                                 onChanged: (value) {
-                                  Provider.of<RolesNPlayers>(context,
-                                          listen: false)
+                                  Provider.of<Note>(context, listen: false)
                                       .note = value;
                                 },
                               ),
@@ -118,6 +117,8 @@ class _InGameAppBarState extends State<InGameAppBar> {
                           onPressed: () {
                             Provider.of<RolesNPlayers>(context, listen: false)
                                 .newGame();
+                            Provider.of<Note>(context, listen: false)
+                                .clearNote();
                             Navigator.of(context).pop();
                             Navigator.of(context).pop();
                           },

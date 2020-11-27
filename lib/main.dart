@@ -7,7 +7,8 @@ main(List<String> args) {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => Settings()),
-        ChangeNotifierProvider(create: (_) => RolesNPlayers())
+        ChangeNotifierProvider(create: (_) => RolesNPlayers()),
+        ChangeNotifierProvider(create: (_) => Note()),
       ],
       child: MafiaApp(),
     ),
