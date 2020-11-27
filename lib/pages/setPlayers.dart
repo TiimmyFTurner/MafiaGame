@@ -149,12 +149,6 @@ class SetPlayers extends StatelessWidget {
                     backgroundColor: Theme.of(context).backgroundColor,
                     elevation: 0,
                   );
-                  // final snackBar = SnackBar(
-                  //   content: Text("بازیکنی برای بازگردانی وجود ندارد",
-                  //       textAlign: TextAlign.center,
-                  //       style: Theme.of(context).textTheme.bodyText1),
-                  //   backgroundColor: Theme.of(context).accentColor,
-                  // );
                   Scaffold.of(context).showSnackBar(snackBar);
                 }
               },
