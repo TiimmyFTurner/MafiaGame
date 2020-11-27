@@ -51,7 +51,7 @@ class RoleDialog extends StatelessWidget {
               BoxShadow(
                 color: Colors.black26,
                 blurRadius: 10.0,
-                offset: const Offset(0.0, 10.0),
+                offset: Offset(0.0, 10.0),
               ),
             ],
           ),
@@ -71,8 +71,9 @@ class RoleDialog extends StatelessWidget {
               ),
               SizedBox(height: 12.0),
               Theme(
-                data: Theme.of(context)
-                    .copyWith(dividerColor: Colors.transparent),
+                data: Theme.of(context).copyWith(
+                    dividerColor: Colors.transparent,
+                    accentColor: Colors.blueGrey),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Consts.radius),
@@ -85,7 +86,6 @@ class RoleDialog extends StatelessWidget {
                       Text(
                         more,
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white),
                       ),
                       SizedBox(height: 15.0),
                     ],
@@ -109,7 +109,7 @@ class RoleDialog extends StatelessWidget {
           top: 0,
           child: CircleAvatar(
             backgroundImage: image,
-            backgroundColor: Colors.blueAccent,
+            // backgroundColor: Colors.blueAccent,
             radius: Consts.avatarRadius,
           ),
         ),
