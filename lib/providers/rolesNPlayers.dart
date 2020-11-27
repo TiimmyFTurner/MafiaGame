@@ -38,7 +38,7 @@ class RolesNPlayers extends ChangeNotifier {
   bool recoverLastPlayers() {
     _players = _prefs.getStringList('lastPlayers') ?? [];
     notifyListeners();
-    return _players.length == 0 ? false : true;
+    return _players.isNotEmpty;
   }
 
   set addPlayer(String name) {
@@ -205,6 +205,4 @@ class RolesNPlayers extends ChangeNotifier {
 
   _sortPlayer() =>
       _playersWithRole.sort((p1, p2) => p1.role.order.compareTo(p2.role.order));
-
-
 }
