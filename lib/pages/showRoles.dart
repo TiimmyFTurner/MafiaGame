@@ -19,7 +19,7 @@ class _ShowRolesState extends State<ShowRoles> {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: InGameAppBar(title: "نمایش نقش ها"),
-        body: _players.length == 0
+        body: _players.isEmpty
             ? Center(
                 child: Padding(
                   padding: const EdgeInsets.all(24.0),

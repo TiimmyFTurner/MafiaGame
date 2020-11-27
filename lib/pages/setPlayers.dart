@@ -133,11 +133,28 @@ class SetPlayers extends StatelessWidget {
                 if (!Provider.of<RolesNPlayers>(context, listen: false)
                     .recoverLastPlayers()) {
                   final snackBar = SnackBar(
-                    content: Text("بازیکنی برای بازگردانی وجود ندارد",
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyText1),
-                    backgroundColor: Theme.of(context).accentColor,
+                    behavior: SnackBarBehavior.floating,
+                    content: Container(
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).accentColor,
+                          borderRadius: BorderRadius.circular(30)),
+                      margin: EdgeInsets.only(bottom: 50),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        child: Text("بازیکنی برای بازگردانی وجود ندارد",
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.bodyText1),
+                      ),
+                    ),
+                    backgroundColor: Theme.of(context).backgroundColor,
+                    elevation: 0,
                   );
+                  // final snackBar = SnackBar(
+                  //   content: Text("بازیکنی برای بازگردانی وجود ندارد",
+                  //       textAlign: TextAlign.center,
+                  //       style: Theme.of(context).textTheme.bodyText1),
+                  //   backgroundColor: Theme.of(context).accentColor,
+                  // );
                   Scaffold.of(context).showSnackBar(snackBar);
                 }
               },
