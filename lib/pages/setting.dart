@@ -17,31 +17,24 @@ class Setting extends StatelessWidget {
       appBar: AppBar(title: Text("تنظیمات"), centerTitle: true),
       body: Column(
         children: <Widget>[
-          Divider(height: 1),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Switch(
-                  activeColor: Theme.of(context).accentColor,
-                  value: platformDarkMode
-                      ? true
-                      : Provider.of<Settings>(context).darkMode,
-                  onChanged: platformDarkMode
-                      ? null
-                      : (value) => Provider.of<Settings>(context, listen: false)
-                          .switchDarkMode = value,
-                ),
+          Container(
+            color: Theme.of(context).cardColor,
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: SwitchListTile(
+                title: Text("تم تاریک"),
+                activeColor: Theme.of(context).accentColor,
+                value: platformDarkMode
+                    ? true
+                    : Provider.of<Settings>(context).darkMode,
+                onChanged: platformDarkMode
+                    ? null
+                    : (value) => Provider.of<Settings>(context, listen: false)
+                        .switchDarkMode = value,
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: Text("تم تاریک"),
-              ),
-            ],
+            ),
           ),
           themeNote(),
-          Divider(height: 1),
           Center(
             child: Column(
               children: [
