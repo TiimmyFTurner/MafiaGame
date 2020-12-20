@@ -13,6 +13,7 @@ class SetRoles extends StatelessWidget {
     List _citizen = _rNPProviderListener.citizen;
     List _independent = _rNPProviderListener.independent;
     List _selectedRoles = _rNPProviderListener.selectedRoles;
+
     Widget _roleGeidView({int flex, List roles, String setter}) {
       return Expanded(
         flex: flex,
@@ -20,35 +21,47 @@ class SetRoles extends StatelessWidget {
           physics: BouncingScrollPhysics(),
           crossAxisCount: 4,
           childAspectRatio: (2 / 1),
-          children: List.generate(roles.length, (index) {
-            return InkWell(
-              borderRadius: BorderRadius.circular(20),
-              radius: 200,
-              child: ListItemRole(roles[index]),
-              onTap: () {
-                setter == "add"
-                    ? _rNPProviderSetter.addRole = roles[index]
-                    : _rNPProviderSetter.removeRole = roles[index];
-              },
-              onLongPress: () => showRoleJob(context, roles[index]),
-            );
-          }),
+          children: List.generate(
+            setter == "remove" ? roles.length + 1 : roles.length,
+            (index) => index < roles.length
+                ? InkWell(
+                    borderRadius: BorderRadius.circular(20),
+                    radius: 200,
+                    child: ListItemRole(roles[index]),
+                    onTap: () {
+                      setter == "add"
+                          ? _rNPProviderSetter.addRole = roles[index]
+                          : _rNPProviderSetter.removeRole = roles[index];
+                    },
+                    onLongPress: () => showRoleJob(context, roles[index]),
+                  )
+                : Container(),
+          ),
         ),
       );
     }
 
     return Scaffold(
       appBar: _buildAppBar(context),
-      floatingActionButton: FloatingActionButton(
-        heroTag: 'play',
-        child: Icon(Icons.play_arrow),
-        onPressed: () {
-          _rNPProviderSetter.saveRoles();
-          _rNPProviderSetter.setPlayers();
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => ShowRoles()),
-          );
-        },
+      floatingActionButton: SizedBox(
+        height: 45,
+        child: RaisedButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+          color: Theme.of(context).accentColor,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [Text("ادامه"), Icon(Icons.navigate_next)],
+          ),
+          onPressed: () {
+            _rNPProviderSetter.saveRoles();
+            _rNPProviderSetter.setPlayers();
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => ShowRoles()),
+            );
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
