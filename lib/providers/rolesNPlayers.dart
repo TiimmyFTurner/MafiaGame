@@ -18,6 +18,19 @@ class RolesNPlayers extends ChangeNotifier {
   int _alives;
   SharedPreferences _prefs;
   bool _limitLock;
+  get alive => _alives;
+  get voteToJudge => _alives ~/ 2;
+  get voteToDead => (_alives ~/ 2) + 1;
+  get day => _day;
+  get night => _night;
+  get playersWithRolesFoShow => _playersWithRoleFoShow;
+  get playersWithRoles => _playersWithRole;
+  get players => _players;
+  get limitLock => _limitLock;
+  get mafia => _mafia;
+  get citizen => _citizen;
+  get independent => _independent;
+  get selectedRoles => _selectedRoles;
 
   newGame() {
     Roles roles = Roles();
@@ -39,10 +52,37 @@ class RolesNPlayers extends ChangeNotifier {
     newGame();
   }
 
-  bool recoverLastPlayers() {
-    _players = _prefs.getStringList('lastPlayers') ?? [];
+  set removeRole(Role role) {
+    _selectedRoles.remove(role);
+    if (role.type == 'M') {
+      _mafia.add(role);
+      _selectedMafia--;
+    } else if (role.type == 'C') {
+      _selectedCitizen--;
+      _citizen.add(role);
+    } else {
+      _selectedCitizen--;
+      _independent.add(role);
+    }
     notifyListeners();
-    return _players.isNotEmpty;
+  }
+
+  set silentPlayer(index) {
+    _playersWithRole[index].status =
+        _playersWithRole[index].status == 'silent' ? 'alive' : 'silent';
+    notifyListeners();
+  }
+
+  set killPlayer(index) {
+    _playersWithRole[index].status =
+        _playersWithRole[index].status != 'dead' ? 'dead' : 'alive';
+    notifyListeners();
+  }
+
+  set judgePlayer(index) {
+    _playersWithRole[index].status =
+        _playersWithRole[index].status == 'judge' ? 'alive' : 'judge';
+    notifyListeners();
   }
 
   set limitLock(bool status) {
@@ -60,26 +100,6 @@ class RolesNPlayers extends ChangeNotifier {
     _players.remove(name);
     notifyListeners();
   }
-
-  get players => _players;
-
-  recoverLastRoles() {
-    Roles roles = Roles();
-    var _lastRoles = _prefs.getStringList('lastRoles');
-    if (_lastRoles.length != 0) {
-      for (Role _selectedRole in List.from(_selectedRoles))
-        removeRole = _selectedRole;
-      for (String role in _lastRoles) addRole = roles.find(role);
-    }
-    notifyListeners();
-  }
-
-  saveRoles() async {
-    await _prefs.setStringList(
-        'lastRoles', _selectedRoles.map((e) => e.name).toList());
-  }
-
-  savePlayers() async => await _prefs.setStringList('lastPlayers', _players);
 
   set addRole(Role role) {
     if (_players.length > _selectedRoles.length) {
@@ -111,27 +131,6 @@ class RolesNPlayers extends ChangeNotifier {
       notifyListeners();
     }
   }
-
-  set removeRole(Role role) {
-    _selectedRoles.remove(role);
-    if (role.type == 'M') {
-      _mafia.add(role);
-      _selectedMafia--;
-    } else if (role.type == 'C') {
-      _selectedCitizen--;
-      _citizen.add(role);
-    } else {
-      _selectedCitizen--;
-      _independent.add(role);
-    }
-    notifyListeners();
-  }
-
-  get limitLock => _limitLock;
-  get mafia => _mafia;
-  get citizen => _citizen;
-  get independent => _independent;
-  get selectedRoles => _selectedRoles;
 
   setPlayers() {
     if (_players.length != _selectedRoles.length) {
@@ -171,8 +170,29 @@ class RolesNPlayers extends ChangeNotifier {
     }
   }
 
-  get playersWithRolesFoShow => _playersWithRoleFoShow;
-  get playersWithRoles => _playersWithRole;
+  recoverLastRoles() {
+    Roles roles = Roles();
+    var _lastRoles = _prefs.getStringList('lastRoles');
+    if (_lastRoles.length != 0) {
+      for (Role _selectedRole in List.from(_selectedRoles))
+        removeRole = _selectedRole;
+      for (String role in _lastRoles) addRole = roles.find(role);
+    }
+    notifyListeners();
+  }
+
+  saveRoles() async {
+    await _prefs.setStringList(
+        'lastRoles', _selectedRoles.map((e) => e.name).toList());
+  }
+
+  savePlayers() async => await _prefs.setStringList('lastPlayers', _players);
+
+  bool recoverLastPlayers() {
+    _players = _prefs.getStringList('lastPlayers') ?? [];
+    notifyListeners();
+    return _players.isNotEmpty;
+  }
 
   playGame() {
     _day = 1;
@@ -180,22 +200,6 @@ class RolesNPlayers extends ChangeNotifier {
     _sortPlayer();
     notifyListeners();
   }
-
-  set killPlayer(index) {
-    _playersWithRole[index].status =
-        _playersWithRole[index].status != 'dead' ? 'dead' : 'alive';
-    notifyListeners();
-  }
-
-  set judgePlayer(index) {
-    _playersWithRole[index].status =
-        _playersWithRole[index].status == 'judge' ? 'alive' : 'judge';
-    notifyListeners();
-  }
-
-  get day => _day;
-
-  get night => _night;
 
   startDay() {
     _night++;
@@ -214,16 +218,6 @@ class RolesNPlayers extends ChangeNotifier {
 
   startNight() {
     _sortPlayer();
-  }
-
-  get alive => _alives;
-  get voteToJudge => _alives ~/ 2;
-  get voteToDead => (_alives ~/ 2) + 1;
-
-  set silentPlayer(index) {
-    _playersWithRole[index].status =
-        _playersWithRole[index].status == 'silent' ? 'alive' : 'silent';
-    notifyListeners();
   }
 
   _sortPlayer() =>
