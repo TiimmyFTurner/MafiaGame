@@ -99,7 +99,10 @@ class SetRoles extends StatelessWidget {
                 icon: Icon(Icons.help_outline),
                 onPressed: () {
                   final snackBar = SnackBar(
-                    content: Text("برای مشاهده وظیفه هر نقش آن را نگه دارید",
+                    content: Text(
+                        "برای مشاهده وظیفه هر نقش آن را نگه دارید" +
+                            "\n" +
+                            "به طور معمول نسبت تعداد مافیا به شهروند یک به دو میباشد در صورت نیاز برای سناریو های مختلف میتوانید در قسمت تنظیمات این محدودیت را غیر فعال کنید",
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyText1),
                     backgroundColor: Theme.of(context).accentColor,

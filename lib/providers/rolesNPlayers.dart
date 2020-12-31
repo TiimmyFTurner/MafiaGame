@@ -17,6 +17,7 @@ class RolesNPlayers extends ChangeNotifier {
   int _day, _night;
   int _alives;
   SharedPreferences _prefs;
+  bool _limitLock;
 
   newGame() {
     Roles roles = Roles();
@@ -32,6 +33,9 @@ class RolesNPlayers extends ChangeNotifier {
 
   initRNPSetting() async {
     _prefs = await SharedPreferences.getInstance();
+    _limitLock = (_prefs.getBool('limitLock') ?? true)
+        ? _limitLock = true
+        : _limitLock = false;
     newGame();
   }
 
@@ -39,6 +43,12 @@ class RolesNPlayers extends ChangeNotifier {
     _players = _prefs.getStringList('lastPlayers') ?? [];
     notifyListeners();
     return _players.isNotEmpty;
+  }
+
+  set limitLock(bool status) {
+    _limitLock = status;
+    _prefs.setBool('limitLock', _limitLock);
+    notifyListeners();
   }
 
   set addPlayer(String name) {
@@ -73,20 +83,30 @@ class RolesNPlayers extends ChangeNotifier {
 
   set addRole(Role role) {
     if (_players.length > _selectedRoles.length) {
-      if (role.type == 'M' && _selectedMafia < _players.length ~/ 3) {
+      if (_limitLock) {
+        if (role.type == 'M' && _selectedMafia < _players.length ~/ 3) {
+          _selectedRoles.add(role);
+          _selectedMafia++;
+          _mafia.removeWhere((e) => e.name == role.name);
+        } else if (role.type == 'C' &&
+            _selectedCitizen < _players.length - (_players.length ~/ 3)) {
+          _selectedRoles.add(role);
+          _selectedCitizen++;
+          _citizen.removeWhere((e) => e.name == role.name);
+        } else if (role.type == "I" &&
+            _selectedCitizen < _players.length - (_players.length ~/ 3)) {
+          _selectedRoles.add(role);
+          _selectedCitizen++;
+          _independent.removeWhere((e) => e.name == role.name);
+        }
+      } else {
         _selectedRoles.add(role);
-        _selectedMafia++;
-        _mafia.removeWhere((element) => element.name == role.name);
-      } else if (role.type == 'C' &&
-          _selectedCitizen < _players.length - (_players.length ~/ 3)) {
-        _selectedRoles.add(role);
-        _selectedCitizen++;
-        _citizen.removeWhere((element) => element.name == role.name);
-      } else if (role.type == "I" &&
-          _selectedCitizen < _players.length - (_players.length ~/ 3)) {
-        _selectedRoles.add(role);
-        _selectedCitizen++;
-        _independent.removeWhere((element) => element.name == role.name);
+        role.type == 'M' ? _selectedMafia++ : _selectedCitizen++;
+        role.type == 'M'
+            ? _mafia.removeWhere((e) => e.name == role.name)
+            : role.type == 'C'
+                ? _citizen.removeWhere((e) => e.name == role.name)
+                : _independent.removeWhere((e) => e.name == role.name);
       }
       notifyListeners();
     }
@@ -107,6 +127,7 @@ class RolesNPlayers extends ChangeNotifier {
     notifyListeners();
   }
 
+  get limitLock => _limitLock;
   get mafia => _mafia;
   get citizen => _citizen;
   get independent => _independent;
@@ -114,7 +135,8 @@ class RolesNPlayers extends ChangeNotifier {
 
   setPlayers() {
     if (_players.length != _selectedRoles.length) {
-      while (_selectedMafia < _players.length ~/ 3) {
+      while (_selectedMafia < _players.length ~/ 3 &&
+          _selectedRoles.length < _players.length) {
         _selectedRoles.add(
           Role(
               name: 'مافیا',
@@ -124,7 +146,8 @@ class RolesNPlayers extends ChangeNotifier {
         );
         _selectedMafia++;
       }
-      while (_selectedCitizen < _players.length - (_players.length ~/ 3)) {
+      while (_selectedCitizen < _players.length - (_players.length ~/ 3) &&
+          _selectedRoles.length < _players.length) {
         _selectedRoles.add(
           Role(
               name: 'شهروند',
