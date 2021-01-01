@@ -83,9 +83,14 @@ class RoleDialog extends StatelessWidget {
                     childrenPadding: EdgeInsets.symmetric(horizontal: 20),
                     title: Text("وظیفه"),
                     children: [
-                      Text(
-                        more,
-                        textAlign: TextAlign.center,
+                      SingleChildScrollView(
+                        child: Expanded(
+                          child: Text(
+                            more,
+                            textAlign: TextAlign.center,
+                            textDirection: TextDirection.rtl,
+                          ),
+                        ),
                       ),
                       SizedBox(height: 15.0),
                     ],
