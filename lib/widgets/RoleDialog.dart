@@ -36,7 +36,6 @@ class RoleDialog extends StatelessWidget {
       alignment: Alignment.center,
       children: <Widget>[
         Container(
-          height: MediaQuery.of(context).size.height / .9,
           padding: EdgeInsets.only(
             top: Consts.avatarRadius + Consts.padding,
             bottom: Consts.padding,
@@ -56,68 +55,57 @@ class RoleDialog extends StatelessWidget {
               ),
             ],
           ),
-          child: Directionality(
-            textDirection: TextDirection.rtl,
-            child: Column(
-              mainAxisSize: MainAxisSize.min, // To make the card compact
-              children: <Widget>[
-                Text(
-                  title,
+          child: Column(
+            mainAxisSize: MainAxisSize.min, // To make the card compact
+            children: <Widget>[
+              Text(title,
                   style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 12),
-                Text(
-                  desc,
+                  textDirection: TextDirection.rtl),
+              SizedBox(height: 12),
+              Text(desc,
                   style: TextStyle(fontSize: 24.0),
                   textAlign: TextAlign.center,
-                ),
-                Expanded(
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(Consts.radius)),
-                    child: ListView(
-                      children: [
-                        Text(more),
-                      ],
-                    ),
+                  textDirection: TextDirection.rtl),
+              SizedBox(height: 12.0),
+              Theme(
+                data: Theme.of(context).copyWith(
+                    dividerColor: Colors.transparent,
+                    accentColor: Colors.blueGrey),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Consts.radius),
+                    color: Theme.of(context).backgroundColor,
+                  ),
+                  child: ExpansionTile(
+                    childrenPadding: EdgeInsets.symmetric(horizontal: 20),
+                    title: Text("وظیفه"),
+                    children: [
+                      SingleChildScrollView(
+                        child: Expanded(
+                          child: Text(
+                            more,
+                            textAlign: TextAlign.center,
+                            textDirection: TextDirection.rtl,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 15.0),
+                    ],
                   ),
                 ),
-                SizedBox(height: 12.0),
-                // Theme(
-                //   data: Theme.of(context).copyWith(
-                //       dividerColor: Colors.transparent,
-                //       accentColor: Colors.blueGrey),
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(Consts.radius),
-                //       color: Theme.of(context).backgroundColor,
-                //     ),
-                //     child: ExpansionTile(
-                //       childrenPadding: EdgeInsets.symmetric(horizontal: 20),
-                //       title: Text("وظیفه"),
-                //       children: [
-                //         Text(
-                //           more,
-                //           textAlign: TextAlign.center,
-                //         ),
-                //         SizedBox(height: 15.0),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                SizedBox(height: 15.0),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: FlatButton(
-                    onPressed: () {
-                      Navigator.of(context).pop(); // To close the dialog
-                    },
-                    child: Text(btn),
-                  ),
+              ),
+              SizedBox(height: 15.0),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // To close the dialog
+                  },
+                  child: Text(btn),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         Positioned(
