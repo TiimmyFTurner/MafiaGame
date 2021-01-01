@@ -13,7 +13,7 @@ class Setting extends StatelessWidget {
             child: Text(
                 "در صورت فعال بودن تم تاریک دستکاه نمیتوانید تم را تغییر دهید"))
         : Container();
-    Widget starPlayerNote() => Provider.of<RolesNPlayers>(context).limitLock
+    Widget starRoleNote() => Provider.of<RolesNPlayers>(context).limitLock
         ? Padding(
             padding: EdgeInsets.only(right: 15, left: 12, bottom: 15),
             child: Text(
@@ -61,15 +61,15 @@ class Setting extends StatelessWidget {
                   'در صورت نیاز استفاده از یک نقش بیش از یک بار برای سناریو های مختلف میتوانید این ویژگی را فعال کنید',
                 ),
                 activeColor: Theme.of(context).accentColor,
-                value: Provider.of<RolesNPlayers>(context).starPlayer,
+                value: Provider.of<RolesNPlayers>(context).starRole,
                 onChanged: Provider.of<RolesNPlayers>(context).limitLock
                     ? null
                     : (value) =>
                         Provider.of<RolesNPlayers>(context, listen: false)
-                            .starPlayer = value,
+                            .starRole = value,
               ),
             ),
-            starPlayerNote(),
+            starRoleNote(),
             Center(
               child: Column(
                 children: [

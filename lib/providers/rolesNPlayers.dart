@@ -18,7 +18,7 @@ class RolesNPlayers extends ChangeNotifier {
   int _alives;
   SharedPreferences _prefs;
   bool _limitLock;
-  bool _starPlayer;
+  bool _starRole;
   get alive => _alives;
   get voteToJudge => _alives ~/ 2;
   get voteToDead => (_alives ~/ 2) + 1;
@@ -32,7 +32,7 @@ class RolesNPlayers extends ChangeNotifier {
   get citizen => _citizen;
   get independent => _independent;
   get selectedRoles => _selectedRoles;
-  get starPlayer => _starPlayer;
+  get starRole => _starRole;
 
   newGame() {
     Roles roles = Roles();
@@ -51,9 +51,9 @@ class RolesNPlayers extends ChangeNotifier {
     _limitLock = (_prefs.getBool('limitLock') ?? true)
         ? _limitLock = true
         : _limitLock = false;
-    _starPlayer = (_prefs.getBool('starPlayer') ?? false)
-        ? _starPlayer = true
-        : _starPlayer = false;
+    _starRole = (_prefs.getBool('starRole') ?? false)
+        ? _starRole = true
+        : _starRole = false;
     newGame();
   }
 
@@ -92,14 +92,14 @@ class RolesNPlayers extends ChangeNotifier {
 
   set limitLock(bool status) {
     _limitLock = status;
-    if (status == true) _starPlayer = false;
+    if (status == true) _starRole = false;
     _prefs.setBool('limitLock', _limitLock);
     notifyListeners();
   }
 
-  set starPlayer(bool status) {
-    _starPlayer = status;
-    _prefs.setBool('starPlayer', _starPlayer);
+  set starRole(bool status) {
+    _starRole = status;
+    _prefs.setBool('starRole', _starRole);
     notifyListeners();
   }
 
@@ -140,7 +140,7 @@ class RolesNPlayers extends ChangeNotifier {
                 ? _citizen.removeWhere((e) => e.name == role.name)
                 : _independent.removeWhere((e) => e.name == role.name);
 
-        if (_starPlayer && !role.name.contains('⭐')) {
+        if (_starRole && !role.name.contains('⭐')) {
           Role newStarRole = role.clone();
           newStarRole.name = '⭐' + newStarRole.name;
           newStarRole.type == 'M'
