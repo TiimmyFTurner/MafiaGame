@@ -102,7 +102,7 @@ class SetRoles extends StatelessWidget {
                     content: Text(
                         "برای مشاهده وظیفه هر نقش آن را نگه دارید" +
                             "\n" +
-                            "به طور معمول نسبت تعداد مافیا به شهروند یک به دو میباشد در صورت نیاز برای سناریو های مختلف میتوانید در قسمت تنظیمات این محدودیت را غیر فعال کنید",
+                            "استفاده از نقش های ستاره دار یا غیر فعال کردن محدودیت نسبت را میتوانید از قسمت تنظیمات مدیریت کنید",
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyText1),
                     backgroundColor: Theme.of(context).accentColor,

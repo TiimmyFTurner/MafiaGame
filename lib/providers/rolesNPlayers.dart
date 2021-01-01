@@ -18,6 +18,7 @@ class RolesNPlayers extends ChangeNotifier {
   int _alives;
   SharedPreferences _prefs;
   bool _limitLock;
+  bool _starPlayer;
   get alive => _alives;
   get voteToJudge => _alives ~/ 2;
   get voteToDead => (_alives ~/ 2) + 1;
@@ -31,6 +32,7 @@ class RolesNPlayers extends ChangeNotifier {
   get citizen => _citizen;
   get independent => _independent;
   get selectedRoles => _selectedRoles;
+  get starPlayer => _starPlayer;
 
   newGame() {
     Roles roles = Roles();
@@ -49,6 +51,9 @@ class RolesNPlayers extends ChangeNotifier {
     _limitLock = (_prefs.getBool('limitLock') ?? true)
         ? _limitLock = true
         : _limitLock = false;
+    _starPlayer = (_prefs.getBool('starPlayer') ?? false)
+        ? _starPlayer = true
+        : _starPlayer = false;
     newGame();
   }
 
@@ -87,7 +92,14 @@ class RolesNPlayers extends ChangeNotifier {
 
   set limitLock(bool status) {
     _limitLock = status;
+    if (status == true) _starPlayer = false;
     _prefs.setBool('limitLock', _limitLock);
+    notifyListeners();
+  }
+
+  set starPlayer(bool status) {
+    _starPlayer = status;
+    _prefs.setBool('starPlayer', _starPlayer);
     notifyListeners();
   }
 
@@ -127,6 +139,16 @@ class RolesNPlayers extends ChangeNotifier {
             : role.type == 'C'
                 ? _citizen.removeWhere((e) => e.name == role.name)
                 : _independent.removeWhere((e) => e.name == role.name);
+
+        if (_starPlayer && !role.name.contains('⭐')) {
+          Role newStarRole = role.clone();
+          newStarRole.name = '⭐' + newStarRole.name;
+          newStarRole.type == 'M'
+              ? _mafia.add(newStarRole)
+              : role.type == 'C'
+                  ? _citizen.add(newStarRole)
+                  : _independent.add(newStarRole);
+        }
       }
       notifyListeners();
     }

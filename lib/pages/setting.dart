@@ -9,10 +9,15 @@ class Setting extends StatelessWidget {
         MediaQuery.of(context).platformBrightness == Brightness.dark;
     Widget themeNote() => platformDarkMode
         ? Padding(
-            padding: EdgeInsets.only(right: 15, bottom: 15),
+            padding: EdgeInsets.only(right: 15, left: 12, bottom: 15),
             child: Text(
-                "در صورت فعال بودن تم تاریک دستکاه نمیتوانید تم را تغییر دهید"),
-          )
+                "در صورت فعال بودن تم تاریک دستکاه نمیتوانید تم را تغییر دهید"))
+        : Container();
+    Widget starPlayerNote() => Provider.of<RolesNPlayers>(context).limitLock
+        ? Padding(
+            padding: EdgeInsets.only(right: 15, left: 12, bottom: 15),
+            child: Text(
+                "در صورت فعال بودن محدودیت نسبت نمیتوانید از نقش های ستاره دار استفاده کنید"))
         : Container();
     return Scaffold(
       appBar: AppBar(title: Text("تنظیمات"), centerTitle: true),
@@ -49,6 +54,22 @@ class Setting extends StatelessWidget {
                         .limitLock = value,
               ),
             ),
+            Card(
+              child: SwitchListTile(
+                title: Text("نقش ستاره دار"),
+                subtitle: Text(
+                  'در صورت نیاز استفاده از یک نقش بیش از یک بار برای سناریو های مختلف میتوانید این ویژگی را فعال کنید',
+                ),
+                activeColor: Theme.of(context).accentColor,
+                value: Provider.of<RolesNPlayers>(context).starPlayer,
+                onChanged: Provider.of<RolesNPlayers>(context).limitLock
+                    ? null
+                    : (value) =>
+                        Provider.of<RolesNPlayers>(context, listen: false)
+                            .starPlayer = value,
+              ),
+            ),
+            starPlayerNote(),
             Center(
               child: Column(
                 children: [
