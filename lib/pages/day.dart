@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:Mafia/helpers/lockScreenTimer.dart';
+import 'package:Mafia/helpers/persianNumber.dart';
 import 'package:Mafia/pages/night.dart';
 import 'package:Mafia/pages/vote.dart';
 import 'package:Mafia/providers/providers.dart';
@@ -31,7 +32,8 @@ class _DayState extends State<Day> {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: InGameAppBar(
-            title: "روز" + Provider.of<RolesNPlayers>(context).day.toString()),
+            title:
+                "روز ${persianNumber(Provider.of<RolesNPlayers>(context).day)}"),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: Column(

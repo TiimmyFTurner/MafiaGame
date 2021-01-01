@@ -1,4 +1,5 @@
 import 'package:Mafia/helpers/lockScreenTimer.dart';
+import 'package:Mafia/helpers/persianNumber.dart';
 import 'package:Mafia/pages/day.dart';
 import 'package:Mafia/providers/providers.dart';
 import 'package:Mafia/widgets/inGameAppBar.dart';
@@ -25,7 +26,7 @@ class _NightState extends State<Night> {
       child: Scaffold(
         appBar: InGameAppBar(
             title:
-                "شب ${Provider.of<RolesNPlayers>(context).night.toString()}"),
+                "شب ${persianNumber(Provider.of<RolesNPlayers>(context).night)}"),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: Column(
