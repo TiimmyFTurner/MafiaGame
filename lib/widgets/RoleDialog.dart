@@ -58,17 +58,15 @@ class RoleDialog extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min, // To make the card compact
             children: <Widget>[
-              Text(
-                title,
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
+              Text(title,
+                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                  textDirection: TextDirection.rtl),
               SizedBox(height: 12),
-              Text(
-                desc,
-                style: TextStyle(fontSize: 24.0),
-                textAlign: TextAlign.center,
-              ),
+              Text(desc,
+                  style: TextStyle(fontSize: 24.0),
+                  textAlign: TextAlign.center,
+                  textDirection: TextDirection.rtl),
               SizedBox(height: 12.0),
               Theme(
                 data: Theme.of(context).copyWith(
