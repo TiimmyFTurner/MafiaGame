@@ -99,7 +99,10 @@ class SetRoles extends StatelessWidget {
                 icon: Icon(Icons.help_outline),
                 onPressed: () {
                   final snackBar = SnackBar(
-                    content: Text("برای مشاهده وظیفه هر نقش آن را نگه دارید",
+                    content: Text(
+                        "برای مشاهده وظیفه هر نقش آن را نگه دارید" +
+                            "\n" +
+                            "استفاده از نقش های ستاره دار یا غیر فعال کردن محدودیت نسبت را میتوانید از قسمت تنظیمات مدیریت کنید",
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyText1),
                     backgroundColor: Theme.of(context).accentColor,

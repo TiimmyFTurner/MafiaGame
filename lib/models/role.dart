@@ -15,4 +15,7 @@ class Role {
   String toString() {
     return "name: " + name + " type: " + type + " order: " + order.toString();
   }
+
+  Role clone() =>
+      Role(name: this.name, type: this.type, job: this.job, order: this.order);
 }
