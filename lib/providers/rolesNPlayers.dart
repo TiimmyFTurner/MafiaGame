@@ -140,7 +140,7 @@ class RolesNPlayers extends ChangeNotifier {
                 ? _citizen.removeWhere((e) => e.name == role.name)
                 : _independent.removeWhere((e) => e.name == role.name);
 
-        if (_starRole && !role.name.contains('⭐')) {
+        if (_starRole && !role.name.contains('⭐⭐⭐')) {
           Role newStarRole = role.clone();
           newStarRole.name = '⭐' + newStarRole.name;
           newStarRole.type == 'M'
@@ -197,8 +197,9 @@ class RolesNPlayers extends ChangeNotifier {
     var _lastRoles = _prefs.getStringList('lastRoles');
     if (_lastRoles.length != 0) {
       for (Role _selectedRole in List.from(_selectedRoles))
-        removeRole = _selectedRole;
-      for (String role in _lastRoles) addRole = roles.find(role);
+        if (!_selectedRole.name.contains('⭐')) removeRole = _selectedRole;
+      for (String role in _lastRoles)
+        if (!role.contains('⭐')) addRole = roles.find(role);
     }
     notifyListeners();
   }
