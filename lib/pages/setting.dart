@@ -21,7 +21,9 @@ class Setting extends StatelessWidget {
         : Container();
     return Scaffold(
       appBar: AppBar(title: Text("تنظیمات"), centerTitle: true),
-      body: Directionality(
+      body:
+          //TODO: Change it idiot
+          Directionality(
         textDirection: TextDirection.rtl,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
