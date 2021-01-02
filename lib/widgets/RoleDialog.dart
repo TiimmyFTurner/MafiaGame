@@ -7,7 +7,7 @@ class Consts {
   static const double avatarRadius = 66.0;
 }
 
-class RoleDialog extends StatelessWidget {
+class RoleDialog extends StatefulWidget {
   final String title, desc, btn, more;
   final ImageProvider image;
   final backgroundColor;
@@ -19,13 +19,20 @@ class RoleDialog extends StatelessWidget {
     this.backgroundColor,
     this.image,
   });
+
+  @override
+  _RoleDialogState createState() => _RoleDialogState();
+}
+
+class _RoleDialogState extends State<RoleDialog> {
+  bool change = false;
   @override
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Consts.radius),
       ),
-      elevation: 0.0,
+      elevation: 0,
       backgroundColor: Colors.transparent,
       child: dialogContent(context),
     );
@@ -35,84 +42,92 @@ class RoleDialog extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
-        Container(
-          padding: EdgeInsets.only(
-            top: Consts.avatarRadius + Consts.padding,
-            bottom: Consts.padding,
-            left: Consts.padding,
-            right: Consts.padding,
-          ),
-          margin: EdgeInsets.only(top: Consts.avatarRadius),
-          decoration: new BoxDecoration(
-            color: backgroundColor,
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(Consts.radius),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black26,
-                blurRadius: 10.0,
-                offset: Offset(0.0, 10.0),
+        Directionality(
+          textDirection: TextDirection.rtl,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 66),
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 200),
+              height: change ? MediaQuery.of(context).size.height * .8 : 280,
+              width: double.infinity,
+              margin: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Theme.of(context).accentColor,
+                borderRadius: BorderRadius.all(Radius.circular(Consts.radius)),
               ),
-            ],
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min, // To make the card compact
-            children: <Widget>[
-              Text(title,
-                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                  textDirection: TextDirection.rtl),
-              SizedBox(height: 12),
-              Text(desc,
-                  style: TextStyle(fontSize: 24.0),
-                  textAlign: TextAlign.center,
-                  textDirection: TextDirection.rtl),
-              SizedBox(height: 12.0),
-              Theme(
-                data: Theme.of(context).copyWith(
-                    dividerColor: Colors.transparent,
-                    accentColor: Colors.blueGrey),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Consts.radius),
-                    color: Theme.of(context).backgroundColor,
-                  ),
-                  child: ExpansionTile(
-                    childrenPadding: EdgeInsets.symmetric(horizontal: 20),
-                    title: Text("وظیفه"),
-                    children: [
-                      SingleChildScrollView(
-                        child: Expanded(
-                          child: Text(
-                            more,
-                            textAlign: TextAlign.center,
-                            textDirection: TextDirection.rtl,
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: 12),
+                  Text(widget.title,
+                      style: TextStyle(
+                          fontSize: 24.0, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                      textDirection: TextDirection.rtl),
+                  SizedBox(height: 12),
+                  Text(widget.desc,
+                      style: TextStyle(fontSize: 24.0),
+                      textAlign: TextAlign.center,
+                      textDirection: TextDirection.rtl),
+                  // SizedBox(height: 8),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Theme(
+                        data: Theme.of(context).copyWith(
+                            dividerColor: Colors.transparent,
+                            accentColor: Colors.blueGrey),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(Consts.radius),
+                              color: Theme.of(context).backgroundColor,
+                            ),
+                            child: ExpansionTile(
+                              onExpansionChanged: (status) {
+                                setState(() {
+                                  change = status;
+                                });
+                              },
+                              childrenPadding: EdgeInsets.only(
+                                left: 12,
+                                right: 12,
+                                bottom: 12,
+                              ),
+                              title: Text("وظیفه"),
+                              children: [
+                                Text(
+                                  widget.more,
+                                ),
+                                // SizedBox(height: 15.0),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                      SizedBox(height: 15.0),
-                    ],
+                    ),
                   ),
-                ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FlatButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(); // To close the dialog
+                        },
+                        child: Text(widget.btn),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(height: 15.0),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: FlatButton(
-                  onPressed: () {
-                    Navigator.of(context).pop(); // To close the dialog
-                  },
-                  child: Text(btn),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
         Positioned(
           top: 0,
           child: CircleAvatar(
-            backgroundImage: image,
-            // backgroundColor: Colors.blueAccent,
+            backgroundImage: widget.image,
             radius: Consts.avatarRadius,
           ),
         ),

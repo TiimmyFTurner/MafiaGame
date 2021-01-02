@@ -51,9 +51,11 @@ class _ShowRolesState extends State<ShowRoles> {
                             : _players[index].role.type == 'M'
                                 ? "مافیا"
                                 : "مستقل";
-                        showDialog(
+                        showModalBottomSheet(
                           context: context,
-                          builder: (BuildContext context) => RoleDialog(
+                          enableDrag: true,
+                          isScrollControlled: true,
+                          builder: (builder) => RoleDialog(
                             title: _players[index].name,
                             desc: "نقش: " +
                                 _players[index].role.name +
