@@ -1,3 +1,4 @@
+import 'package:Mafia/pages/helpRoles.dart';
 import 'package:Mafia/pages/howToPlay.dart';
 import 'package:Mafia/pages/setPlayers.dart';
 import 'package:Mafia/pages/setting.dart';
@@ -19,82 +20,115 @@ class Home extends StatelessWidget {
   }
 
   Widget buildBody(context) => Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            SizedBox(
-              width: MediaQuery.of(context).size.width / 1.3,
-              height: 55,
-              child: Hero(
-                tag: "play",
+        child: Padding(
+          padding: const EdgeInsets.all(40),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              SizedBox(
+                width: double.infinity,
+                height: 55,
+                child: Hero(
+                  tag: "play",
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    color: Theme.of(context).primaryColor,
+                    child: Text(
+                      "شروع",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w300,
+                          letterSpacing: 3),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (_) => SetPlayers()),
+                      );
+                    },
+                  ),
+                ),
+              ),
+              SizedBox(height: 12),
+              Row(
+                children: [
+                  Expanded(
+                    child: SizedBox(
+                      height: 55,
+                      child: RaisedButton(
+                        color: Theme.of(context).accentColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Text(
+                          "روش بازی",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w300,
+                              letterSpacing: 3),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => HowToPlay()),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 12),
+                  Expanded(
+                    child: SizedBox(
+                      height: 55,
+                      child: RaisedButton(
+                        color: Theme.of(context).accentColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Text(
+                          "نقش ها",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w300,
+                              letterSpacing: 3),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => HelpRoles()),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 12),
+              SizedBox(
+                width: double.infinity,
+                height: 55,
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).accentColor,
                   child: Text(
-                    "شروع",
+                    "تنظیمات",
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w300,
                         letterSpacing: 3),
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (_) => SetPlayers()),
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Setting()),
                     );
                   },
                 ),
               ),
-            ),
-            SizedBox(height: 32),
-            SizedBox(
-              width: MediaQuery.of(context).size.width / 1.6,
-              height: 40,
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                color: Theme.of(context).accentColor,
-                child: Text(
-                  "روش بازی",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w300,
-                      letterSpacing: 3),
-                ),
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => HowToPlay()),
-                  );
-                },
-              ),
-            ),
-            SizedBox(height: 16),
-            SizedBox(
-              width: MediaQuery.of(context).size.width / 1.6,
-              height: 40,
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                color: Theme.of(context).accentColor,
-                child: Text(
-                  "تنظیمات",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w300,
-                      letterSpacing: 3),
-                ),
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Setting()),
-                  );
-                },
-              ),
-            ),
-            SizedBox(height: 32),
-          ],
+            ],
+          ),
         ),
       );
 }
