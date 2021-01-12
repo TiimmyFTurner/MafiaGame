@@ -9,7 +9,7 @@ class InGameAppBar extends StatefulWidget implements PreferredSizeWidget {
         super(key: key);
 
   @override
-  final Size preferredSize; // default is 56.0
+  final Size preferredSize; 
 
   @override
   _InGameAppBarState createState() => _InGameAppBarState();

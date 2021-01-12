@@ -50,7 +50,6 @@ class _RoleDialogState extends State<RoleDialog> {
               duration: Duration(milliseconds: 200),
               height: change ? MediaQuery.of(context).size.height * .8 : 330,
               width: double.infinity,
-              // margin: EdgeInsets.only(top: 0),
               decoration: BoxDecoration(
                 color: Theme.of(context).accentColor,
                 borderRadius: BorderRadius.all(Radius.circular(Consts.radius)),
@@ -68,7 +67,6 @@ class _RoleDialogState extends State<RoleDialog> {
                       style: TextStyle(fontSize: 24.0),
                       textAlign: TextAlign.center,
                       textDirection: TextDirection.rtl),
-                  // SizedBox(height: 8),
                   Expanded(
                     child: SingleChildScrollView(
                       child: Theme(
@@ -99,7 +97,6 @@ class _RoleDialogState extends State<RoleDialog> {
                                 Text(
                                   widget.more,
                                 ),
-                                // SizedBox(height: 15.0),
                               ],
                             ),
                           ),
@@ -113,7 +110,7 @@ class _RoleDialogState extends State<RoleDialog> {
                       padding: const EdgeInsets.all(8.0),
                       child: FlatButton(
                         onPressed: () {
-                          Navigator.of(context).pop(); // To close the dialog
+                          Navigator.of(context).pop();
                         },
                         child: Text(widget.btn),
                       ),
