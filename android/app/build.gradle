@@ -47,8 +47,8 @@ android {
         applicationId "com.Timothy.Mafia"
         minSdkVersion 18
         targetSdkVersion 29
-        versionCode 5
-        versionName "3.2.1"
+        versionCode 6
+        versionName "3.3.0"
     }
    signingConfigs {
        release {
