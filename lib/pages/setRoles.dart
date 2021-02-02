@@ -1,3 +1,4 @@
+import 'package:Mafia/pages/myRoles.dart';
 import 'package:Mafia/pages/showRoles.dart';
 import 'package:Mafia/providers/providers.dart';
 import 'package:Mafia/widgets/listItemRole.dart';
@@ -89,11 +90,11 @@ class SetRoles extends StatelessWidget {
             ")"),
         centerTitle: true,
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.replay),
-            onPressed: () => Provider.of<RolesNPlayers>(context, listen: false)
-                .recoverLastRoles(),
-          ),
+          // IconButton(
+          //   icon: Icon(Icons.replay),
+          //   onPressed: () => Provider.of<RolesNPlayers>(context, listen: false)
+          //       .recoverLastRoles(),
+          // ),
           Builder(
             builder: (context) => IconButton(
                 icon: Icon(Icons.help_outline),
@@ -109,7 +110,8 @@ class SetRoles extends StatelessWidget {
                   );
                   Scaffold.of(context).showSnackBar(snackBar);
                 }),
-          )
+          ),
+          _popupMenuButton(context),
         ],
       );
 
@@ -143,5 +145,50 @@ class SetRoles extends StatelessWidget {
         );
       },
     );
+  }
+
+  _popupMenuButton(context) {
+    return PopupMenuButton<int>(
+      onSelected: (value) => _menueOnSelected(value, context),
+      itemBuilder: (context) => [
+        PopupMenuItem(
+          value: 1,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text("باز گردانی نقش ها", textDirection: TextDirection.rtl),
+              SizedBox(width: 10),
+              Icon(Icons.replay, color: Theme.of(context).primaryColor),
+            ],
+          ),
+        ),
+        PopupMenuItem(
+          value: 2,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text("نقش های من", textDirection: TextDirection.rtl),
+              SizedBox(width: 10),
+              Icon(Icons.list_alt, color: Theme.of(context).primaryColor),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  _menueOnSelected(int value, BuildContext context) {
+    switch (value) {
+      case 1:
+        Provider.of<RolesNPlayers>(context, listen: false).recoverLastRoles();
+        break;
+      case 2:
+        showModalBottomSheet(
+            context: context,
+            enableDrag: true,
+            isScrollControlled: true,
+            builder: (builder) => MyRoles());
+        break;
+    }
   }
 }
