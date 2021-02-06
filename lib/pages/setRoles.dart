@@ -90,11 +90,6 @@ class SetRoles extends StatelessWidget {
             ")"),
         centerTitle: true,
         actions: <Widget>[
-          // IconButton(
-          //   icon: Icon(Icons.replay),
-          //   onPressed: () => Provider.of<RolesNPlayers>(context, listen: false)
-          //       .recoverLastRoles(),
-          // ),
           Builder(
             builder: (context) => IconButton(
                 icon: Icon(Icons.help_outline),
