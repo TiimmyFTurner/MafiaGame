@@ -290,7 +290,6 @@ class _MyRolesState extends State<MyRoles> {
           validator: (String value) =>
               value == null ? 'نوع نقش را انتخاب کنید' : null,
           dropdownColor: Theme.of(context).accentColor,
-          // onSaved: () => {},
           value: roleType,
           items: [
             {'name': 'مافیا', 'value': 'M'},
