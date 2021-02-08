@@ -56,11 +56,13 @@ class SetRoles extends StatelessWidget {
             children: [Text("ادامه"), Icon(Icons.navigate_next)],
           ),
           onPressed: () {
-            _rNPProviderSetter.saveRoles();
-            _rNPProviderSetter.setPlayers();
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => ShowRoles()),
-            );
+            if (!_rNPProviderListener.selectedRoles.isEmpty) {
+              _rNPProviderSetter.saveRoles();
+              _rNPProviderSetter.setPlayers();
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (_) => ShowRoles()),
+              );
+            }
           },
         ),
       ),
