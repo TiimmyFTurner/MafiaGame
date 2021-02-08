@@ -25,28 +25,35 @@ class Home extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              SizedBox(
-                width: double.infinity,
-                height: 55,
-                child: Hero(
-                  tag: "play",
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+              PhysicalModel(
+                borderRadius: BorderRadius.circular(40),
+                color: Colors.black,
+                shadowColor: Theme.of(context).primaryColor,
+                elevation: 10,
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 55,
+                  child: Hero(
+                    tag: "play",
+                    child: RaisedButton(
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      color: Theme.of(context).primaryColor,
+                      child: Text(
+                        "شروع",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w300,
+                            letterSpacing: 3),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (_) => SetPlayers()),
+                        );
+                      },
                     ),
-                    color: Theme.of(context).primaryColor,
-                    child: Text(
-                      "شروع",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w300,
-                          letterSpacing: 3),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (_) => SetPlayers()),
-                      );
-                    },
                   ),
                 ),
               ),
