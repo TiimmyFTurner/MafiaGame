@@ -18,4 +18,12 @@ class Role {
 
   Role clone() =>
       Role(name: this.name, type: this.type, job: this.job, order: this.order);
+
+  Map toMap() => {'name': name, 'type': type, 'job': job, 'order': order};
+
+  static Role fromMap(Map map) => Role(
+      name: map['name'],
+      type: map['type'],
+      job: map['job'],
+      order: map['order']);
 }

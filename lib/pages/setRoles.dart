@@ -179,10 +179,12 @@ class SetRoles extends StatelessWidget {
         break;
       case 2:
         showModalBottomSheet(
-            context: context,
-            enableDrag: true,
-            isScrollControlled: true,
-            builder: (builder) => MyRoles());
+                context: context,
+                enableDrag: true,
+                isScrollControlled: true,
+                builder: (builder) => MyRoles())
+            .then((value) => Provider.of<RolesNPlayers>(context, listen: false)
+                .saveCustomRoles());
         break;
     }
   }

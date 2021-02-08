@@ -84,7 +84,7 @@ class HelpRoles extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(28.0)),
                     ),
                     child: _roleDatails(context, roles[index]),
-                  );
+                  ); 
                 },
               );
             },

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:Mafia/models/player.dart';
 import 'package:flutter/Material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,6 +21,8 @@ class RolesNPlayers extends ChangeNotifier {
   SharedPreferences _prefs;
   bool _limitLock;
   bool _starRole;
+  List _customRoles;
+  dynamic _customRolesTemp;
   get alive => _alives;
   get voteToJudge => _alives ~/ 2;
   get voteToDead => (_alives ~/ 2) + 1;
@@ -33,6 +37,7 @@ class RolesNPlayers extends ChangeNotifier {
   get independent => _independent;
   get selectedRoles => _selectedRoles;
   get starRole => _starRole;
+  get customRoles => _customRoles;
 
   newGame() {
     Roles roles = Roles();
@@ -47,6 +52,7 @@ class RolesNPlayers extends ChangeNotifier {
   }
 
   initRNPSetting() async {
+    newGame();
     _prefs = await SharedPreferences.getInstance();
     _limitLock = (_prefs.getBool('limitLock') ?? true)
         ? _limitLock = true
@@ -54,7 +60,41 @@ class RolesNPlayers extends ChangeNotifier {
     _starRole = (_prefs.getBool('starRole') ?? false)
         ? _starRole = true
         : _starRole = false;
-    newGame();
+    _customRolesTemp = _prefs.getString('customRoles') ?? 'Empty';
+    if (_customRolesTemp != 'Empty') {
+      _customRolesTemp = jsonDecode(_customRolesTemp);
+      _customRoles = _customRolesTemp.map((e) => Role.fromMap(e)).toList();
+      _customRoles.forEach((element) {
+        element.type == 'M'
+            ? _mafia.add(element)
+            : element.type == 'C'
+                ? _citizen.add(element)
+                : _independent.add(element);
+      });
+    } else
+      _customRoles = [];
+    notifyListeners();
+  }
+
+  set addCustomRole(Role role) {
+    _customRoles.add(role);
+    role.type == 'M'
+        ? _mafia.add(role)
+        : role.type == 'C'
+            ? _citizen.add(role)
+            : _independent.add(role);
+    notifyListeners();
+  }
+
+  set removeCustomRole(Role role) {
+    _customRoles.remove(role);
+    role.type == 'M'
+        ? _mafia.removeWhere((e) => e.name == role.name)
+        : role.type == 'C'
+            ? _citizen.removeWhere((e) => e.name == role.name)
+            : _independent.removeWhere((e) => e.name == role.name);
+    _selectedRoles.remove(role);
+    notifyListeners();
   }
 
   set removeRole(Role role) {
@@ -152,6 +192,13 @@ class RolesNPlayers extends ChangeNotifier {
       }
       notifyListeners();
     }
+  }
+
+  saveCustomRoles() {
+    _customRoles == null
+        ? _customRolesTemp = null
+        : _customRolesTemp = _customRoles.map((e) => e.toMap()).toList();
+    _prefs.setString('customRoles', jsonEncode(_customRolesTemp));
   }
 
   setPlayers() {
