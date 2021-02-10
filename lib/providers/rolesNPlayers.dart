@@ -73,6 +73,7 @@ class RolesNPlayers extends ChangeNotifier {
       });
     } else
       _customRoles = [];
+    recoverLastPlayers();
     notifyListeners();
   }
 
