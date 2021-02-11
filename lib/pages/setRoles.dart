@@ -92,21 +92,43 @@ class SetRoles extends StatelessWidget {
             ")"),
         centerTitle: true,
         actions: <Widget>[
-          Builder(
-            builder: (context) => IconButton(
-                icon: Icon(Icons.help_outline),
-                onPressed: () {
-                  final snackBar = SnackBar(
-                    content: Text(
+          IconButton(
+            icon: Icon(Icons.help_outline),
+            onPressed: () {
+              return showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: AlertDialog(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(40))),
+                      backgroundColor: Theme.of(context).accentColor,
+                      title: Text("راهنما"),
+                      content: Text(
                         "برای مشاهده وظیفه هر نقش آن را نگه دارید" +
-                            "\n" +
+                            "\n\n" +
+                            "برای بازگردانی نقش های بازی قبل از منوی بالا سمت راست گذینه بازگردانی را انتخاب کنید"
+                                "\n\n" +
+                            "برای اضافه کردن نقش های شخصی سازی شده از منوی بالا سمت راست گذینه نقش های من را انتخاب کرده نقش های خود را اضافه و مدیریت کنید"
+                                "\n\n" +
                             "استفاده از نقش های ستاره دار یا غیر فعال کردن محدودیت نسبت را میتوانید از قسمت تنظیمات مدیریت کنید",
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyText1),
-                    backgroundColor: Theme.of(context).accentColor,
+                      ),
+                      actions: [
+                        ButtonBar(
+                          children: [
+                            FlatButton(
+                              child: Text("بازگشت"),
+                              onPressed: () => Navigator.of(context).pop(),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   );
-                  Scaffold.of(context).showSnackBar(snackBar);
-                }),
+                },
+              );
+            },
           ),
           _popupMenuButton(context),
         ],

@@ -126,6 +126,37 @@ class SetPlayers extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => Home()),
                 (route) => false)),
         actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.help_outline),
+            onPressed: () {
+              return showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: AlertDialog(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(40))),
+                      backgroundColor: Theme.of(context).accentColor,
+                      title: Text("راهنما"),
+                      content: Text(
+                          'در این قسمت شما میتوانید به هر تعدادی میخواهید بازیکن اضافه کنید'),
+                      actions: [
+                        ButtonBar(
+                          children: [
+                            FlatButton(
+                              child: Text("بازگشت"),
+                              onPressed: () => Navigator.of(context).pop(),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
+          ),
           Builder(
             builder: (context) => IconButton(
               icon: Icon(Icons.replay),
