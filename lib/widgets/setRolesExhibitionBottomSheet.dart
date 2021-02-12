@@ -281,23 +281,26 @@ class _SetRolesExhibitionBottomSheetState
               ),
             ),
           )
-        : Expanded(
-            child: Column(
-              children: [
-                Image.asset("asset/images/empty.png"),
-                Text(
-                  'نقشی انتخاب نشده',
-                  style: TextStyle(fontSize: 22),
-                ),
-                Opacity(
-                  opacity: .6,
-                  child: Text(
-                    "برای شروع بازی نقش های دلخواه خود را انتخاب کنید ",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                )
-              ],
-            ),
+        : AnimatedSwitcher(
+            duration: Duration(milliseconds: 500),
+            child: lerp(0, 1) > .8
+                ? Column(
+                    children: [
+                      Image.asset("asset/images/empty.png"),
+                      Text(
+                        'نقشی انتخاب نشده',
+                        style: TextStyle(fontSize: 22),
+                      ),
+                      Opacity(
+                        opacity: .6,
+                        child: Text(
+                          "برای شروع بازی نقش های دلخواه خود را انتخاب کنید ",
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      )
+                    ],
+                  )
+                : Container(),
           );
   }
 
