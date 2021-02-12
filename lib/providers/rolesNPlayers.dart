@@ -14,6 +14,7 @@ class RolesNPlayers extends ChangeNotifier {
   List<Role> _independent;
   int _selectedMafia;
   int _selectedCitizen;
+  int _selectedIndependent;
   List<Player> _playersWithRole;
   List<Player> _playersWithRoleFoShow;
   int _day, _night;
@@ -38,6 +39,9 @@ class RolesNPlayers extends ChangeNotifier {
   get selectedRoles => _selectedRoles;
   get starRole => _starRole;
   get customRoles => _customRoles;
+  get selectedMafia => _selectedMafia;
+  get selectedCitizen => _selectedCitizen;
+  get selectedIndependent => _selectedIndependent;
 
   newGame() {
     Roles roles = Roles();
@@ -46,6 +50,7 @@ class RolesNPlayers extends ChangeNotifier {
     _playersWithRoleFoShow = [];
     _selectedCitizen = 0;
     _selectedMafia = 0;
+    _selectedIndependent = 0;
     _mafia = roles.mafia;
     _citizen = roles.citizen;
     _independent = roles.independent;
@@ -108,6 +113,7 @@ class RolesNPlayers extends ChangeNotifier {
       _citizen.add(role);
     } else {
       _selectedCitizen--;
+      _selectedIndependent--;
       _independent.add(role);
     }
     notifyListeners();
@@ -170,11 +176,17 @@ class RolesNPlayers extends ChangeNotifier {
             _selectedCitizen < _players.length - (_players.length ~/ 3)) {
           _selectedRoles.add(role);
           _selectedCitizen++;
+          _selectedIndependent++;
           _independent.removeWhere((e) => e.name == role.name);
         }
       } else {
         _selectedRoles.add(role);
-        role.type == 'M' ? _selectedMafia++ : _selectedCitizen++;
+        if (role.type == 'M')
+          _selectedMafia++;
+        else {
+          _selectedCitizen++;
+          if (role.type == 'I') _selectedIndependent++;
+        }
         role.type == 'M'
             ? _mafia.removeWhere((e) => e.name == role.name)
             : role.type == 'C'

@@ -1,7 +1,7 @@
 import 'package:Mafia/pages/myRoles.dart';
-import 'package:Mafia/pages/showRoles.dart';
 import 'package:Mafia/providers/providers.dart';
 import 'package:Mafia/widgets/listItemRole.dart';
+import 'package:Mafia/widgets/setRolesExhibitionBottomSheet.dart';
 import 'package:flutter/material.dart';
 
 class SetRoles extends StatelessWidget {
@@ -13,7 +13,6 @@ class SetRoles extends StatelessWidget {
     List _mafia = _rNPProviderListener.mafia;
     List _citizen = _rNPProviderListener.citizen;
     List _independent = _rNPProviderListener.independent;
-    List _selectedRoles = _rNPProviderListener.selectedRoles;
 
     Widget _roleGeidView({int flex, List roles, String setter}) {
       return Expanded(
@@ -23,17 +22,13 @@ class SetRoles extends StatelessWidget {
           crossAxisCount: 4,
           childAspectRatio: (2 / 1),
           children: List.generate(
-            setter == "remove" ? roles.length + 1 : roles.length,
+            roles.length,
             (index) => index < roles.length
                 ? InkWell(
                     borderRadius: BorderRadius.circular(20),
                     radius: 200,
                     child: ListItemRole(roles[index]),
-                    onTap: () {
-                      setter == "add"
-                          ? _rNPProviderSetter.addRole = roles[index]
-                          : _rNPProviderSetter.removeRole = roles[index];
-                    },
+                    onTap: () => _rNPProviderSetter.addRole = roles[index],
                     onLongPress: () => showRoleJob(context, roles[index]),
                   )
                 : Container(),
@@ -42,45 +37,30 @@ class SetRoles extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      appBar: _buildAppBar(context),
-      floatingActionButton: SizedBox(
-        height: 45,
-        child: RaisedButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          color: Theme.of(context).accentColor,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [Text("ادامه"), Icon(Icons.navigate_next)],
-          ),
-          onPressed: () {
-            if (!_rNPProviderListener.selectedRoles.isEmpty) {
-              _rNPProviderSetter.saveRoles();
-              _rNPProviderSetter.setPlayers();
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (_) => ShowRoles()),
-              );
-            }
-          },
-        ),
-      ),
-      body: Padding(
+    Widget _buildBody() {
+      return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: <Widget>[
             Text('مافیا', style: TextStyle(color: Colors.red, fontSize: 18)),
-            _roleGeidView(flex: 2, roles: _mafia, setter: "add"),
+            _roleGeidView(flex: 4, roles: _mafia, setter: "add"),
             Text('شهروند', style: TextStyle(color: Colors.green, fontSize: 18)),
-            _roleGeidView(flex: 2, roles: _citizen, setter: "add"),
+            _roleGeidView(flex: 5, roles: _citizen, setter: "add"),
             Text('مستقل', style: TextStyle(color: Colors.orange, fontSize: 18)),
-            _roleGeidView(flex: 1, roles: _independent, setter: "add"),
-            Text('انتخاب شده',
-                style: TextStyle(color: Colors.blue, fontSize: 18)),
-            _roleGeidView(flex: 2, roles: _selectedRoles, setter: "remove"),
+            _roleGeidView(flex: 3, roles: _independent, setter: "add"),
+            SizedBox(height: 90)
           ],
         ),
+      );
+    }
+
+    return Scaffold(
+      appBar: _buildAppBar(context),
+      body: Stack(
+        children: <Widget>[
+          SafeArea(child: _buildBody()),
+          SetRolesExhibitionBottomSheet(),
+        ],
       ),
     );
   }
