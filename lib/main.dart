@@ -9,6 +9,7 @@ main(List<String> args) {
         ChangeNotifierProvider(create: (_) => Settings()),
         ChangeNotifierProvider(create: (_) => RolesNPlayers()),
         ChangeNotifierProvider(create: (_) => Note()),
+        ChangeNotifierProvider(create: (_) => Music()),
       ],
       child: MafiaApp(),
     ),

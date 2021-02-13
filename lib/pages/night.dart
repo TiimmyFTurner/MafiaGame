@@ -69,10 +69,33 @@ class _NightState extends State<Night> {
                     ),
                     color: Theme.of(context).accentColor,
                     child: Row(
+                      children: [
+                        Text("موزیک", textDirection: TextDirection.rtl),
+                        Icon(
+                          Provider.of<Music>(context).isPlaying
+                              ? Icons.stop
+                              : Icons.play_arrow,
+                        ),
+                      ],
+                    ),
+                    onPressed: () =>
+                        Provider.of<Music>(context, listen: false).toggle(),
+                  ),
+                ),
+                Expanded(child: Container()),
+                SizedBox(
+                  height: 45,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    color: Theme.of(context).accentColor,
+                    child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [Text("ادامه"), Icon(Icons.navigate_next)],
                     ),
                     onPressed: () {
+                      Provider.of<Music>(context, listen: false).stop();
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (_) => Day()),
                       );
