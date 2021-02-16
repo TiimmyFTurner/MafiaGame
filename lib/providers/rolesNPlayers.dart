@@ -196,11 +196,19 @@ class RolesNPlayers extends ChangeNotifier {
         if (_starRole && !role.name.contains('⭐⭐⭐')) {
           Role newStarRole = role.clone();
           newStarRole.name = '⭐' + newStarRole.name;
-          newStarRole.type == 'M'
-              ? _mafia.add(newStarRole)
-              : role.type == 'C'
-                  ? _citizen.add(newStarRole)
-                  : _independent.add(newStarRole);
+          //check if the new star role is not alredy created
+          if (!_selectedRoles.any((item) => item.name == newStarRole.name)) {
+            if (newStarRole.type == 'M' &&
+                !_mafia.any((item) => item.name == newStarRole.name)) {
+              mafia.add(newStarRole);
+            } else if (newStarRole.type == 'C' &&
+                !_citizen.any((item) => item.name == newStarRole.name)) {
+              _citizen.add(newStarRole);
+            } else if (newStarRole.type == 'I' &&
+                !_independent.any((item) => item.name == newStarRole.name)) {
+              _independent.add(newStarRole);
+            }
+          }
         }
       }
       notifyListeners();
