@@ -92,7 +92,7 @@ class _NightState extends State<Night> {
                     color: Theme.of(context).accentColor,
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
-                      children: [Text("ادامه"), Icon(Icons.navigate_next)],
+                      children: [Text("روز"), Icon(Icons.navigate_next)],
                     ),
                     onPressed: () {
                       Provider.of<Music>(context, listen: false).stop();

@@ -155,7 +155,7 @@ class _VoteState extends State<Vote> {
                     ),
                     color: Theme.of(context).accentColor,
                     child: Row(
-                      children: [Text("ادامه"), Icon(Icons.navigate_next)],
+                      children: [Text("شب"), Icon(Icons.navigate_next)],
                     ),
                     onPressed: () {
                       Provider.of<RolesNPlayers>(context, listen: false)

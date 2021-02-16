@@ -94,7 +94,7 @@ class _DayState extends State<Day> {
                     ),
                     color: Theme.of(context).accentColor,
                     child: Row(
-                      children: [Text("ادامه"), Icon(Icons.navigate_next)],
+                      children: [Text("رای گیری"), Icon(Icons.navigate_next)],
                     ),
                     onPressed: () {
                       if (dayN == 1)
