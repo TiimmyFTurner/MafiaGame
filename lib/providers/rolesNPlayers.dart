@@ -195,7 +195,7 @@ class RolesNPlayers extends ChangeNotifier {
 
         if (_starRole && !role.name.contains('⭐⭐⭐')) {
           Role newStarRole = role.clone();
-          newStarRole.name = '⭐' + newStarRole.name;
+          newStarRole.name += newStarRole.name.contains('⭐') ? '⭐' : ' ⭐';
           //check if the new star role is not alredy created
           if (!_selectedRoles.any((item) => item.name == newStarRole.name)) {
             if (newStarRole.type == 'M' &&
