@@ -48,7 +48,7 @@ class _RoleDialogState extends State<RoleDialog> {
             padding: const EdgeInsets.only(top: 66),
             child: AnimatedContainer(
               duration: Duration(milliseconds: 200),
-              height: change ? MediaQuery.of(context).size.height * .8 : 330,
+              height: change ? MediaQuery.of(context).size.height * .8 : 340,
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Theme.of(context).accentColor,
@@ -58,13 +58,13 @@ class _RoleDialogState extends State<RoleDialog> {
                 children: <Widget>[
                   SizedBox(height: 70),
                   Text(widget.title,
-                      style: TextStyle(
-                          fontSize: 24.0, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                       textDirection: TextDirection.rtl),
                   SizedBox(height: 12),
                   Text(widget.desc,
-                      style: TextStyle(fontSize: 24.0),
+                      style: TextStyle(fontSize: 27.0),
                       textAlign: TextAlign.center,
                       textDirection: TextDirection.rtl),
                   Expanded(
