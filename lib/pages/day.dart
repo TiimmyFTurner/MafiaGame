@@ -119,7 +119,7 @@ class _DayState extends State<Day> {
   }
 
   void startTimer() {
-    _current = 30;
+    _current = 31;
     if (_timer != null) _timer.cancel();
     _timer = Timer.periodic(Duration(seconds: 1), (time) {
       setState(() {
