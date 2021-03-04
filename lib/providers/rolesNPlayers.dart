@@ -313,4 +313,29 @@ class RolesNPlayers extends ChangeNotifier {
 
   _sortPlayer() =>
       _playersWithRole.sort((p1, p2) => p1.role.order.compareTo(p2.role.order));
+
+  String winnerCheck() {
+    int _tAlive = 0,
+        _tAliveCitizen = 0,
+        _tAliveMafia = 0,
+        _tAliveIndependent = 0;
+    _playersWithRole.forEach((element) {
+      if (element.status != 'dead') {
+        _tAlive++;
+        element.role.type == 'M'
+            ? _tAliveMafia++
+            : element.role.type == 'C'
+                ? _tAliveCitizen++
+                : _tAliveIndependent++;
+      }
+    });
+    if (_tAliveMafia >= _tAliveCitizen)
+      return 'M';
+    else if (_tAlive < 4 && _tAliveIndependent > 0)
+      return 'I';
+    else if (_tAliveMafia == 0)
+      return 'C';
+    else
+      return null;
+  }
 }

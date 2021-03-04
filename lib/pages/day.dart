@@ -21,6 +21,52 @@ class _DayState extends State<Day> {
   void initState() {
     lockTimer(context);
     super.initState();
+    Future.delayed(Duration.zero, () {
+      var _winner =
+          Provider.of<RolesNPlayers>(context, listen: false).winnerCheck();
+      if (_winner != null)
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(28),
+              ),
+              backgroundColor: Theme.of(context).accentColor,
+              title: Text(
+                  (_winner == 'C'
+                          ? 'تیم شهروند'
+                          : _winner == 'M'
+                              ? 'تیم مافیا'
+                              : 'نقش مستقل') +
+                      ' پیروز این بازی شد ',
+                  textAlign: TextAlign.center),
+              actions: <Widget>[
+                ButtonBar(
+                  children: [
+                    FlatButton(
+                      child: Text("بازی جدید"),
+                      onPressed: () {
+                        Provider.of<RolesNPlayers>(context, listen: false)
+                            .newGame();
+                        Provider.of<Note>(context, listen: false).clearNote();
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    FlatButton(
+                      child: Text("ادامه بازی"),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            );
+          },
+        );
+    });
   }
 
   @override
