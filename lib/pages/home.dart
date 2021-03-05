@@ -1,3 +1,4 @@
+import 'package:Mafia/pages/cafeMafia.dart/loginSignup.dart';
 import 'package:Mafia/pages/helpRoles.dart';
 import 'package:Mafia/pages/howToPlay.dart';
 import 'package:Mafia/pages/setPlayers.dart';
@@ -51,6 +52,38 @@ class Home extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (_) => SetPlayers()),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 12),
+              PhysicalModel(
+                borderRadius: BorderRadius.circular(40),
+                color: Colors.black,
+                shadowColor: Theme.of(context).primaryColor,
+                elevation: 10,
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 55,
+                  child: Hero(
+                    tag: 'cafe',
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      color: Theme.of(context).primaryColor,
+                      child: Text(
+                        "کافه مافیا",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w300,
+                            letterSpacing: 3),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => LoginSignup()),
                         );
                       },
                     ),
