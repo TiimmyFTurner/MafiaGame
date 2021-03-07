@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'dart:math';
-import 'package:Mafia/pages/showRoles.dart';
-import 'package:Mafia/providers/providers.dart';
-import 'package:Mafia/widgets/listItemRole.dart';
+import 'package:mafia/pages/showRoles.dart';
+import 'package:mafia/providers/providers.dart';
+import 'package:mafia/widgets/listItemRole.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

@@ -1,4 +1,4 @@
-import 'package:Mafia/providers/providers.dart';
+import 'package:mafia/providers/providers.dart';
 import 'package:flutter/material.dart';
 
 class ListItemVote extends StatefulWidget {
@@ -21,7 +21,9 @@ class _ListItemVoteState extends State<ListItemVote> {
           ? Colors.green[800]
           : _player.status == 'judge'
               ? Colors.yellow[800]
-              : _player.status == 'silent' ? Colors.grey : Colors.red[800],
+              : _player.status == 'silent'
+                  ? Colors.grey
+                  : Colors.red[800],
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       elevation: 6,
       child: Row(

@@ -1,6 +1,6 @@
-import 'package:Mafia/models/player.dart';
-import 'package:Mafia/pages/bigRoleName.dart';
-import 'package:Mafia/providers/providers.dart';
+import 'package:mafia/models/player.dart';
+import 'package:mafia/pages/bigRoleName.dart';
+import 'package:mafia/providers/providers.dart';
 import 'package:flutter/material.dart';
 
 class ListItemNight extends StatefulWidget {
@@ -24,7 +24,9 @@ class _ListItemNightState extends State<ListItemNight> {
       child: Card(
         color: _player.status == 'alive'
             ? Colors.green[800]
-            : _player.status == 'silent' ? Colors.grey : Colors.red[800],
+            : _player.status == 'silent'
+                ? Colors.grey
+                : Colors.red[800],
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         elevation: 6,
         child: Row(

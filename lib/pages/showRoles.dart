@@ -1,8 +1,8 @@
-import 'package:Mafia/pages/day.dart';
-import 'package:Mafia/providers/providers.dart';
-import 'package:Mafia/widgets/RoleDialog.dart';
-import 'package:Mafia/widgets/inGameAppBar.dart';
-import 'package:Mafia/widgets/listItemShowRole.dart';
+import 'package:mafia/pages/day.dart';
+import 'package:mafia/providers/providers.dart';
+import 'package:mafia/widgets/RoleDialog.dart';
+import 'package:mafia/widgets/inGameAppBar.dart';
+import 'package:mafia/widgets/listItemShowRole.dart';
 import 'package:flutter/material.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 

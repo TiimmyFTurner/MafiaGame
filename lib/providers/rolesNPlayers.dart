@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:Mafia/models/player.dart';
+import 'package:mafia/models/player.dart';
 import 'package:flutter/Material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/role.dart';

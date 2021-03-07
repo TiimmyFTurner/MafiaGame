@@ -1,4 +1,4 @@
-import 'package:Mafia/models/role.dart';
+import 'package:mafia/models/role.dart';
 import 'package:flutter/material.dart';
 
 class Player {

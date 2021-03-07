@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:Mafia/pages/lock.dart';
+import 'package:mafia/pages/lock.dart';
 import 'package:flutter/material.dart';
 
 void lockTimer(BuildContext context) {

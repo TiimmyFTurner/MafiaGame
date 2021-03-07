@@ -1,11 +1,11 @@
 import 'dart:async';
-import 'package:Mafia/helpers/lockScreenTimer.dart';
-import 'package:Mafia/helpers/persianNumber.dart';
-import 'package:Mafia/pages/night.dart';
-import 'package:Mafia/pages/vote.dart';
-import 'package:Mafia/providers/providers.dart';
-import 'package:Mafia/widgets/inGameAppBar.dart';
-import 'package:Mafia/widgets/listItemDay.dart';
+import 'package:mafia/helpers/lockScreenTimer.dart';
+import 'package:mafia/helpers/persianNumber.dart';
+import 'package:mafia/pages/night.dart';
+import 'package:mafia/pages/vote.dart';
+import 'package:mafia/providers/providers.dart';
+import 'package:mafia/widgets/inGameAppBar.dart';
+import 'package:mafia/widgets/listItemDay.dart';
 import 'package:flutter/material.dart';
 
 class Day extends StatefulWidget {

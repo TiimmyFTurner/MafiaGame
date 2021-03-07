@@ -1,7 +1,7 @@
-import 'package:Mafia/pages/helpRoles.dart';
-import 'package:Mafia/pages/howToPlay.dart';
-import 'package:Mafia/pages/setPlayers.dart';
-import 'package:Mafia/pages/setting.dart';
+import 'package:mafia/pages/helpRoles.dart';
+import 'package:mafia/pages/howToPlay.dart';
+import 'package:mafia/pages/setPlayers.dart';
+import 'package:mafia/pages/setting.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {

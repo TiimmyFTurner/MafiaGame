@@ -1,5 +1,5 @@
-import 'package:Mafia/pages/lock.dart';
-import 'package:Mafia/providers/providers.dart';
+import 'package:mafia/pages/lock.dart';
+import 'package:mafia/providers/providers.dart';
 import 'package:flutter/material.dart';
 
 class InGameAppBar extends StatefulWidget implements PreferredSizeWidget {
@@ -9,7 +9,7 @@ class InGameAppBar extends StatefulWidget implements PreferredSizeWidget {
         super(key: key);
 
   @override
-  final Size preferredSize; 
+  final Size preferredSize;
 
   @override
   _InGameAppBarState createState() => _InGameAppBarState();

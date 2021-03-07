@@ -1,8 +1,8 @@
-import 'package:Mafia/helpers/lockScreenTimer.dart';
-import 'package:Mafia/pages/night.dart';
-import 'package:Mafia/providers/providers.dart';
-import 'package:Mafia/widgets/inGameAppBar.dart';
-import 'package:Mafia/widgets/listItemVote.dart';
+import 'package:mafia/helpers/lockScreenTimer.dart';
+import 'package:mafia/pages/night.dart';
+import 'package:mafia/providers/providers.dart';
+import 'package:mafia/widgets/inGameAppBar.dart';
+import 'package:mafia/widgets/listItemVote.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

@@ -1,7 +1,7 @@
-import 'package:Mafia/pages/myRoles.dart';
-import 'package:Mafia/providers/providers.dart';
-import 'package:Mafia/widgets/listItemRole.dart';
-import 'package:Mafia/widgets/setRolesExhibitionBottomSheet.dart';
+import 'package:mafia/pages/myRoles.dart';
+import 'package:mafia/providers/providers.dart';
+import 'package:mafia/widgets/listItemRole.dart';
+import 'package:mafia/widgets/setRolesExhibitionBottomSheet.dart';
 import 'package:flutter/material.dart';
 
 class SetRoles extends StatelessWidget {

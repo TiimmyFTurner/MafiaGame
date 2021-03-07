@@ -1,4 +1,4 @@
-import 'package:Mafia/providers/providers.dart';
+import 'package:mafia/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 

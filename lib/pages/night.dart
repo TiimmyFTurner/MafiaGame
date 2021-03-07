@@ -1,9 +1,9 @@
-import 'package:Mafia/helpers/lockScreenTimer.dart';
-import 'package:Mafia/helpers/persianNumber.dart';
-import 'package:Mafia/pages/day.dart';
-import 'package:Mafia/providers/providers.dart';
-import 'package:Mafia/widgets/inGameAppBar.dart';
-import 'package:Mafia/widgets/listItemNight.dart';
+import 'package:mafia/helpers/lockScreenTimer.dart';
+import 'package:mafia/helpers/persianNumber.dart';
+import 'package:mafia/pages/day.dart';
+import 'package:mafia/providers/providers.dart';
+import 'package:mafia/widgets/inGameAppBar.dart';
+import 'package:mafia/widgets/listItemNight.dart';
 import 'package:flutter/material.dart';
 
 class Night extends StatefulWidget {

@@ -1,6 +1,6 @@
-import 'package:Mafia/models/role.dart';
-import 'package:Mafia/providers/providers.dart';
-import 'package:Mafia/widgets/listItemRole.dart';
+import 'package:mafia/models/role.dart';
+import 'package:mafia/providers/providers.dart';
+import 'package:mafia/widgets/listItemRole.dart';
 import 'package:flutter/material.dart';
 
 class MyRoles extends StatefulWidget {
