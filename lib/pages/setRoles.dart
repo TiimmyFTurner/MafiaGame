@@ -97,7 +97,11 @@ class SetRoles extends StatelessWidget {
                       actions: [
                         ButtonBar(
                           children: [
-                            FlatButton(
+                            TextButton(
+                              style: ButtonStyle(
+                                foregroundColor: MaterialStateProperty.all(
+                                    Theme.of(context).textTheme.button.color),
+                              ),
                               child: Text("بازگشت"),
                               onPressed: () => Navigator.of(context).pop(),
                             ),
@@ -134,7 +138,11 @@ class SetRoles extends StatelessWidget {
             ),
           ),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(
+                    Theme.of(context).textTheme.button.color),
+              ),
               child: Text("فهمیدم"),
               onPressed: () {
                 Navigator.of(context).pop();

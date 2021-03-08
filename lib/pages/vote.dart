@@ -149,11 +149,20 @@ class _VoteState extends State<Vote> {
                 Expanded(child: Container()),
                 SizedBox(
                   height: 45,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                      ),
+                      backgroundColor: MaterialStateProperty.all(
+                        Theme.of(context).accentColor,
+                      ),
+                      foregroundColor: MaterialStateProperty.all(
+                        Theme.of(context).textTheme.button.color,
+                      ),
                     ),
-                    color: Theme.of(context).accentColor,
                     child: Row(
                       children: [Text("شب"), Icon(Icons.navigate_next)],
                     ),

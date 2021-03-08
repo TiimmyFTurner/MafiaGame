@@ -63,11 +63,20 @@ class _NightState extends State<Night> {
               children: <Widget>[
                 SizedBox(
                   height: 45,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                      ),
+                      backgroundColor: MaterialStateProperty.all(
+                        Theme.of(context).accentColor,
+                      ),
+                      foregroundColor: MaterialStateProperty.all(
+                        Theme.of(context).textTheme.button.color,
+                      ),
                     ),
-                    color: Theme.of(context).accentColor,
                     child: Row(
                       children: [
                         Text("موزیک", textDirection: TextDirection.rtl),
@@ -85,11 +94,21 @@ class _NightState extends State<Night> {
                 Expanded(child: Container()),
                 SizedBox(
                   height: 45,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      elevation: MaterialStateProperty.all(0),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                      ),
+                      backgroundColor: MaterialStateProperty.all(
+                        Theme.of(context).accentColor,
+                      ),
+                      foregroundColor: MaterialStateProperty.all(
+                        Theme.of(context).textTheme.button.color,
+                      ),
                     ),
-                    color: Theme.of(context).accentColor,
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [Text("روز"), Icon(Icons.navigate_next)],

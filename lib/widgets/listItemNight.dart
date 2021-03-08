@@ -93,7 +93,11 @@ class _ListItemNightState extends State<ListItemNight> {
               actions: <Widget>[
                 ButtonBar(
                   children: [
-                    FlatButton(
+                    TextButton(
+                      style: ButtonStyle(
+                        foregroundColor: MaterialStateProperty.all(
+                            Theme.of(context).textTheme.button.color),
+                      ),
                       onPressed: () => Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (_) => BigRoleName(_player.role.name),
@@ -101,7 +105,11 @@ class _ListItemNightState extends State<ListItemNight> {
                       ),
                       child: Text("نمایش تمام صفحه نقش"),
                     ),
-                    FlatButton(
+                    TextButton(
+                      style: ButtonStyle(
+                        foregroundColor: MaterialStateProperty.all(
+                            Theme.of(context).textTheme.button.color),
+                      ),
                       child: Text("فهمیدم"),
                       onPressed: () {
                         Navigator.of(context).pop();
