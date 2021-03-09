@@ -1,6 +1,6 @@
-import 'package:Mafia/models/player.dart';
-import 'package:Mafia/pages/bigRoleName.dart';
-import 'package:Mafia/providers/providers.dart';
+import 'package:mafia/models/player.dart';
+import 'package:mafia/pages/bigRoleName.dart';
+import 'package:mafia/providers/providers.dart';
 import 'package:flutter/material.dart';
 
 class ListItemNight extends StatefulWidget {
@@ -24,7 +24,9 @@ class _ListItemNightState extends State<ListItemNight> {
       child: Card(
         color: _player.status == 'alive'
             ? Colors.green[800]
-            : _player.status == 'silent' ? Colors.grey : Colors.red[800],
+            : _player.status == 'silent'
+                ? Colors.grey
+                : Colors.red[800],
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         elevation: 6,
         child: Row(
@@ -91,7 +93,11 @@ class _ListItemNightState extends State<ListItemNight> {
               actions: <Widget>[
                 ButtonBar(
                   children: [
-                    FlatButton(
+                    TextButton(
+                      style: ButtonStyle(
+                        foregroundColor: MaterialStateProperty.all(
+                            Theme.of(context).textTheme.button.color),
+                      ),
                       onPressed: () => Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (_) => BigRoleName(_player.role.name),
@@ -99,7 +105,11 @@ class _ListItemNightState extends State<ListItemNight> {
                       ),
                       child: Text("نمایش تمام صفحه نقش"),
                     ),
-                    FlatButton(
+                    TextButton(
+                      style: ButtonStyle(
+                        foregroundColor: MaterialStateProperty.all(
+                            Theme.of(context).textTheme.button.color),
+                      ),
                       child: Text("فهمیدم"),
                       onPressed: () {
                         Navigator.of(context).pop();

@@ -1,5 +1,5 @@
-import 'package:Mafia/providers/providers.dart';
-import 'package:Mafia/widgets/listItemRole.dart';
+import 'package:mafia/providers/providers.dart';
+import 'package:mafia/widgets/listItemRole.dart';
 import 'package:flutter/material.dart';
 
 class HelpRoles extends StatelessWidget {
@@ -84,7 +84,7 @@ class HelpRoles extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(28.0)),
                     ),
                     child: _roleDatails(context, roles[index]),
-                  ); 
+                  );
                 },
               );
             },

@@ -1,7 +1,7 @@
-import 'package:Mafia/pages/myRoles.dart';
-import 'package:Mafia/providers/providers.dart';
-import 'package:Mafia/widgets/listItemRole.dart';
-import 'package:Mafia/widgets/setRolesExhibitionBottomSheet.dart';
+import 'package:mafia/pages/myRoles.dart';
+import 'package:mafia/providers/providers.dart';
+import 'package:mafia/widgets/listItemRole.dart';
+import 'package:mafia/widgets/setRolesExhibitionBottomSheet.dart';
 import 'package:flutter/material.dart';
 
 class SetRoles extends StatelessWidget {
@@ -97,7 +97,11 @@ class SetRoles extends StatelessWidget {
                       actions: [
                         ButtonBar(
                           children: [
-                            FlatButton(
+                            TextButton(
+                              style: ButtonStyle(
+                                foregroundColor: MaterialStateProperty.all(
+                                    Theme.of(context).textTheme.button.color),
+                              ),
                               child: Text("بازگشت"),
                               onPressed: () => Navigator.of(context).pop(),
                             ),
@@ -134,7 +138,11 @@ class SetRoles extends StatelessWidget {
             ),
           ),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(
+                    Theme.of(context).textTheme.button.color),
+              ),
               child: Text("فهمیدم"),
               onPressed: () {
                 Navigator.of(context).pop();

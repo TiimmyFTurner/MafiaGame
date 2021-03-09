@@ -1,5 +1,5 @@
-import 'package:Mafia/pages/home.dart';
-import 'package:Mafia/providers/providers.dart';
+import 'package:mafia/pages/home.dart';
+import 'package:mafia/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:wakelock/wakelock.dart';

@@ -1,11 +1,11 @@
 import 'dart:async';
-import 'package:Mafia/helpers/lockScreenTimer.dart';
-import 'package:Mafia/helpers/persianNumber.dart';
-import 'package:Mafia/pages/night.dart';
-import 'package:Mafia/pages/vote.dart';
-import 'package:Mafia/providers/providers.dart';
-import 'package:Mafia/widgets/inGameAppBar.dart';
-import 'package:Mafia/widgets/listItemDay.dart';
+import 'package:mafia/helpers/lockScreenTimer.dart';
+import 'package:mafia/helpers/persianNumber.dart';
+import 'package:mafia/pages/night.dart';
+import 'package:mafia/pages/vote.dart';
+import 'package:mafia/providers/providers.dart';
+import 'package:mafia/widgets/inGameAppBar.dart';
+import 'package:mafia/widgets/listItemDay.dart';
 import 'package:flutter/material.dart';
 
 class Day extends StatefulWidget {
@@ -44,7 +44,11 @@ class _DayState extends State<Day> {
               actions: <Widget>[
                 ButtonBar(
                   children: [
-                    FlatButton(
+                    TextButton(
+                      style: ButtonStyle(
+                        foregroundColor: MaterialStateProperty.all(
+                            Theme.of(context).textTheme.button.color),
+                      ),
                       child: Text("بازی جدید"),
                       onPressed: () {
                         Provider.of<RolesNPlayers>(context, listen: false)
@@ -54,7 +58,11 @@ class _DayState extends State<Day> {
                         Navigator.of(context).pop();
                       },
                     ),
-                    FlatButton(
+                    TextButton(
+                      style: ButtonStyle(
+                        foregroundColor: MaterialStateProperty.all(
+                            Theme.of(context).textTheme.button.color),
+                      ),
                       child: Text("ادامه بازی"),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -114,17 +122,28 @@ class _DayState extends State<Day> {
               children: <Widget>[
                 SizedBox(
                   height: 45,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      backgroundColor: MaterialStateProperty.all(
+                        Theme.of(context).accentColor,
+                      ),
+                      foregroundColor: MaterialStateProperty.all(
+                        Theme.of(context).textTheme.button.color,
+                      ),
                     ),
-                    color: Theme.of(context).accentColor,
                     child: Row(
                       children: [
                         Icon(Icons.timer),
                         Text(
                           " ${_current.toString()}",
-                          style: TextStyle(fontSize: 29),
+                          style: TextStyle(
+                            fontSize: 29,
+                          ),
                         ),
                       ],
                     ),
@@ -134,11 +153,20 @@ class _DayState extends State<Day> {
                 Expanded(child: Container()),
                 SizedBox(
                   height: 45,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      backgroundColor: MaterialStateProperty.all(
+                        Theme.of(context).accentColor,
+                      ),
+                      foregroundColor: MaterialStateProperty.all(
+                        Theme.of(context).textTheme.button.color,
+                      ),
                     ),
-                    color: Theme.of(context).accentColor,
                     child: Row(
                       children: [Text("رای گیری"), Icon(Icons.navigate_next)],
                     ),

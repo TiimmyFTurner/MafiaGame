@@ -108,7 +108,11 @@ class _RoleDialogState extends State<RoleDialog> {
                     alignment: Alignment.bottomRight,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: FlatButton(
+                      child: TextButton(
+                        style: ButtonStyle(
+                          foregroundColor: MaterialStateProperty.all(
+                              Theme.of(context).textTheme.button.color),
+                        ),
                         onPressed: () {
                           Navigator.of(context).pop();
                         },

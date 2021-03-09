@@ -1,4 +1,4 @@
-import 'package:Mafia/models/role.dart';
+import 'package:mafia/models/role.dart';
 
 class Roles {
   find(String name) {

@@ -1,5 +1,5 @@
-import 'package:Mafia/pages/splashScreen.dart';
-import 'package:Mafia/providers/providers.dart';
+import 'package:mafia/pages/splashScreen.dart';
+import 'package:mafia/providers/providers.dart';
 import 'package:flutter/material.dart';
 
 main(List<String> args) {

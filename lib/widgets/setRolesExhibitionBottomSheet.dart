@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'dart:math';
-import 'package:Mafia/pages/showRoles.dart';
-import 'package:Mafia/providers/providers.dart';
-import 'package:Mafia/widgets/listItemRole.dart';
+import 'package:mafia/pages/showRoles.dart';
+import 'package:mafia/providers/providers.dart';
+import 'package:mafia/widgets/listItemRole.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -185,11 +185,20 @@ class _SetRolesExhibitionBottomSheetState
                         ),
                         SizedBox(
                           height: 45,
-                          child: RaisedButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(24),
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                              ),
+                              backgroundColor: MaterialStateProperty.all(
+                                Theme.of(context).primaryColor,
+                              ),
+                              foregroundColor: MaterialStateProperty.all(
+                                Theme.of(context).textTheme.button.color,
+                              ),
                             ),
-                            color: Theme.of(context).primaryColor,
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -324,7 +333,11 @@ class _SetRolesExhibitionBottomSheetState
             ),
           ),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(
+                    Theme.of(context).textTheme.button.color),
+              ),
               child: Text("فهمیدم"),
               onPressed: () {
                 Navigator.of(context).pop();

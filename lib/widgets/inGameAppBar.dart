@@ -1,5 +1,5 @@
-import 'package:Mafia/pages/lock.dart';
-import 'package:Mafia/providers/providers.dart';
+import 'package:mafia/pages/lock.dart';
+import 'package:mafia/providers/providers.dart';
 import 'package:flutter/material.dart';
 
 class InGameAppBar extends StatefulWidget implements PreferredSizeWidget {
@@ -9,7 +9,7 @@ class InGameAppBar extends StatefulWidget implements PreferredSizeWidget {
         super(key: key);
 
   @override
-  final Size preferredSize; 
+  final Size preferredSize;
 
   @override
   _InGameAppBarState createState() => _InGameAppBarState();
@@ -109,10 +109,18 @@ class _InGameAppBarState extends State<InGameAppBar> {
                   actions: <Widget>[
                     ButtonBar(
                       children: [
-                        FlatButton(
+                        TextButton(
+                            style: ButtonStyle(
+                              foregroundColor: MaterialStateProperty.all(
+                                  Theme.of(context).textTheme.button.color),
+                            ),
                             onPressed: Navigator.of(context).pop,
                             child: Text("خیر")),
-                        FlatButton(
+                        TextButton(
+                          style: ButtonStyle(
+                            foregroundColor: MaterialStateProperty.all(
+                                Theme.of(context).textTheme.button.color),
+                          ),
                           child: Text("بله"),
                           onPressed: () {
                             Provider.of<RolesNPlayers>(context, listen: false)

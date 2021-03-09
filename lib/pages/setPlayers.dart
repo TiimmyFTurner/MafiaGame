@@ -1,7 +1,7 @@
-import 'package:Mafia/pages/home.dart';
-import 'package:Mafia/pages/setRoles.dart';
-import 'package:Mafia/providers/providers.dart';
-import 'package:Mafia/widgets/listItemPlayer.dart';
+import 'package:mafia/pages/home.dart';
+import 'package:mafia/pages/setRoles.dart';
+import 'package:mafia/providers/providers.dart';
+import 'package:mafia/widgets/listItemPlayer.dart';
 import 'package:flutter/material.dart';
 
 class SetPlayers extends StatelessWidget {
@@ -69,11 +69,21 @@ class SetPlayers extends StatelessWidget {
           child: Builder(
             builder: (context) => Padding(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  elevation: MaterialStateProperty.all(0),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all(
+                    Theme.of(context).primaryColor,
+                  ),
+                  foregroundColor: MaterialStateProperty.all(
+                    Theme.of(context).textTheme.button.color,
+                  ),
                 ),
-                color: Theme.of(context).primaryColor,
                 child: Text(
                   "انتخاب نقش",
                   style: TextStyle(
@@ -105,7 +115,7 @@ class SetPlayers extends StatelessWidget {
                       backgroundColor: Theme.of(context).backgroundColor,
                       elevation: 0,
                     );
-                    Scaffold.of(context).showSnackBar(snackBar);
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
                 },
               ),
@@ -144,7 +154,11 @@ class SetPlayers extends StatelessWidget {
                       actions: [
                         ButtonBar(
                           children: [
-                            FlatButton(
+                            TextButton(
+                              style: ButtonStyle(
+                                foregroundColor: MaterialStateProperty.all(
+                                    Theme.of(context).textTheme.button.color),
+                              ),
                               child: Text("بازگشت"),
                               onPressed: () => Navigator.of(context).pop(),
                             ),
@@ -180,7 +194,7 @@ class SetPlayers extends StatelessWidget {
                     backgroundColor: Theme.of(context).backgroundColor,
                     elevation: 0,
                   );
-                  Scaffold.of(context).showSnackBar(snackBar);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 }
               },
             ),

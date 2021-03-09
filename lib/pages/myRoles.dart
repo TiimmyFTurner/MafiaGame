@@ -1,6 +1,6 @@
-import 'package:Mafia/models/role.dart';
-import 'package:Mafia/providers/providers.dart';
-import 'package:Mafia/widgets/listItemRole.dart';
+import 'package:mafia/models/role.dart';
+import 'package:mafia/providers/providers.dart';
+import 'package:mafia/widgets/listItemRole.dart';
 import 'package:flutter/material.dart';
 
 class MyRoles extends StatefulWidget {
@@ -218,12 +218,17 @@ class _MyRolesState extends State<MyRoles> {
   }
 
   showAlertDialog(BuildContext context, Role role) {
-    Widget cancelButton = FlatButton(
-      child: Text("بازگشت",
-          style: TextStyle(color: Theme.of(context).textTheme.button.color)),
+    Widget cancelButton = TextButton(
+      style: ButtonStyle(
+        foregroundColor:
+            MaterialStateProperty.all(Theme.of(context).textTheme.button.color),
+      ),
+      child: Text(
+        "بازگشت",
+      ),
       onPressed: () => Navigator.of(context).pop(),
     );
-    Widget continueButton = FlatButton(
+    Widget continueButton = TextButton(
       child: Text("حذف", style: TextStyle(color: Colors.red)),
       onPressed: () {
         Navigator.of(context).pop();
@@ -371,12 +376,21 @@ class _MyRolesState extends State<MyRoles> {
         child: SizedBox(
           height: 55,
           width: double.infinity,
-          child: RaisedButton(
-            elevation: 0,
-            color: Theme.of(context).primaryColor,
-            textColor: Colors.white,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(40))),
+          child: ElevatedButton(
+            style: ButtonStyle(
+              elevation: MaterialStateProperty.all(0),
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(40),
+                ),
+              ),
+              backgroundColor: MaterialStateProperty.all(
+                Theme.of(context).primaryColor,
+              ),
+              foregroundColor: MaterialStateProperty.all(
+                Theme.of(context).textTheme.button.color,
+              ),
+            ),
             child: Text(
               'اضافه کردن',
               style: TextStyle(

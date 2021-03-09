@@ -1,8 +1,8 @@
-import 'package:Mafia/pages/cafeMafia.dart/loginSignup.dart';
-import 'package:Mafia/pages/helpRoles.dart';
-import 'package:Mafia/pages/howToPlay.dart';
-import 'package:Mafia/pages/setPlayers.dart';
-import 'package:Mafia/pages/setting.dart';
+import 'package:mafia/pages/cafeMafia.dart/loginSignup.dart';
+import 'package:mafia/pages/helpRoles.dart';
+import 'package:mafia/pages/howToPlay.dart';
+import 'package:mafia/pages/setPlayers.dart';
+import 'package:mafia/pages/setting.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -36,24 +36,28 @@ class Home extends StatelessWidget {
                   height: 55,
                   child: Hero(
                     tag: "play",
-                    child: RaisedButton(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                        backgroundColor: MaterialStateProperty.all(
+                          Theme.of(context).primaryColor,
+                        ),
                       ),
-                      color: Theme.of(context).primaryColor,
                       child: Text(
                         "شروع",
                         style: TextStyle(
+                            color: Theme.of(context).textTheme.button.color,
                             fontSize: 20,
                             fontWeight: FontWeight.w300,
                             letterSpacing: 3),
                       ),
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (_) => SetPlayers()),
-                        );
-                      },
+                      onPressed: () => Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (_) => SetPlayers()),
+                      ),
                     ),
                   ),
                 ),
@@ -96,14 +100,21 @@ class Home extends StatelessWidget {
                   Expanded(
                     child: SizedBox(
                       height: 55,
-                      child: RaisedButton(
-                        color: Theme.of(context).accentColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          backgroundColor: MaterialStateProperty.all(
+                            Theme.of(context).accentColor,
+                          ),
                         ),
                         child: Text(
                           "روش بازی",
                           style: TextStyle(
+                              color: Theme.of(context).textTheme.button.color,
                               fontSize: 20,
                               fontWeight: FontWeight.w300,
                               letterSpacing: 3),
@@ -121,14 +132,21 @@ class Home extends StatelessWidget {
                   Expanded(
                     child: SizedBox(
                       height: 55,
-                      child: RaisedButton(
-                        color: Theme.of(context).accentColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          backgroundColor: MaterialStateProperty.all(
+                            Theme.of(context).accentColor,
+                          ),
                         ),
                         child: Text(
                           "نقش ها",
                           style: TextStyle(
+                              color: Theme.of(context).textTheme.button.color,
                               fontSize: 20,
                               fontWeight: FontWeight.w300,
                               letterSpacing: 3),
@@ -148,14 +166,21 @@ class Home extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 height: 55,
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    backgroundColor: MaterialStateProperty.all(
+                      Theme.of(context).accentColor,
+                    ),
                   ),
-                  color: Theme.of(context).accentColor,
                   child: Text(
                     "تنظیمات",
                     style: TextStyle(
+                        color: Theme.of(context).textTheme.button.color,
                         fontSize: 20,
                         fontWeight: FontWeight.w300,
                         letterSpacing: 3),
