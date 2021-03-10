@@ -73,11 +73,21 @@ class Home extends StatelessWidget {
                   height: 55,
                   child: Hero(
                     tag: 'cafe',
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        elevation: MaterialStateProperty.all(0),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                        backgroundColor: MaterialStateProperty.all(
+                          Theme.of(context).primaryColor,
+                        ),
+                        foregroundColor: MaterialStateProperty.all(
+                          Theme.of(context).textTheme.button.color,
+                        ),
                       ),
-                      color: Theme.of(context).primaryColor,
                       child: Text(
                         "کافه مافیا",
                         style: TextStyle(

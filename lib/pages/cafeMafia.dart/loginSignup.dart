@@ -111,10 +111,21 @@ class _LoginSignupState extends State<LoginSignup> {
         width: 1000,
         child: Hero(
           tag: 'cafe',
-          child: RaisedButton(
-            color: Theme.of(context).primaryColor,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(30))),
+          child: ElevatedButton(
+            style: ButtonStyle(
+              elevation: MaterialStateProperty.all(0),
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              backgroundColor: MaterialStateProperty.all(
+                Theme.of(context).primaryColor,
+              ),
+              foregroundColor: MaterialStateProperty.all(
+                Theme.of(context).textTheme.button.color,
+              ),
+            ),
             onPressed: () {
               if (_formKey.currentState.validate() &&
                   _formData['acceptTerms']) {
@@ -136,10 +147,21 @@ class _LoginSignupState extends State<LoginSignup> {
     return SizedBox(
       height: 55,
       width: 1000,
-      child: RaisedButton(
-        color: Theme.of(context).accentColor,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30))),
+      child: ElevatedButton(
+        style: ButtonStyle(
+          elevation: MaterialStateProperty.all(0),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+          ),
+          backgroundColor: MaterialStateProperty.all(
+            Theme.of(context).accentColor,
+          ),
+          foregroundColor: MaterialStateProperty.all(
+            Theme.of(context).textTheme.button.color,
+          ),
+        ),
         onPressed: () {
           setState(() {
             _status = _status == Mode.Login ? Mode.Signup : Mode.Login;
