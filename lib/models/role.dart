@@ -21,7 +21,7 @@ class Role {
 
   Map toMap() => {'name': name, 'type': type, 'job': job, 'order': order};
 
-  static Role fromMap(Map map) => Role(
+  factory Role.fromMap(Map<String, dynamic> map) => Role(
       name: map['name'],
       type: map['type'],
       job: map['job'],
