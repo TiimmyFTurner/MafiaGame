@@ -10,6 +10,7 @@ main(List<String> args) {
         ChangeNotifierProvider(create: (_) => RolesNPlayers()),
         ChangeNotifierProvider(create: (_) => Note()),
         ChangeNotifierProvider(create: (_) => Music()),
+        ChangeNotifierProvider(create: (_) => CafeMafia())
       ],
       child: MafiaApp(),
     ),
