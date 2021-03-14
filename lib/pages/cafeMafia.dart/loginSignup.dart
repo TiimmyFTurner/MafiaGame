@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:mafia/pages/cafeMafia.dart/mainEventList.dart';
+import 'package:mafia/providers/providers.dart';
 
 enum Mode { Login, Signup }
 
@@ -10,15 +14,12 @@ class LoginSignup extends StatefulWidget {
 
 class _LoginSignupState extends State<LoginSignup> {
   Mode _status = Mode.Login;
-  @override
-  void initState() {
-    super.initState();
-  }
+  Future<bool> _futureUser;
 
   final Map<String, dynamic> _formData = {
     'email': null,
     'password': null,
-    'username': null
+    'name': null
   };
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -73,7 +74,7 @@ class _LoginSignupState extends State<LoginSignup> {
                       value.isNotEmpty || _status == Mode.Login
                           ? null
                           : 'نام کاربری نمیتواند خالی باشد',
-                  onSaved: (String value) => _formData['username'] = value,
+                  onSaved: (String value) => _formData['name'] = value,
                 ),
               )
             : Container());
@@ -109,34 +110,46 @@ class _LoginSignupState extends State<LoginSignup> {
       child: SizedBox(
         height: 55,
         width: 1000,
-        child: Hero(
-          tag: 'cafe',
-          child: ElevatedButton(
-            style: ButtonStyle(
-              elevation: MaterialStateProperty.all(0),
-              shape: MaterialStateProperty.all(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-              ),
-              backgroundColor: MaterialStateProperty.all(
-                Theme.of(context).primaryColor,
-              ),
-              foregroundColor: MaterialStateProperty.all(
-                Theme.of(context).textTheme.button.color,
+        child: ElevatedButton(
+          style: ButtonStyle(
+            elevation: MaterialStateProperty.all(0),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
               ),
             ),
-            onPressed: () {
-              if (_formKey.currentState.validate() &&
-                  _formData['acceptTerms']) {
-                _formKey.currentState.save();
-                Navigator.pushReplacementNamed(context, '/main');
-              }
-            },
-            child: Text(
-              _status == Mode.Login ? 'ورود' : 'ثبت نام',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
+            backgroundColor: MaterialStateProperty.all(
+              Theme.of(context).primaryColor,
             ),
+            foregroundColor: MaterialStateProperty.all(
+              Theme.of(context).textTheme.button.color,
+            ),
+          ),
+          onPressed: () {
+            if (_formKey.currentState.validate()) {
+              _formKey.currentState.save();
+              setState(() {
+                _futureUser = _status == Mode.Login
+                    ? Provider.of<CafeMafia>(context, listen: false)
+                        .login(_formData)
+                    : Provider.of<CafeMafia>(context, listen: false)
+                        .signup(_formData);
+                _futureUser.then(
+                  (value) {
+                    if (value) {
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (_) => MainEventList()));
+                      return true;
+                    }
+                    return false;
+                  },
+                );
+              });
+            }
+          },
+          child: Text(
+            _status == Mode.Login ? 'ورود' : 'ثبت نام',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
           ),
         ),
       ),
@@ -192,57 +205,93 @@ class _LoginSignupState extends State<LoginSignup> {
         backgroundColor: Colors.transparent,
         body: Padding(
           padding: const EdgeInsets.all(24),
-          child: Form(
-            key: _formKey,
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                return SingleChildScrollView(
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                        minWidth: constraints.maxWidth,
-                        minHeight: constraints.maxHeight),
-                    child: IntrinsicHeight(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 12),
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.arrow_back_ios,
-                                color: Colors.white,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return (_futureUser == null)
+                  ? SingleChildScrollView(
+                      physics: BouncingScrollPhysics(),
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                            minWidth: constraints.maxWidth,
+                            minHeight: constraints.maxHeight),
+                        child: IntrinsicHeight(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 12),
+                                child: IconButton(
+                                  icon: Icon(
+                                    Icons.arrow_back_ios,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: () => Navigator.of(context).pop(),
+                                ),
                               ),
-                              onPressed: () => Navigator.of(context).pop(),
-                            ),
+                              Expanded(
+                                child: Container(),
+                              ),
+                              Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: Form(
+                                  key: _formKey,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: <Widget>[
+                                      _buildUsernameTextField(),
+                                      _buildEMailTextField(),
+                                      SizedBox(height: 18),
+                                      _buildPasswordTextField(),
+                                      SizedBox(height: 24),
+                                      _buildSubmitButton(),
+                                      SizedBox(height: 16),
+                                      _buildChangeStatusButton(),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          Expanded(
-                            child: Container(),
-                          ),
-                          Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              mainAxisSize: MainAxisSize.max,
-                              children: <Widget>[
-                                _buildUsernameTextField(),
-                                _buildEMailTextField(),
-                                SizedBox(height: 18),
-                                _buildPasswordTextField(),
-                                SizedBox(height: 24),
-                                _buildSubmitButton(),
-                                SizedBox(height: 16),
-                                _buildChangeStatusButton(),
-                              ],
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                );
-              },
-            ),
+                    )
+                  : Center(
+                      child: Container(
+                        padding: EdgeInsets.all(24),
+                        decoration: BoxDecoration(
+                            color:
+                                Theme.of(context).accentColor.withOpacity(.8),
+                            borderRadius: BorderRadius.circular(24)),
+                        child: FutureBuilder<bool>(
+                          future: _futureUser,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return Text(snapshot.data.toString());
+                            } else if (snapshot.hasError) {
+                              Future.delayed(
+                                Duration(seconds: 3),
+                                () => setState(() => _futureUser = null),
+                              );
+                              String error = snapshot.error.toString();
+                              return Text(
+                                error.contains('Douplicate')
+                                    ? 'کاربری با ایمیل وارد شده وجود دارد'
+                                    : error,
+                                style: TextStyle(fontSize: 16),
+                              );
+                            }
+                            return CircularProgressIndicator(
+                              backgroundColor: Theme.of(context)
+                                  .primaryColor
+                                  .withOpacity(.8),
+                            );
+                          },
+                        ),
+                      ),
+                    );
+            },
           ),
         ),
       ),
