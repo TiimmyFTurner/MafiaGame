@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:mafia/pages/cafeMafia.dart/mainEventList.dart';
+import 'package:mafia/pages/cafeMafia/mainEventList.dart';
 import 'package:mafia/providers/providers.dart';
 
 enum Mode { Login, Signup }

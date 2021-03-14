@@ -1,5 +1,5 @@
-import 'package:mafia/pages/cafeMafia.dart/loginSignup.dart';
-import 'package:mafia/pages/cafeMafia.dart/mainEventList.dart';
+import 'package:mafia/pages/cafeMafia/loginSignup.dart';
+import 'package:mafia/pages/cafeMafia/mainEventList.dart';
 import 'package:mafia/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
