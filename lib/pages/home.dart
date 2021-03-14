@@ -1,4 +1,4 @@
-import 'package:mafia/pages/cafeMafia/Splash.dart';
+import 'package:mafia/pages/cafeMafia/cafeSplashScreen.dart';
 import 'package:mafia/pages/helpRoles.dart';
 import 'package:mafia/pages/howToPlay.dart';
 import 'package:mafia/pages/setPlayers.dart';
