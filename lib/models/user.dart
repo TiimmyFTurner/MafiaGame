@@ -1,6 +1,6 @@
 class User {
   final int id;
-  final String name, email, token;
+  String name, email, token;
 
   User({
     this.id,

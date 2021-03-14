@@ -1,4 +1,4 @@
-import 'package:mafia/pages/cafeMafia.dart/loginSignup.dart';
+import 'package:mafia/pages/cafeMafia.dart/Splash.dart';
 import 'package:mafia/pages/helpRoles.dart';
 import 'package:mafia/pages/howToPlay.dart';
 import 'package:mafia/pages/setPlayers.dart';
@@ -71,36 +71,33 @@ class Home extends StatelessWidget {
                 child: SizedBox(
                   width: double.infinity,
                   height: 55,
-                  child: Hero(
-                    tag: 'cafe',
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        elevation: MaterialStateProperty.all(0),
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
-                        backgroundColor: MaterialStateProperty.all(
-                          Theme.of(context).primaryColor,
-                        ),
-                        foregroundColor: MaterialStateProperty.all(
-                          Theme.of(context).textTheme.button.color,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      elevation: MaterialStateProperty.all(0),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      child: Text(
-                        "کافه مافیا",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w300,
-                            letterSpacing: 3),
+                      backgroundColor: MaterialStateProperty.all(
+                        Theme.of(context).primaryColor,
                       ),
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => LoginSignup()),
-                        );
-                      },
+                      foregroundColor: MaterialStateProperty.all(
+                        Theme.of(context).textTheme.button.color,
+                      ),
                     ),
+                    child: Text(
+                      "کافه مافیا",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w300,
+                          letterSpacing: 3),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => CafeSplashScreen()),
+                      );
+                    },
                   ),
                 ),
               ),
