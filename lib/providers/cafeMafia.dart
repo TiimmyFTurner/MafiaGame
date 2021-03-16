@@ -24,7 +24,7 @@ class CafeMafia extends ChangeNotifier {
       );
       _user = userDecode(response.body);
       _user.token = _token;
-      return false;
+      return true;
     }
     return false;
   }
