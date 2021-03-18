@@ -19,6 +19,6 @@ class Event {
       title: json['title'],
       description: json['description'],
       locatioan: json['location'],
-      date: json['date'],
-      status: json['status']);
+      date: DateTime.parse(json['date']),
+      status: json['status'] != 0);
 }
