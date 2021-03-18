@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:mafia/models/event.dart';
+import 'package:mafia/providers/providers.dart';
+import 'package:mafia/widgets/cafeMafia/eventCardList.dart';
 import 'package:mafia/widgets/cafeMafia/searchField.dart';
 
-class MainEventList extends StatelessWidget {
+class MainEventList extends StatefulWidget {
+  @override
+  _MainEventListState createState() => _MainEventListState();
+}
+
+class _MainEventListState extends State<MainEventList> {
+  Future<List<Event>> eventList;
+  @override
+  void initState() {
+    super.initState();
+    eventList = Provider.of<CafeMafia>(context, listen: false).eventList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +42,22 @@ class MainEventList extends StatelessWidget {
                 ),
               ),
               SearchField(),
+              FutureBuilder<List<Event>>(
+                future: eventList,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Expanded(child: EventCardList(snapshot.data));
+                  } else if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  }
+                  return Expanded(
+                      child: Center(
+                          child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        Theme.of(context).primaryColor),
+                  )));
+                },
+              ),
             ],
           ),
         ),

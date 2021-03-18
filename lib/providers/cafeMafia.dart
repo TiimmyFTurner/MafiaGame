@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:mafia/models/event.dart';
 import 'package:mafia/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,10 +11,11 @@ class CafeMafia extends ChangeNotifier {
   static const String _URL = 'http://' + _HOST + '/' + _PATH;
   User _user;
   SharedPreferences _prefs;
+  String _token;
 
   Future<bool> initCafeCheck() async {
     _prefs = await SharedPreferences.getInstance();
-    String _token = _prefs.getString('token');
+    _token = _prefs.getString('token');
     if (_token != null) {
       final response = await http.get(
         _URL + 'auth',
@@ -64,56 +66,24 @@ class CafeMafia extends ChangeNotifier {
     else
       throw Exception('Failed to login.');
   }
-  // Future<Album> createAlbum(String title) async {
-  //   final response = await http.post(
-  //     Uri.https('jsonplaceholder.typicode.com', 'albums'),
-  //     headers: <String, String>{
-  //       'Content-Type': 'application/json; charset=UTF-8',
-  //     },
-  //     body: jsonEncode(<String, String>{
-  //       'title': title,
-  //     }),
-  //   );
-
-  //   if (response.statusCode == 201) {
-  //     return Album.fromJson(jsonDecode(response.body));
-  //   } else {
-  //     throw Exception('Failed to create album.');
-  //   }
-  // }
-
-  // Future<http.Response> createAlbum(String title) {
-  //   return http.post(
-  //     Uri.https('jsonplaceholder.typicode.com', 'albums'),
-  //     headers: <String, String>{
-  //       'Content-Type': 'application/json; charset=UTF-8',
-  //     },
-  //     body: jsonEncode(<String, String>{
-  //       'title': title,
-  //     }),
-  //   );
-  // }
-
-  // Future<User> fetchAlbum() async {
-  //   final response =
-  //       await http.get('https://jsonplaceholder.typicode.com/albums/1');
-
-  //   if (response.statusCode == 200) {
-  //     // If the server did return a 200 OK response,
-  //     // then parse the JSON.
-  //     print(jsonDecode(response.body));
-  //     return User.fromJson(jsonDecode(response.body));
-  //   } else {
-  //     // If the server did not return a 200 OK response,
-  //     // then throw an exception.
-  //     throw Exception('Failed to load album');
-  //   }
-  // }
 
   User userDecode(data) {
     Map user = jsonDecode(data)['data'];
     user['user']['token'] = user['token'];
     user = user['user'];
     return User.fromJson(user);
+  }
+
+  Future<List<Event>> eventList() async {
+    final response = await http.get(_URL + 'events', headers: {
+      'Authorization': 'Bearer ' + _token,
+      'Accept': 'application/json'
+    });
+    final List responseMap = jsonDecode(response.body)['data'];
+    List<Event> eventList = [];
+    responseMap.forEach((element) {
+      eventList.add(Event.fromJson(element));
+    });
+    return eventList;
   }
 }
