@@ -32,6 +32,8 @@ dependencies:
   font_awesome_flutter: ^8.10.0
   assets_audio_player: ^2.0.13+6
   http: ^0.12.2
+  shamsi_date: ^0.9.1
+
 
 dev_dependencies:
   flutter_test:
