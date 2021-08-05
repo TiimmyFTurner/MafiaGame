@@ -14,7 +14,7 @@ class SetRoles extends StatelessWidget {
     List _citizen = _rNPProviderListener.citizen;
     List _independent = _rNPProviderListener.independent;
 
-    Widget _roleGeidView({int flex, List roles, String setter}) {
+    Widget _roleGridView({int flex, List roles, String setter}) {
       return Expanded(
         flex: flex,
         child: GridView.count(
@@ -43,11 +43,11 @@ class SetRoles extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Text('مافیا', style: TextStyle(color: Colors.red, fontSize: 18)),
-            _roleGeidView(flex: 4, roles: _mafia, setter: "add"),
+            _roleGridView(flex: 4, roles: _mafia, setter: "add"),
             Text('شهروند', style: TextStyle(color: Colors.green, fontSize: 18)),
-            _roleGeidView(flex: 5, roles: _citizen, setter: "add"),
+            _roleGridView(flex: 5, roles: _citizen, setter: "add"),
             Text('مستقل', style: TextStyle(color: Colors.orange, fontSize: 18)),
-            _roleGeidView(flex: 3, roles: _independent, setter: "add"),
+            _roleGridView(flex: 3, roles: _independent, setter: "add"),
             SizedBox(height: 90)
           ],
         ),
