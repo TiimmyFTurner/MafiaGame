@@ -156,6 +156,8 @@ class SetRoles extends StatelessWidget {
 
   _popupMenuButton(context) {
     return PopupMenuButton<int>(
+      shape:  RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(28))),
       onSelected: (value) => _menuOnSelected(value, context),
       itemBuilder: (context) => [
         PopupMenuItem(
