@@ -156,7 +156,7 @@ class SetRoles extends StatelessWidget {
 
   _popupMenuButton(context) {
     return PopupMenuButton<int>(
-      onSelected: (value) => _menueOnSelected(value, context),
+      onSelected: (value) => _menuOnSelected(value, context),
       itemBuilder: (context) => [
         PopupMenuItem(
           value: 1,
@@ -184,7 +184,7 @@ class SetRoles extends StatelessWidget {
     );
   }
 
-  _menueOnSelected(int value, BuildContext context) {
+  _menuOnSelected(int value, BuildContext context) {
     switch (value) {
       case 1:
         Provider.of<RolesNPlayers>(context, listen: false).recoverLastRoles();
