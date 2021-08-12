@@ -27,6 +27,8 @@ class _ShowRolesState extends State<ShowRoles> {
                     text: "برای شروع بازی بکشید",
                     innerColor: Theme.of(context).iconTheme.color,
                     onSubmit: () {
+                      Provider.of<LastMoveProvider>(context, listen: false)
+                          .newGame();
                       Provider.of<RolesNPlayers>(context, listen: false)
                           .playGame();
                       Navigator.of(context).pushReplacement(

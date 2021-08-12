@@ -5,3 +5,4 @@ export './rolesNPlayers.dart';
 export './settings.dart';
 export './note.dart';
 export './music.dart';
+export './lastMoveProvider.dart';

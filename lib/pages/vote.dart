@@ -1,4 +1,5 @@
 import 'package:mafia/helpers/lockScreenTimer.dart';
+import 'package:mafia/models/lastMove.dart';
 import 'package:mafia/pages/night.dart';
 import 'package:mafia/providers/providers.dart';
 import 'package:mafia/widgets/inGameAppBar.dart';
@@ -53,7 +54,7 @@ class _VoteState extends State<Vote> {
           height: 80,
           width: MediaQuery.of(context).size.width,
           child: Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(10),
             child: Row(
               children: <Widget>[
                 Container(
@@ -87,7 +88,7 @@ class _VoteState extends State<Vote> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 10),
+                      SizedBox(width: 5),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(24),
@@ -115,7 +116,7 @@ class _VoteState extends State<Vote> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 10),
+                      SizedBox(width: 5),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(24),
@@ -147,6 +148,75 @@ class _VoteState extends State<Vote> {
                   ),
                 ),
                 Expanded(child: Container()),
+                SizedBox(
+                  height: 45,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                      ),
+                      backgroundColor: MaterialStateProperty.all(
+                        Theme.of(context).accentColor,
+                      ),
+                      foregroundColor: MaterialStateProperty.all(
+                        Theme.of(context).textTheme.button.color,
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Text("حرکت آخر", textDirection: TextDirection.rtl)
+                      ],
+                    ),
+                    onPressed: () {
+                      LastMove card =
+                          Provider.of<LastMoveProvider>(context, listen: false)
+                              .pickCard();
+                      return showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(40))),
+                              backgroundColor: card.color == "R"
+                                  ? Colors.redAccent
+                                  : card.color == "B"
+                                      ? Colors.brown
+                                      : card.color == "D"
+                                          ? Colors.black
+                                          : Colors.white38,
+                              title: Text(card.name,
+                                  style: TextStyle(color: Colors.white)),
+                              content: Text(card.description,
+                                  style: TextStyle(color: Colors.white)),
+                              actions: [
+                                ButtonBar(
+                                  children: [
+                                    TextButton(
+                                      style: ButtonStyle(
+                                        foregroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.white),
+                                      ),
+                                      child: Text("بازگشت"),
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(width: 5),
                 SizedBox(
                   height: 45,
                   child: ElevatedButton(
