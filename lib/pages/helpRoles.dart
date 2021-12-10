@@ -4,7 +4,7 @@ import 'package:mafia/widgets/listItemRole.dart';
 import 'package:flutter/material.dart';
 
 class HelpRoles extends StatelessWidget {
-  Widget _roleDatails(context, role) {
+  Widget _roleDetails(context, role) {
     String type = role.type == 'C'
         ? "شهروند"
         : role.type == 'M'
@@ -59,7 +59,7 @@ class HelpRoles extends StatelessWidget {
     List _mafia = _rNPProviderListener.mafia;
     List _citizen = _rNPProviderListener.citizen;
     List _independent = _rNPProviderListener.independent;
-    Widget _roleGeidView({List roles}) {
+    Widget _roleGridView({List roles}) {
       return GridView.count(
         padding: EdgeInsets.all(10),
         physics: NeverScrollableScrollPhysics(),
@@ -84,7 +84,7 @@ class HelpRoles extends StatelessWidget {
                       color: Theme.of(context).colorScheme.secondary,
                       borderRadius: BorderRadius.all(Radius.circular(28.0)),
                     ),
-                    child: _roleDatails(context, roles[index]),
+                    child: _roleDetails(context, roles[index]),
                   );
                 },
               );
@@ -137,11 +137,11 @@ class HelpRoles extends StatelessWidget {
               ),
             ),
             Text('مافیا', style: TextStyle(color: Colors.red, fontSize: 18)),
-            _roleGeidView(roles: _mafia),
+            _roleGridView(roles: _mafia),
             Text('شهروند', style: TextStyle(color: Colors.green, fontSize: 18)),
-            _roleGeidView(roles: _citizen),
+            _roleGridView(roles: _citizen),
             Text('مستقل', style: TextStyle(color: Colors.orange, fontSize: 18)),
-            _roleGeidView(roles: _independent),
+            _roleGridView(roles: _independent),
           ],
         ),
       ),

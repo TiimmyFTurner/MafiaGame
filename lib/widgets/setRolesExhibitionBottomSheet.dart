@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:mafia/pages/showRoles.dart';
 import 'package:mafia/providers/providers.dart';
 import 'package:mafia/widgets/listItemRole.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 const double minHeight = 90;
