@@ -158,7 +158,7 @@ class _VoteState extends State<Vote> {
                         ),
                       ),
                       backgroundColor: MaterialStateProperty.all(
-                        Theme.of(context).accentColor,
+                        Theme.of(context).colorScheme.secondary,
                       ),
                       foregroundColor: MaterialStateProperty.all(
                         Theme.of(context).textTheme.button.color,
@@ -227,7 +227,7 @@ class _VoteState extends State<Vote> {
                         ),
                       ),
                       backgroundColor: MaterialStateProperty.all(
-                        Theme.of(context).accentColor,
+                        Theme.of(context).colorScheme.secondary,
                       ),
                       foregroundColor: MaterialStateProperty.all(
                         Theme.of(context).textTheme.button.color,

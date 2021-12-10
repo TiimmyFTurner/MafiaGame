@@ -83,7 +83,7 @@ class SetRoles extends StatelessWidget {
                     child: AlertDialog(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(40))),
-                      backgroundColor: Theme.of(context).accentColor,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
                       title: Text("راهنما"),
                       content: Text(
                         "برای مشاهده وظیفه هر نقش آن را نگه دارید، برای دیدن یا حذف نقش های انتخاب شده قسمت 'نقش های انتخاب شده' را به سمت بالا بکشید " +
@@ -126,7 +126,7 @@ class SetRoles extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(28),
           ),
-          backgroundColor: Theme.of(context).accentColor,
+          backgroundColor: Theme.of(context).colorScheme.secondary,
           title: Text(
             role.name,
             textAlign: TextAlign.center,

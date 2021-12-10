@@ -80,7 +80,7 @@ class HelpRoles extends StatelessWidget {
                     height: MediaQuery.of(context).size.height / 1.2,
                     margin: EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       borderRadius: BorderRadius.all(Radius.circular(28.0)),
                     ),
                     child: _roleDatails(context, roles[index]),

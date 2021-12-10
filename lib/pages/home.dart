@@ -75,7 +75,7 @@ class Home extends StatelessWidget {
                             ),
                           ),
                           backgroundColor: MaterialStateProperty.all(
-                            Theme.of(context).accentColor,
+                            Theme.of(context).colorScheme.secondary,
                           ),
                         ),
                         child: Text(
@@ -107,7 +107,7 @@ class Home extends StatelessWidget {
                             ),
                           ),
                           backgroundColor: MaterialStateProperty.all(
-                            Theme.of(context).accentColor,
+                            Theme.of(context).colorScheme.secondary,
                           ),
                         ),
                         child: Text(
@@ -141,7 +141,7 @@ class Home extends StatelessWidget {
                       ),
                     ),
                     backgroundColor: MaterialStateProperty.all(
-                      Theme.of(context).accentColor,
+                      Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   child: Text(

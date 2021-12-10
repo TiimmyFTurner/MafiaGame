@@ -85,7 +85,7 @@ class _ListItemNightState extends State<ListItemNight> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(28),
               ),
-              backgroundColor: Theme.of(context).accentColor,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
               title: Text("وظیفه", textAlign: TextAlign.center),
               content: SingleChildScrollView(
                 child: Text(_player.role.job, textAlign: TextAlign.center),

@@ -71,7 +71,7 @@ class _NightState extends State<Night> {
                         ),
                       ),
                       backgroundColor: MaterialStateProperty.all(
-                        Theme.of(context).accentColor,
+                        Theme.of(context).colorScheme.secondary,
                       ),
                       foregroundColor: MaterialStateProperty.all(
                         Theme.of(context).textTheme.button.color,
@@ -103,7 +103,7 @@ class _NightState extends State<Night> {
                         ),
                       ),
                       backgroundColor: MaterialStateProperty.all(
-                        Theme.of(context).accentColor,
+                        Theme.of(context).colorScheme.secondary,
                       ),
                       foregroundColor: MaterialStateProperty.all(
                         Theme.of(context).textTheme.button.color,

@@ -32,7 +32,7 @@ class _DayState extends State<Day> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(28),
               ),
-              backgroundColor: Theme.of(context).accentColor,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
               title: Text(
                   (_winner == 'C'
                           ? 'تیم شهروند'
@@ -130,7 +130,7 @@ class _DayState extends State<Day> {
                         ),
                       ),
                       backgroundColor: MaterialStateProperty.all(
-                        Theme.of(context).accentColor,
+                        Theme.of(context).colorScheme.secondary,
                       ),
                       foregroundColor: MaterialStateProperty.all(
                         Theme.of(context).textTheme.button.color,
@@ -161,7 +161,7 @@ class _DayState extends State<Day> {
                         ),
                       ),
                       backgroundColor: MaterialStateProperty.all(
-                        Theme.of(context).accentColor,
+                        Theme.of(context).colorScheme.secondary,
                       ),
                       foregroundColor: MaterialStateProperty.all(
                         Theme.of(context).textTheme.button.color,

@@ -42,7 +42,7 @@ class _MyRolesState extends State<MyRoles> {
       height: MediaQuery.of(context).size.height / 1.13,
       margin: EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.all(Radius.circular(28.0)),
       ),
       child: Column(
@@ -145,7 +145,7 @@ class _MyRolesState extends State<MyRoles> {
                   height: MediaQuery.of(context).size.height / 1.2,
                   margin: EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.all(Radius.circular(28.0)),
                   ),
                   child: _roleDatails(context, roles[index]),
@@ -241,7 +241,7 @@ class _MyRolesState extends State<MyRoles> {
     AlertDialog alert = AlertDialog(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(40))),
-      backgroundColor: Theme.of(context).accentColor,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       title: Text("نقش مورد نظر حذف شود ؟"),
       actions: [
         ButtonBar(
@@ -294,7 +294,7 @@ class _MyRolesState extends State<MyRoles> {
         child: DropdownButtonFormField(
           validator: (String value) =>
               value == null ? 'نوع نقش را انتخاب کنید' : null,
-          dropdownColor: Theme.of(context).accentColor,
+          dropdownColor: Theme.of(context).colorScheme.secondary,
           value: roleType,
           items: [
             {'name': 'مافیا', 'value': 'M'},

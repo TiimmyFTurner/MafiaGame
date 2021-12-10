@@ -30,7 +30,7 @@ class Setting extends StatelessWidget {
             Card(
               child: SwitchListTile(
                 title: Text("تم تاریک"),
-                activeColor: Theme.of(context).accentColor,
+                activeColor: Theme.of(context).colorScheme.secondary,
                 value: platformDarkMode
                     ? true
                     : Provider.of<Settings>(context).darkMode,
@@ -47,7 +47,7 @@ class Setting extends StatelessWidget {
                 subtitle: Text(
                   "به طور معمول نسبت تعداد مافیا به شهروند یک به دو میباشد در صورت نیاز برای سناریو های مختلف میتوانید این محدودیت را غیر فعال کنید",
                 ),
-                activeColor: Theme.of(context).accentColor,
+                activeColor: Theme.of(context).colorScheme.secondary,
                 value: Provider.of<RolesNPlayers>(context).limitLock,
                 onChanged: (value) =>
                     Provider.of<RolesNPlayers>(context, listen: false)
@@ -60,7 +60,7 @@ class Setting extends StatelessWidget {
                 subtitle: Text(
                   'در صورت نیاز استفاده از یک نقش بیش از یک بار برای سناریو های مختلف میتوانید این ویژگی را فعال کنید',
                 ),
-                activeColor: Theme.of(context).accentColor,
+                activeColor: Theme.of(context).colorScheme.secondary,
                 value: Provider.of<RolesNPlayers>(context).starRole,
                 onChanged: Provider.of<RolesNPlayers>(context).limitLock
                     ? null

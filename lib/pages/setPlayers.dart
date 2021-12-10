@@ -102,7 +102,7 @@ class SetPlayers extends StatelessWidget {
                       behavior: SnackBarBehavior.floating,
                       content: Container(
                         decoration: BoxDecoration(
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(30)),
                         margin: EdgeInsets.only(bottom: 50),
                         child: Padding(
@@ -147,7 +147,7 @@ class SetPlayers extends StatelessWidget {
                     child: AlertDialog(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(40))),
-                      backgroundColor: Theme.of(context).accentColor,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
                       title: Text("راهنما"),
                       content: Text(
                           'در این قسمت شما میتوانید به هر تعدادی میخواهید بازیکن اضافه کنید'),
@@ -181,7 +181,7 @@ class SetPlayers extends StatelessWidget {
                     behavior: SnackBarBehavior.floating,
                     content: Container(
                       decoration: BoxDecoration(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           borderRadius: BorderRadius.circular(30)),
                       margin: EdgeInsets.only(bottom: 50),
                       child: Padding(

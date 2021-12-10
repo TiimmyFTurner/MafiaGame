@@ -51,7 +51,7 @@ class _RoleDialogState extends State<RoleDialog> {
               height: change ? MediaQuery.of(context).size.height * .8 : 340,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.all(Radius.circular(Consts.radius)),
               ),
               child: Column(

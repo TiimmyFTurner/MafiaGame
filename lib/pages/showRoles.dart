@@ -65,7 +65,7 @@ class _ShowRolesState extends State<ShowRoles> {
                                 role,
                             btn: "فهمیدم",
                             more: _players[index].role.job,
-                            backgroundColor: Theme.of(context).accentColor,
+                            backgroundColor: Theme.of(context).colorScheme.secondary,
                             image: AssetImage(
                               "asset/images/" +
                                   _players[index].role.type +

@@ -62,7 +62,7 @@ class _SetRolesExhibitionBottomSheetState
                       blurRadius: 10,
                       offset: Offset(-3, -.5))
                 ],
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
               ),
               child: Padding(
@@ -321,7 +321,7 @@ class _SetRolesExhibitionBottomSheetState
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(28),
           ),
-          backgroundColor: Theme.of(context).accentColor,
+          backgroundColor: Theme.of(context).colorScheme.secondary,
           title: Text(
             role.name,
             textAlign: TextAlign.center,

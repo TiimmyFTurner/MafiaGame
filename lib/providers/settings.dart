@@ -1,3 +1,4 @@
+import 'dart:ui';
 
 import 'package:flutter/Material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,15 +12,16 @@ class Settings extends ChangeNotifier {
       brightness: Brightness.light,
       backgroundColor: Color(0xffdaebee),
       primaryColor: Color(0xFFff5126),
-      accentColor: Color(0xFFfcedda),
+      colorScheme:
+          ColorScheme.fromSwatch().copyWith(secondary: Color(0xFFfcedda)),
+      // accentColor: Color(0xFFfcedda),
       textTheme: TextTheme(button: TextStyle(color: Colors.black)),
       iconTheme: IconThemeData(color: Colors.black),
       appBarTheme: AppBarTheme(
         elevation: 0,
         color: Color(0xffdaebee),
-        textTheme: TextTheme(
-            headline6: TextStyle(
-                color: Colors.black, fontSize: 18, fontFamily: 'Koodak')),
+        titleTextStyle:
+            TextStyle(color: Colors.black, fontSize: 18, fontFamily: 'Koodak'),
         iconTheme: IconThemeData(color: Colors.black),
       ),
       cardColor: Color(0xffb6d7de),
@@ -46,9 +48,8 @@ class Settings extends ChangeNotifier {
       appBarTheme: AppBarTheme(
         elevation: 0,
         color: Color(0xff141e24),
-        textTheme: TextTheme(
-            headline6: TextStyle(
-                color: Colors.white, fontSize: 18, fontFamily: 'Koodak')),
+        titleTextStyle:
+            TextStyle(color: Colors.white, fontSize: 18, fontFamily: 'Koodak'),
         iconTheme: IconThemeData(color: Colors.white),
       ),
       cardColor: Color(0xff193945),
@@ -63,6 +64,7 @@ class Settings extends ChangeNotifier {
       ),
     ),
   };
+
   ThemeData _themeData = _themes['light'];
 
   SharedPreferences _prefs;
