@@ -1,3 +1,4 @@
+import 'package:mafia/pages/myRoles.dart';
 import 'package:mafia/providers/providers.dart';
 import 'package:mafia/widgets/listItemRole.dart';
 import 'package:flutter/material.dart';
@@ -102,6 +103,39 @@ class HelpRoles extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         child: Column(
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: SizedBox(
+                width: double.infinity,
+                height: 45,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(28),
+                      ),
+                    ),
+                    backgroundColor: MaterialStateProperty.all(
+                      Theme.of(context).primaryColor,
+                    ),
+                  ),
+                  child: Text(
+                    "نقش های من",
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.button.color,
+                      fontSize: 16,
+                    ),
+                  ),
+                  onPressed: () => showModalBottomSheet(
+                      context: context,
+                      enableDrag: true,
+                      isScrollControlled: true,
+                      builder: (builder) => MyRoles())
+                      .then((value) => Provider.of<RolesNPlayers>(context, listen: false)
+                      .saveCustomRoles()),
+                ),
+              ),
+            ),
             Text('مافیا', style: TextStyle(color: Colors.red, fontSize: 18)),
             _roleGeidView(roles: _mafia),
             Text('شهروند', style: TextStyle(color: Colors.green, fontSize: 18)),
